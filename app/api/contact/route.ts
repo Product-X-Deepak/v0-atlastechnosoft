@@ -13,7 +13,8 @@ const transporter = nodemailer.createTransport({
   },
 })
 
-const companyEmail = "info@atlastechnosoft.com"
+// Get the company email from environment variables with fallback
+const companyEmail = process.env.NEXT_PUBLIC_CONTACT_EMAIL || "info@atlastechnosoft.com"
 
 // Create a more flexible type for form data
 interface FormData {

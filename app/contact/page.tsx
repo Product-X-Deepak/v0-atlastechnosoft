@@ -32,13 +32,11 @@ const SECONDARY_KEYWORDS = [
 
 // Critical images for the page that should be preloaded
 const CRITICAL_IMAGES = [
-  "/images/contact-hero.jpg",
   "/images/patterns/dots.svg",
 ];
 
 // Image priority configuration
 const IMAGE_PRIORITIES: Record<string, "high" | "medium" | "low"> = {
-  "/images/contact-hero.jpg": "high",
   "/images/patterns/dots.svg": "medium",
 };
 
@@ -78,7 +76,7 @@ export const metadata: Metadata = {
     url: "https://www.atlastechnosoft.com/contact",
     images: [
       {
-        url: "/images/contact-hero.jpg",
+        url: "/images/patterns/dots.svg",
         width: 1200,
         height: 630,
         alt: "Contact Atlas Technosoft - SAP & ERP Solutions Support",
@@ -89,7 +87,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Contact Atlas Technosoft | SAP & ERP Solutions Support",
     description: "Get in touch with our team for SAP solutions, ERP consulting, and digital transformation services.",
-    images: ["/images/contact-hero.jpg"],
+    images: ["/images/patterns/dots.svg"],
   },
   alternates: {
     canonical: "https://www.atlastechnosoft.com/contact",
@@ -118,7 +116,7 @@ export default function ContactPage() {
         description="Get in touch with Atlas Technosoft for SAP Business One solutions, ERP consulting, and digital transformation services. Our specialists are ready to help with your business needs."
         canonicalUrl="/contact"
         type="ContactPage"
-        image="/images/contact-hero.jpg"
+        image="/images/patterns/dots.svg"
         breadcrumbs={breadcrumbData}
       />
       
@@ -168,35 +166,47 @@ export default function ContactPage() {
       <main>
         <ContactHero />
         
-        <section className="relative py-16 md:py-24 bg-[#1E1E38] overflow-hidden" id="contact-section">
-          <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-[#1E1E38] via-[#1E1E38] to-[#A73370]/30 opacity-90"></div>
-          <div className="absolute top-0 right-0 w-64 h-64 rounded-full bg-[#E84A0E]/10 -mr-32 -mt-32"></div>
-          <div className="absolute bottom-0 left-0 w-48 h-48 rounded-full bg-[#A73370]/10 -ml-24 -mb-24"></div>
+        <section className="relative py-12 md:py-16 bg-gradient-to-br from-white to-slate-50 overflow-hidden" id="contact-section">
+          <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
+          <div className="absolute top-0 right-0 w-72 h-72 rounded-full bg-[#E84A0E]/5 blur-3xl -mr-36 -mt-36"></div>
+          <div className="absolute bottom-0 left-0 w-72 h-72 rounded-full bg-[#A73370]/5 blur-3xl -ml-36 -mb-36"></div>
           
           <div className="container relative z-10 px-4 md:px-6 lg:px-8">
-            <div className="mx-auto max-w-3xl text-center mb-12">
-              <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+            <div className="mx-auto max-w-3xl text-center mb-10">
+              <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-slate-900">
                 Get in <span className="text-[#E84A0E]">Touch</span> With Our Team
               </h2>
-              <p className="mt-4 text-lg text-slate-300">
+              <p className="mt-3 text-base text-slate-700">
                 Have questions about our solutions or services? We&apos;re here to help you transform your business.
               </p>
             </div>
 
-            <div className="grid gap-8 lg:grid-cols-2">
-              <div>
-                <ContactForm />
-              </div>
-              <div>
-                <ContactInfo />
+            <div className="mx-auto max-w-7xl">
+              <div className="grid gap-8 lg:grid-cols-5 lg:gap-10">
+                <div className="lg:col-span-3 order-2 lg:order-1">
+                  <ContactForm />
+                </div>
+                <div className="lg:col-span-2 order-1 lg:order-2">
+                  <ContactInfo />
+                </div>
               </div>
             </div>
           </div>
         </section>
 
-        <section id="faq-section">
-          <FaqSection />
-          <div className="absolute bottom-0 left-0 right-0 h-10 bg-slate-50 dark:bg-slate-900" style={{ marginBottom: "-10px", zIndex: 5 }}></div>
+        <section id="faq-section" className="relative bg-[#FFF5D6] py-12 md:py-16">
+          <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
+          <div className="container relative z-10 px-4 md:px-6 lg:px-8">
+            <div className="mx-auto max-w-3xl text-center mb-10">
+              <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-slate-900">
+                Frequently <span className="text-[#E84A0E]">Asked</span> Questions
+              </h2>
+              <p className="mt-3 text-base text-slate-700">
+                Find answers to common questions about our services and support.
+              </p>
+            </div>
+            <FaqSection />
+          </div>
         </section>
       </main>
       
