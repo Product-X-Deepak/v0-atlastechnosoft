@@ -7,7 +7,11 @@ import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { Suspense } from "react"
 
-function BoyumItLearning(_props: Record<string, unknown>) {
+// Props type for the component
+type BoyumItLearningProps = Record<string, never>
+
+// Internal implementation component (not exported)
+function BoyumItLearningContent(_: BoyumItLearningProps) {
   const ref = useRef<HTMLElement>(null)
   const isInView = useInView(ref as React.RefObject<Element>, { once: true, amount: 0.2 })
   
@@ -207,15 +211,13 @@ const learningResources = [
     ],
     actionText: "Enroll in training"
   }
-] 
-// Wrapper component to ensure proper Suspense boundaries for useSearchParams
-function BoyumItLearningWrapper(props: Record<string, unknown>) {
+]
+
+// Wrapper component with Suspense boundary
+export function BoyumItLearning(props: BoyumItLearningProps) {
   return (
     <Suspense fallback={<div className="min-h-[300px] animate-pulse bg-muted/20 rounded-lg" />}>
-      <BoyumItLearning {...props} />
+      <BoyumItLearningContent {...props} />
     </Suspense>
   );
 }
-
-// Modify the export to use the wrapped version
-export { BoyumItLearningWrapper as BoyumItLearning };

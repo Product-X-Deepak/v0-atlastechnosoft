@@ -149,6 +149,40 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=5" />
         
+        {/* Chunk error handling - Load first to catch any subsequent script load errors */}
+        <Script 
+          src="/chunk-error-handling.js" 
+          strategy="beforeInteractive" 
+          id="chunk-error-handling" 
+        />
+
+        {/* Inline chunk initialization script - critical for early error handling */}
+        <Script
+          id="chunk-initialization"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                // Install minimal chunk error handler as early as possible
+                if (typeof window !== 'undefined' && window.__webpack_chunk_load__) {
+                  const originalLoad = window.__webpack_chunk_load__;
+                  window.__webpack_chunk_load__ = function(id) {
+                    return new Promise((resolve, reject) => {
+                      originalLoad(id).then(resolve).catch(err => {
+                        console.warn("Chunk load error for chunk: " + id + ". Retrying...");
+                        // Wait and retry once
+                        setTimeout(() => originalLoad(id).then(resolve).catch(reject), 1000);
+                      });
+                    });
+                  };
+                  // Flag as initialized
+                  window.__chunk_handler_initialized = true;
+                }
+              })();
+            `
+          }}
+        />
+        
         {/* Resource hints for critical origins */}
         <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
@@ -179,6 +213,20 @@ export default function RootLayout({ children }: RootLayoutProps) {
           as="image"
           type="image/png"
           fetchPriority="high"
+        />
+
+        {/* Preload critical chunks */}
+        <link 
+          rel="preload" 
+          href="/_next/static/chunks/framework.js" 
+          as="script" 
+          crossOrigin="anonymous" 
+        />
+        <link 
+          rel="preload" 
+          href="/_next/static/chunks/main.js" 
+          as="script" 
+          crossOrigin="anonymous" 
         />
         
         {/* Security headers */}
@@ -243,63 +291,12 @@ export default function RootLayout({ children }: RootLayoutProps) {
             <CustomCursor />
           </Suspense>
           <Suspense fallback={null}>
-            <div className="fixed bottom-6 right-6 z-[9999] w-auto h-auto">
-              <ChatWidget />
-            </div>
+            <ChatWidget />
           </Suspense>
           
-          <Suspense fallback={null}>
-            <Analytics />
-          </Suspense>
+          <Analytics />
           <TailwindIndicator />
         </Providers>
-        
-        {/* Analytics & Performance Monitoring */}
-        <Script
-          id="gtm-script"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-              })(window,document,'script','dataLayer','${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID}');
-            `,
-          }}
-        />
-        
-        {/* Polyfills for older browsers */}
-        <Script
-          id="polyfills"
-          strategy="beforeInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                // Intersection Observer polyfill
-                if (!('IntersectionObserver' in window)) {
-                  var script = document.createElement('script');
-                  script.src = 'https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver';
-                  document.head.appendChild(script);
-                }
-                
-                // Object.fromEntries polyfill
-                if (!Object.fromEntries) {
-                  Object.defineProperty(Object, 'fromEntries', {
-                    value(entries) {
-                      if (!entries || !entries[Symbol.iterator]) { throw new Error('Object.fromEntries requires a single iterable argument'); }
-                      const obj = {};
-                      for (const [key, value] of entries) {
-                        obj[key] = value;
-                      }
-                      return obj;
-                    },
-                  });
-                }
-              })();
-            `,
-          }}
-        />
       </body>
     </html>
   )

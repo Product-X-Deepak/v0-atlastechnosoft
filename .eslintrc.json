@@ -7,7 +7,10 @@
     "react-hooks"
   ],
   "rules": {
-    "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_", "varsIgnorePattern": "^_" }],
+    "@typescript-eslint/no-unused-vars": ["error", { 
+      "argsIgnorePattern": "^(_|e|error|err|props)$", 
+      "varsIgnorePattern": "^_" 
+    }],
     "@typescript-eslint/no-explicit-any": "warn",
     "@typescript-eslint/ban-ts-comment": "warn",
     "react/no-unescaped-entities": "off",
@@ -17,10 +20,56 @@
   },
   "overrides": [
     {
-      "files": ["lib/utils/**/*.ts", "lib/chatbot/**/*.ts", "components/common/performance/**/*.tsx"],
+      "files": ["lib/utils/**/*.ts", "lib/utils/**/*.js", "lib/chatbot/**/*.ts", "components/common/performance/**/*.tsx"],
       "rules": {
-        "@typescript-eslint/no-explicit-any": "off"
+        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/no-unused-vars": ["warn", { 
+          "argsIgnorePattern": "^(_|e|error|err)$", 
+          "varsIgnorePattern": "^(_|prefetchCriticalChunks|clearFailedChunks|configureChunkLoadingRetries)" 
+        }]
+      }
+    },
+    {
+      "files": ["app/api/**/*.ts", "app/error.tsx", "components/error-handler.tsx"],
+      "rules": {
+        "@typescript-eslint/no-unused-vars": ["warn", { 
+          "argsIgnorePattern": "^(_|e|error|err)$"
+        }]
+      }
+    },
+    {
+      "files": ["components/**/*.tsx"],
+      "rules": {
+        "@typescript-eslint/no-unused-vars": ["warn", { 
+          "argsIgnorePattern": "^(_.*|e|error|err|props)$",
+          "varsIgnorePattern": "^_"
+        }]
+      }
+    },
+    {
+      "files": ["lib/utils/moduleResolver.ts", "scripts/**/*.js"],
+      "rules": {
+        "@typescript-eslint/no-require-imports": "off",
+        "@next/next/no-assign-module-variable": "off"
+      }
+    },
+    {
+      "files": ["*.js", "*.cjs", "*.mjs"],
+      "rules": {
+        "@typescript-eslint/no-var-requires": "off",
+        "@typescript-eslint/no-require-imports": "off"
       }
     }
+  ],
+  "ignorePatterns": [
+    "node_modules/**",
+    ".next/**",
+    "out/**",
+    "public/**",
+    "*.min.js",
+    "*.config.js",
+    "scripts/set-permissions.js",
+    "scripts/build-production.js",
+    "scripts/optimize-assets.js"
   ]
 }

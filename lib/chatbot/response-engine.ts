@@ -113,7 +113,7 @@ export async function getResponseFromKnowledgeBase(query: string, conversationCo
     const isFollowup = isFollowUpQuestion(normalizedQuery, validatedContext);
     
     // Check if this is a query that would benefit from web search
-    if (shouldUseWebSearch(normalizedQuery, entities, validatedContext)) {
+    if (shouldUseWebSearch(normalizedQuery, entities)) {
       return {
         message: "I need to search for more up-to-date information about this. Let me do that for you.",
         shouldUseWebSearch: true,
@@ -189,7 +189,7 @@ export async function getResponseFromKnowledgeBase(query: string, conversationCo
       // If it's a follow-up question, add context awareness to the response
       let response = bestMatch.response;
       if (isFollowup && validatedContext && validatedContext.length > 0) {
-        response = addContextAwareness(response, normalizedQuery, validatedContext, entities);
+        response = addContextAwareness(response, normalizedQuery, validatedContext);
       }
       
       // If factuality is questionable, add a disclaimer
@@ -731,7 +731,7 @@ function isFollowUpQuestion(query: string, context?: string[]): boolean {
 /**
  * Add context awareness to a response based on conversation history
  */
-function addContextAwareness(response: string, query: string, context: string[], _entities: string[]): string {
+function addContextAwareness(response: string, query: string, context: string[]): string {
   // Check if this is a follow-up question that needs context awareness
   if (!isFollowUpQuestion(query, context)) {
     return response;
@@ -937,7 +937,7 @@ function isThankYou(query: string): boolean {
 /**
  * Determines if a web search would be more appropriate for the query
  */
-function shouldUseWebSearch(query: string, entities: string[], _context?: string[]): boolean {
+function shouldUseWebSearch(query: string, entities: string[]): boolean {
   // Keywords that indicate we should prefer web search
   const webSearchKeywords = [
     'latest', 'newest', 'recent', 'update', 'news', 
@@ -1403,7 +1403,7 @@ function findBestMatchingEntries(
 }
 
 // Analyze feedback to improve responses
-export function analyzeFeedback(feedback: Feedback, _response: ChatbotResponse): void {
+export function analyzeFeedback(feedback: Feedback): void {
   // In a production environment, this would log feedback to a database
   // and potentially be used to improve the knowledge base or response engine
   console.log('Feedback received:', feedback);
@@ -1412,8 +1412,7 @@ export function analyzeFeedback(feedback: Feedback, _response: ChatbotResponse):
 // Main function to generate chatbot responses
 export function generateResponse(
   query: string,
-  context?: ConversationContext,
-  _maxResults: number = 1
+  context?: ConversationContext
 ): ChatbotResponse {
   // First try rule-based responses
   const contextMessages = extractMessagesFromContext(context);

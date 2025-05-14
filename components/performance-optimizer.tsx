@@ -5,6 +5,7 @@ import { setupOptimizedImageLoading, initPerformanceMonitoring, deferNonCritical
 import { initWebVitalsReporting } from '@/lib/utils/web-vitals'
 import { initLinkOptimizer } from '@/lib/utils/link-validator'
 import { Suspense } from 'react'
+import { initializeChunkHandling, addChunkLoadingDebugListeners } from '@/lib/utils/chunk-initialization'
 
 // Define an extended interface for CSSStyleDeclaration to include fontDisplay
 interface ExtendedCSSStyleDeclaration extends CSSStyleDeclaration {
@@ -204,6 +205,14 @@ function PerformanceOptimizer() {
     // Variable to hold cleanup functions
     const cleanupFunctions: Array<() => void> = [];
     
+    // Initialize chunk handling early
+    initializeChunkHandling();
+    
+    // Add debug listeners in development
+    if (process.env.NODE_ENV === 'development') {
+      addChunkLoadingDebugListeners();
+    }
+    
     // Initialize performance monitoring
     initPerformanceMonitoring();
     
@@ -243,76 +252,26 @@ function PerformanceOptimizer() {
       if (cleanup) cleanupFunctions.push(cleanup);
     }, 800);
     
-    // Browser idle time optimizations
-    if ('requestIdleCallback' in window) {
-      window.requestIdleCallback(() => {
-        // Optimize third-party scripts
-        const thirdPartyScripts = document.querySelectorAll('script[data-third-party]');
-        thirdPartyScripts.forEach(script => {
-          script.setAttribute('async', '');
-          script.setAttribute('defer', '');
-        });
-        
-        // Preload resources for pages likely to be visited next
-        const currentPath = window.location.pathname;
-        const nextPaths: string[] = [];
-        
-        // Add logic to determine likely next paths based on current page
-        if (currentPath === '/') {
-          nextPaths.push('/about', '/services', '/contact');
-        } else if (currentPath.includes('/sap-solutions')) {
-          nextPaths.push('/sap-solutions/business-one', '/sap-solutions/hana');
-        }
-        
-        // Preload critical resources for likely next pages
-        nextPaths.forEach(path => {
-          const link = document.createElement('link');
-          link.rel = 'prerender';
-          link.href = path;
-          document.head.appendChild(link);
-        });
-      }, { timeout: 5000 });
-    }
-    
-    // Connection-aware optimizations
-    if ('connection' in navigator && (navigator as Navigator & { connection: { saveData: boolean; effectiveType: string } }).connection) {
-      const connection = (navigator as Navigator & { connection: { saveData: boolean; effectiveType: string } }).connection;
-      
-      // Adjust quality based on connection type
-      if (connection.saveData || connection.effectiveType === 'slow-2g' || connection.effectiveType === '2g') {
-        // Enable data saving mode
-        document.documentElement.classList.add('data-saving-mode');
-        
-        // Prevent auto-playing videos
-        document.querySelectorAll('video[autoplay]').forEach(video => {
-          video.removeAttribute('autoplay');
-          video.setAttribute('preload', 'none');
-        });
-      }
-    }
-    
-    // Clean up on component unmount
+    // Return cleanup function
     return () => {
-      cleanupFunctions.forEach(cleanup => {
-        if (typeof cleanup === 'function') {
-          cleanup();
-        }
-      });
+      cleanupFunctions.forEach(fn => fn());
     };
   }, [setupFontOptimization, setupAnimationObservers, prefetchNearbyPages, optimizeRuntime]);
-  
-  // This component doesn't render anything
+
+  // This component doesn't render anything visible
   return null;
 }
 
-// Wrapper component to ensure proper Suspense boundaries for useSearchParams
+/**
+ * Performance Optimizer Wrapper
+ * Wraps the performance optimizer with error handling
+ */
 function PerformanceOptimizerWrapper(props: Record<string, unknown>) {
   return (
-    <Suspense fallback={<div className="min-h-[300px] animate-pulse bg-muted/20 rounded-lg" />}>
+    <Suspense fallback={null}>
       <PerformanceOptimizer {...props} />
     </Suspense>
   );
 }
 
-// Modify the export to use the wrapped version
 export { PerformanceOptimizerWrapper as PerformanceOptimizer };

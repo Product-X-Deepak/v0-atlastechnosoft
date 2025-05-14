@@ -1,6 +1,5 @@
-import { NextRequest as _NextRequest, NextResponse } from "next/server";
-import { getResponseFromKnowledgeBase as _getResponseFromKnowledgeBase } from "@/lib/chatbot/response-engine";
-import { ChatbotQuery as _ChatbotQuery, ChatbotResponse } from "@/lib/chatbot/types";
+import { NextResponse } from "next/server";
+import { ChatbotResponse } from "@/lib/chatbot/types";
 import { knowledgeBase } from "@/lib/chatbot/knowledge-base";
 import { processWithRules as executeRules } from "@/lib/chatbot/rule-engine";
 import { ChatbotConfig } from "@/lib/chatbot/config";

@@ -45,6 +45,23 @@ const VALID_PATHS = new Set([
   '/industries/shipping',
 ])
 
+// List of static file extensions that should always be cached
+const STATIC_FILE_EXTENSIONS = new Set([
+  '.woff', '.woff2', '.ttf', '.eot', // Fonts
+  '.png', '.jpg', '.jpeg', '.gif', '.webp', '.svg', '.ico', // Images
+  '.css', // Stylesheets
+  '.js', // JavaScript
+  '.json', // JSON data
+  '.pdf', '.doc', '.docx', '.xls', '.xlsx', // Documents
+  '.mp4', '.webm', '.ogg', // Video
+  '.mp3', '.wav' // Audio
+]);
+
+// Check if a path has a static file extension
+function isStaticFile(path: string): boolean {
+  return STATIC_FILE_EXTENSIONS.has(path.substring(path.lastIndexOf('.')).toLowerCase());
+}
+
 // Clean up the store every 5 minutes to prevent memory leaks
 setInterval(() => {
   const now = Date.now()
@@ -61,20 +78,79 @@ export async function middleware(request: NextRequest) {
   // Add performance headers for all requests
   const response = NextResponse.next()
   
-  // Add cache control headers for static assets
-  if (
+  // Security headers for all requests
+  response.headers.set('X-Content-Type-Options', 'nosniff')
+  response.headers.set('X-Frame-Options', 'SAMEORIGIN')
+  response.headers.set('X-XSS-Protection', '1; mode=block')
+  response.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin')
+  response.headers.set('Permissions-Policy', 'camera=(), microphone=(), geolocation=(), interest-cohort=()')
+  
+  // Add more strict CSP headers for non-static routes
+  if (!isStaticFile(pathname)) {
+    response.headers.set(
+      'Content-Security-Policy',
+      "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https://www.google-analytics.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://www.google-analytics.com; frame-src 'self';"
+    )
+  }
+  
+  // Add cache control headers for static assets with specific chunk handling
+  if (pathname.includes('/_next/static/chunks/')) {
+    // Apply aggressive caching for webpack chunks to prevent chunk loading issues
+    response.headers.set(
+      'Cache-Control',
+      'public, max-age=31536000, immutable'
+    )
+    response.headers.append('Vary', 'Accept-Encoding')
+    
+    // Early hints for browser optimization
+    response.headers.set('Link', '</styles.css>; rel=preload; as=style,</main.js>; rel=preload; as=script')
+  } else if (
     pathname.includes('/_next/static/') ||
     pathname.includes('/images/') ||
-    pathname.includes('/fonts/')
+    pathname.includes('/fonts/') ||
+    isStaticFile(pathname)
   ) {
     response.headers.set(
       'Cache-Control',
       'public, max-age=31536000, immutable'
     )
+  } else if (pathname.includes('/_next/data/')) {
+    // Add separate caching for Next.js data files but less aggressive 
+    response.headers.set(
+      'Cache-Control',
+      'public, max-age=3600, s-maxage=60, stale-while-revalidate=86400'
+    )
+  } else if (!pathname.startsWith('/api/')) {
+    // Default caching for HTML pages
+    response.headers.set(
+      'Cache-Control',
+      'public, max-age=3600, s-maxage=60, stale-while-revalidate=86400'
+    )
+  }
+
+  // Fix common URL issues
+  // Remove trailing slashes for cleaner URLs
+  if (pathname !== '/' && pathname.endsWith('/')) {
+    const newUrl = request.nextUrl.clone()
+    newUrl.pathname = pathname.slice(0, -1)
+    return NextResponse.redirect(newUrl, 308) // 308 = Permanent Redirect
+  }
+  
+  // Fix uppercase URLs - Next.js routes are case sensitive but URLs should be lowercase
+  if (pathname !== pathname.toLowerCase()) {
+    const newUrl = request.nextUrl.clone()
+    newUrl.pathname = pathname.toLowerCase()
+    return NextResponse.redirect(newUrl, 308)
   }
 
   // Only apply rate limiting to API routes
   if (pathname.startsWith('/api/')) {
+    // API requests should not be cached by default
+    response.headers.set(
+      'Cache-Control',
+      'no-store, no-cache, must-revalidate, proxy-revalidate'
+    )
+    
     // Get client IP address for rate limiting
     const ip = request.headers.get('x-forwarded-for') || 
                 request.headers.get('x-real-ip') || 
@@ -149,7 +225,9 @@ export async function middleware(request: NextRequest) {
 // Configure middleware to run for all routes
 export const config = {
   matcher: [
+    '/((?!_next/static|_next/image|favicon.ico).*)',
     '/api/:path*',
-    '/((?!_next/static|favicon.ico).*)',
+    '/_next/static/chunks/:path*',
+    '/_next/data/:path*',
   ],
 } 

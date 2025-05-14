@@ -3,10 +3,11 @@
 import Link from "next/link"
 import Image from "next/image"
 import { Facebook, Instagram, Linkedin, Mail, Phone, Twitter, MapPin, Clock } from "lucide-react"
-import { Suspense } from "react"
+import { Suspense, useState } from "react"
 
 function SiteFooter() {
   const currentYear = new Date().getFullYear()
+  const [logoError, setLogoError] = useState(false)
 
   return (
     <footer className="relative w-full border-t border-white/10 overflow-hidden bg-gradient-to-b from-background via-background/95 to-black/40" role="contentinfo" aria-label="Site Footer">
@@ -26,13 +27,15 @@ function SiteFooter() {
             <Link href="/" className="inline-block" aria-label="Atlas Technosoft - Home">
               <div className="bg-white p-2 xs:p-2.5 sm:p-3 rounded-lg shadow-md">
                 <Image
-                  src="/images/Main_Logo.png"
+                  src={logoError ? "/images/atlas-technosoft-logo.png" : "/images/Main_Logo.png"}
                   alt="Atlas Technosoft Logo"
                   width={240}
                   height={84}
                   className="h-10 xs:h-12 sm:h-14 md:h-16 lg:h-18 w-auto object-contain"
                   fetchPriority="high"
                   loading="eager"
+                  unoptimized
+                  onError={() => setLogoError(true)}
                 />
               </div>
             </Link>

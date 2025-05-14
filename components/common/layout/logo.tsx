@@ -3,13 +3,15 @@
 import Link from "next/link"
 import Image from "next/image"
 import { cn } from "@/lib/utils"
-import { Suspense } from "react"
+import { Suspense, useState } from "react"
 
 interface LogoProps {
   className?: string;
 }
 
 function Logo({ className }: LogoProps) {
+  const [imageError, setImageError] = useState(false);
+
   return (
     <Link 
       href="/" 
@@ -26,13 +28,16 @@ function Logo({ className }: LogoProps) {
         {/* Image logo with appropriate sizing */}
         <div className="relative flex items-center">
           <Image 
-            src="/images/Main_Logo.png" 
+            src={imageError ? "/images/atlas-technosoft-logo.png" : "/images/Main_Logo.png"}
             alt="Atlas Technosoft Logo" 
             width={300}
             height={103}
             className="h-12 xs:h-14 sm:h-16 md:h-18 lg:h-20 min-w-[150px] w-auto object-contain transition-all duration-300"
             sizes="(max-width: 640px) 200px, (max-width: 768px) 250px, 300px"
             priority
+            onError={() => setImageError(true)}
+            loading="eager"
+            unoptimized
           />
         </div>
       </div>

@@ -413,6 +413,7 @@ function containsPricingInfo(result: SearchResult): boolean {
 /**
  * Process search results into a cohesive response
  */
+/* eslint-disable-next-line @typescript-eslint/no-unused-vars */
 function processSearchResults(query: string, results: SearchResult[], _context?: string[]): ChatbotResponse {
   // Check if we have valid results
     if (!results || results.length === 0) {

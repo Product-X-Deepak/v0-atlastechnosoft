@@ -4,6 +4,31 @@ import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { cn } from '@/lib/utils'
 
+// Helper function for blur placeholder
+const shimmer = (w: number, h: number, blur = 10) => `
+<svg width="${w}" height="${h}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <linearGradient id="g">
+      <stop stop-color="#f6f7f8" offset="0%" />
+      <stop stop-color="#edeef1" offset="20%" />
+      <stop stop-color="#f6f7f8" offset="40%" />
+      <stop stop-color="#f6f7f8" offset="70%" />
+    </linearGradient>
+  </defs>
+  <rect width="${w}" height="${h}" fill="#f6f7f8" />
+  <rect id="r" width="${w}" height="${h}" fill="url(#g)" />
+  <animate xlink:href="#r" attributeName="x" from="-${w}" to="${w}" dur="1s" repeatCount="indefinite" />
+  <filter id="f" x="0" y="0">
+    <feGaussianBlur stdDeviation="${blur}" />
+  </filter>
+  <rect width="${w}" height="${h}" fill="url(#g)" filter="url(#f)" opacity="0.5" />
+</svg>`
+
+const toBase64 = (str: string) => 
+  typeof window === 'undefined' 
+    ? Buffer.from(str).toString('base64') 
+    : window.btoa(str)
+
 interface OptimizedImageProps {
   src: string
   alt: string
@@ -53,7 +78,7 @@ export default function OptimizedImage({
   const hasImageExtension = /\.(jpg|jpeg|png|webp|avif|gif|svg)$/.test(src)
   
   // Default image path for errors
-  const errorImagePath = '/images/image-placeholder.png'
+  const errorImagePath = '/images/image-placeholder.svg'
   
   // Use next/image only for local images or images with proper extensions
   const useNextImage = !isExternal || hasImageExtension
@@ -147,29 +172,4 @@ export default function OptimizedImage({
       )}
     </div>
   )
-}
-
-// Helper function for blur placeholder
-const shimmer = (w: number, h: number, blur = 10) => `
-<svg width="${w}" height="${h}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-  <defs>
-    <linearGradient id="g">
-      <stop stop-color="#f6f7f8" offset="0%" />
-      <stop stop-color="#edeef1" offset="20%" />
-      <stop stop-color="#f6f7f8" offset="40%" />
-      <stop stop-color="#f6f7f8" offset="70%" />
-    </linearGradient>
-  </defs>
-  <rect width="${w}" height="${h}" fill="#f6f7f8" />
-  <rect id="r" width="${w}" height="${h}" fill="url(#g)" />
-  <animate xlink:href="#r" attributeName="x" from="-${w}" to="${w}" dur="1s" repeatCount="indefinite" />
-  <filter id="f" x="0" y="0">
-    <feGaussianBlur stdDeviation="${blur}" />
-  </filter>
-  <rect width="${w}" height="${h}" fill="url(#g)" filter="url(#f)" opacity="0.5" />
-</svg>`
-
-const toBase64 = (str: string) => 
-  typeof window === 'undefined' 
-    ? Buffer.from(str).toString('base64') 
-    : window.btoa(str) 
+} 

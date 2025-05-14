@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loading Error - Atlas Technosoft</title>
+  <style>
+    :root {
+      --primary: #E84A0E;
+      --secondary: #A73370;
+      --background: #1E1E38;
+      --text: #ffffff;
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      background-color: var(--background);
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 1rem;
+      line-height: 1.5;
+    }
+    
+    .container {
+      max-width: 600px;
+      text-align: center;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+    
+    .logo {
+      margin-bottom: 2rem;
+      max-width: 180px;
+      height: auto;
+    }
+    
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+    
+    p {
+      margin-bottom: 1.5rem;
+      opacity: 0.9;
+    }
+    
+    .actions {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    
+    .button {
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 4px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.2s;
+      text-decoration: none;
+      display: inline-block;
+    }
+    
+    .button:hover {
+      background-color: #ff5a1f;
+    }
+    
+    .button.secondary {
+      background-color: transparent;
+      border: 2px solid var(--secondary);
+      color: var(--secondary);
+    }
+    
+    .button.secondary:hover {
+      background-color: var(--secondary);
+      color: white;
+    }
+    
+    .loading {
+      display: inline-block;
+      width: 50px;
+      height: 50px;
+      border: 3px solid rgba(255,255,255,.3);
+      border-radius: 50%;
+      border-top-color: var(--primary);
+      animation: spin 1s ease-in-out infinite;
+      margin-bottom: 1rem;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .message {
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 1rem;
+      border-radius: 4px;
+      margin: 1.5rem 0;
+    }
+    
+    .hidden {
+      display: none;
+    }
+    
+    @media (min-width: 640px) {
+      .actions {
+        flex-direction: row;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="loading"></div>
+    <h1>Loading Error</h1>
+    <p>We're having trouble loading the page resources. This might be due to a temporary network issue or a recent update.</p>
+    
+    <div class="message" id="errorDetails">
+      Error loading application modules. Please try refreshing the page.
+    </div>
+    
+    <div class="actions">
+      <button id="reloadButton" class="button" onclick="attemptReload()">Reload Page</button>
+      <a href="/" class="button secondary">Return to Home</a>
+    </div>
+    
+    <p style="margin-top: 2rem; font-size: 0.875rem; opacity: 0.7;">
+      If you continue to experience issues, please contact <a href="mailto:info@atlastechnosoft.com" style="color: var(--primary);">our support team</a>.
+    </p>
+  </div>
+
+  <script>
+    // Load information from URL parameters if available
+    function getErrorInfo() {
+      try {
+        const urlParams = new URLSearchParams(window.location.search);
+        const errorType = urlParams.get('errorType') || 'chunk-load-error';
+        const chunkId = urlParams.get('chunkId') || 'unknown';
+        return { errorType, chunkId };
+      } catch (e) {
+        return { errorType: 'error', chunkId: 'unknown' };
+      }
+    }
+    
+    // Attempt to reload the page with cache busting
+    function attemptReload() {
+      const reloadButton = document.getElementById('reloadButton');
+      reloadButton.textContent = 'Reloading...';
+      reloadButton.disabled = true;
+      
+      // Clear caches if browser support is available
+      if ('caches' in window) {
+        caches.keys().then(cacheNames => {
+          cacheNames.forEach(cacheName => {
+            caches.delete(cacheName);
+          });
+        });
+      }
+      
+      // Clear local storage items related to chunks
+      try {
+        localStorage.removeItem('chunk_errors');
+        sessionStorage.removeItem('chunk_load_errors');
+      } catch (e) {
+        // Ignore storage errors
+      }
+      
+      // Reload with cache-busting parameter
+      setTimeout(() => {
+        window.location.href = window.location.pathname + '?cache_bust=' + Date.now();
+      }, 1000);
+    }
+    
+    // Auto-reload after a delay if the URL has a reload parameter
+    (function checkAutoReload() {
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('autoReload') === 'true') {
+        setTimeout(attemptReload, 5000);
+      }
+    })();
+    
+    // Display error details from URL parameters
+    (function updateErrorDetails() {
+      const errorInfo = getErrorInfo();
+      const errorDetails = document.getElementById('errorDetails');
+      errorDetails.textContent = `Error type: ${errorInfo.errorType}. Failed to load resources for module: ${errorInfo.chunkId}.`;
+    })();
+  </script>
+</body>
+</html> 

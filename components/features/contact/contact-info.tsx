@@ -3,7 +3,7 @@
 import { useRef } from "react"
 import { motion, useInView } from "framer-motion"
 import { Card, CardContent } from "@/components/ui/card"
-import { Building, Clock, Mail, MapPin, Phone, Globe } from "lucide-react"
+import { Building, Clock, Mail, MapPin, Phone } from "lucide-react"
 import { Suspense } from "react"
 
 function ContactInfo() {

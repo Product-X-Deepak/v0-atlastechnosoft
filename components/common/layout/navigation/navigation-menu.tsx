@@ -17,6 +17,8 @@ import { Suspense } from "react"
 function MainNavigationMenu() {
   const pathname = usePathname()
   const [hoveredMenuItem, setHoveredMenuItem] = useState<string | null>(null)
+  const [sapB1ImageError, setSapB1ImageError] = useState(false)
+  const [rpaImageError, setRpaImageError] = useState(false)
 
   // Check if current path matches a link to highlight it
   const isActivePath = (path: string): boolean => {
@@ -44,7 +46,7 @@ function MainNavigationMenu() {
             <div className="w-full bg-white p-4 flex items-center justify-center relative">
               <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <Image 
-                src="/images/solutions/SAP_B1.png" 
+                src={sapB1ImageError ? "/images/solutions/CompanyLogo.png" : "/images/solutions/SAP_B1.png"}
                 alt="SAP Business One Logo" 
                 className="w-full max-h-[140px] object-contain relative z-10 transition-transform duration-300 group-hover:scale-105"
                 width={400}
@@ -53,6 +55,8 @@ function MainNavigationMenu() {
                 loading="eager"
                 quality={90}
                 fetchPriority="high"
+                unoptimized
+                onError={() => setSapB1ImageError(true)}
               />
             </div>
             <div className="bg-gradient-to-b from-muted/30 to-muted/70 p-6 relative">
@@ -129,7 +133,7 @@ function MainNavigationMenu() {
             <div className="w-full bg-white p-4 flex items-center justify-center relative">
               <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <Image 
-                src="/images/solutions/RPA.jpg" 
+                src={rpaImageError ? "/images/solutions/Automation.jpg" : "/images/solutions/RPA.jpg"} 
                 alt="UiPath Solutions" 
                 className="w-full max-h-[140px] object-contain relative z-10 transition-transform duration-300 group-hover:scale-105"
                 width={400}
@@ -138,6 +142,8 @@ function MainNavigationMenu() {
                 loading="eager"
                 quality={90}
                 fetchPriority="high"
+                unoptimized
+                onError={() => setRpaImageError(true)}
               />
             </div>
             <div className="bg-gradient-to-b from-muted/30 to-muted/70 p-6 relative">
