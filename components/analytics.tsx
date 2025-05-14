@@ -37,8 +37,6 @@ export const events = {
   VIDEO_PLAY: "video_play",
   VIDEO_PROGRESS: "video_progress",
   VIDEO_COMPLETE: "video_complete",
-  CHAT_START: "chat_start",
-  CHAT_COMPLETE: "chat_complete",
   ERROR: "error",
   LOGIN: "login",
   SIGN_UP: "sign_up",

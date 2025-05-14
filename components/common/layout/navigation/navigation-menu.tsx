@@ -15,7 +15,7 @@ import { NavigationDropdown } from "@/components/common/layout/navigation/naviga
 import { Suspense } from "react"
 
 function MainNavigationMenu() {
-  const pathname = usePathname()
+  const pathname = usePathname() || ''
   const [hoveredMenuItem, setHoveredMenuItem] = useState<string | null>(null)
   const [sapB1ImageError, setSapB1ImageError] = useState(false)
   const [rpaImageError, setRpaImageError] = useState(false)
@@ -54,7 +54,6 @@ function MainNavigationMenu() {
                 priority={true}
                 loading="eager"
                 quality={90}
-                fetchPriority="high"
                 unoptimized
                 onError={() => setSapB1ImageError(true)}
               />
@@ -141,7 +140,6 @@ function MainNavigationMenu() {
                 priority={true}
                 loading="eager"
                 quality={90}
-                fetchPriority="high"
                 unoptimized
                 onError={() => setRpaImageError(true)}
               />

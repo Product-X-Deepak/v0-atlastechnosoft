@@ -34,10 +34,7 @@ function Logo({ className }: LogoProps) {
             height={103}
             className="h-12 xs:h-14 sm:h-16 md:h-18 lg:h-20 min-w-[150px] w-auto object-contain transition-all duration-300"
             sizes="(max-width: 640px) 200px, (max-width: 768px) 250px, 300px"
-            priority
             onError={() => setImageError(true)}
-            loading="eager"
-            unoptimized
           />
         </div>
       </div>

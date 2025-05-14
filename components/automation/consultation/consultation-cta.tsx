@@ -2,7 +2,7 @@
 
 import { useRef, useState } from "react"
 import { motion, useInView } from "framer-motion"
-import { ArrowRight, Check, Calendar, MessageSquare, Send, PhoneCall } from "lucide-react"
+import { ArrowRight, Check, Calendar, Send, PhoneCall, Mail } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { Suspense } from "react"
@@ -264,12 +264,12 @@ function ConsultationCta() {
               <div className="bg-white/10 backdrop-blur-sm border border-white/10 rounded-xl p-6 shadow-lg">
                 <div className="flex items-start">
                   <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#FFF5D6] flex-shrink-0 mr-4">
-                    <MessageSquare className="h-5 w-5 text-[#E84A0E]" />
+                    <Mail className="h-5 w-5 text-[#E84A0E]" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-white mb-2">Chat With An Expert</h3>
+                    <h3 className="text-lg font-semibold text-white mb-2">Email Us</h3>
                     <p className="text-gray-300 mb-4">
-                      Have a quick question? Start a conversation with one of our automation specialists right now.
+                      Send us an email with your questions or requirements, and we'll get back to you promptly.
                     </p>
                     <Button 
                       variant="outline"
@@ -277,8 +277,8 @@ function ConsultationCta() {
                       asChild
                       size="sm"
                     >
-                      <Link href="#" className="flex items-center">
-                        Start Chat
+                      <Link href="mailto:info@atlastechnosoft.com" className="flex items-center">
+                        Send Email
                         <ArrowRight className="ml-2 h-3 w-3 transition-transform group-hover:translate-x-1" />
                       </Link>
                     </Button>

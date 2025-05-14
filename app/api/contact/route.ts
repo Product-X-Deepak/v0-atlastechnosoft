@@ -1,22 +1,20 @@
 import { NextResponse } from "next/server"
-import nodemailer from "nodemailer"
-import Mail from "nodemailer/lib/mailer"
+import * as Mail from "nodemailer/lib/mailer"
+import * as nodemailer from "nodemailer"
 
-// Email configuration
+const companyEmail = process.env.EMAIL_USER || 'info@atlastechnosoft.com'
+
+// Create reusable transporter object using SMTP transport
 const transporter = nodemailer.createTransport({
-  host: process.env.EMAIL_SERVER || "",
-  port: parseInt(process.env.EMAIL_PORT || "587"),
-  secure: process.env.EMAIL_SECURE === "true",
+  host: process.env.EMAIL_SERVER || 'mail.atlastechnosoft.com',
+  port: parseInt(process.env.EMAIL_PORT || '465'),
+  secure: process.env.EMAIL_SECURE === 'true',
   auth: {
-    user: process.env.EMAIL_USER || "",
-    pass: process.env.EMAIL_PASSWORD || "",
+    user: process.env.EMAIL_USER || 'info@atlastechnosoft.com',
+    pass: process.env.EMAIL_PASSWORD || '',
   },
 })
 
-// Get the company email from environment variables with fallback
-const companyEmail = process.env.NEXT_PUBLIC_CONTACT_EMAIL || "info@atlastechnosoft.com"
-
-// Create a more flexible type for form data
 interface FormData {
   name?: string;
   email?: string;
@@ -42,24 +40,23 @@ interface FormData {
 
 export async function POST(request: Request) {
   try {
-    // Check if request is multipart/form-data
-    const contentType = request.headers.get('content-type') || '';
     let data: FormData;
+    const contentType = request.headers.get('content-type') || ''
 
+    // Handle multipart form data (for file uploads)
     if (contentType.includes('multipart/form-data')) {
-      // Handle multipart form data (with file)
-      const formData = await request.formData();
-      data = Object.fromEntries(formData) as unknown as FormData;
+      const formData = await request.formData()
       
-      // Process resume file if it exists
-      const file = formData.get('resumeFile') as File | null;
-      if (file) {
-        const arrayBuffer = await file.arrayBuffer();
-        const buffer = Buffer.from(arrayBuffer);
-        
+      // Convert formData to a regular object
+      data = Object.fromEntries(formData.entries()) as FormData
+      
+      // Handle file upload if present
+      const file = formData.get('resumeFile') as File
+      if (file && file instanceof File) {
+        const buffer = await file.arrayBuffer()
         data.resumeFile = {
           name: file.name,
-          data: buffer.toString('base64'),
+          data: Buffer.from(buffer).toString('base64'),
           contentType: file.type
         };
       }
@@ -68,33 +65,12 @@ export async function POST(request: Request) {
       data = await request.json();
     }
     
-    // Validate required fields
-    if (data.formType === 'chat') {
-      // Handle chat messages
-      if (!data.message) {
-        return NextResponse.json(
-          { error: "Message is required for chat" },
-          { status: 400 }
-        )
-      }
-
-      // Generate automated response based on message content
-      const reply = generateChatResponse(data.message)
-      
-      // Log chat in the system for follow-up
-      await sendChatLog(data)
-      
-      // Return immediate response to the client
-      return NextResponse.json({ success: true, reply })
-    }
-    else {
-      // Handle regular form submissions
+    // Validate required fields for regular form submissions
       if (!data.email || !data.name) {
         return NextResponse.json(
           { error: "Required fields are missing" },
           { status: 400 }
         )
-      }
     }
     
     // Build email content based on form type
@@ -194,14 +170,6 @@ function formatFormData(data: FormData, formType: string): string {
         <p><strong>Message:</strong> ${data.message || 'No message provided'}</p>
       `
       break
-      
-    case "chat":
-      formattedData = `
-        <p><strong>Message:</strong> ${data.message}</p>
-        <p><strong>Current Page:</strong> ${data.currentPage || 'Unknown'}</p>
-        <p><strong>Time:</strong> ${new Date().toLocaleString()}</p>
-      `
-      break
     
     default:
       // Generic form data formatting
@@ -226,8 +194,6 @@ function getConfirmationSubject(formType: string): string {
       return "Welcome to Atlas Technosoft Newsletter"
     case "demo-request": 
       return "Your Demo Request Has Been Received"
-    case "chat":
-      return "Thanks for chatting with Atlas Technosoft"
     default: 
       return "Thank you for your submission"
   }
@@ -258,175 +224,88 @@ function getConfirmationEmail(data: FormData, formType: string): string {
   
   let emailContent = '';
   
+  // Content based on form type
   switch (formType) {
     case "contact":
       emailContent = `
-        <h2 style="color: #143d59; margin-bottom: 20px;">Thank You for Contacting Atlas Technosoft</h2>
-        <p>Hello ${userName},</p>
-        <p>Thank you for reaching out to us. We have received your message and appreciate your interest in Atlas Technosoft.</p>
-        <p>Our team is reviewing your inquiry and will get back to you within 1-2 business days.</p>
-        <p>For urgent matters, please call us at <strong>+91-22-2240-1925</strong>.</p>
-        <div style="background-color: #f8f9fa; padding: 15px; margin: 20px 0; border-left: 4px solid #143d59;">
-          <p style="margin: 0; font-style: italic;">Reference: Your inquiry has been assigned a tracking number and our team has been notified.</p>
-        </div>
-        <p>Best regards,<br>The Atlas Technosoft Team</p>
+        <h2>Thank You for Reaching Out, ${userName}!</h2>
+        <p>We've received your message and appreciate your interest in Atlas Technosoft.</p>
+        <p>Our team will review your inquiry and get back to you as soon as possible, typically within 24 business hours.</p>
+        <p>In the meantime, you might find these resources helpful:</p>
+        <ul>
+          <li><a href="https://atlastechnosoft.com/sap-solutions/business-one">SAP Business One Solutions</a></li>
+          <li><a href="https://atlastechnosoft.com/automation-solutions/rpa-solutions">RPA & Automation Solutions</a></li>
+          <li><a href="https://atlastechnosoft.com/services">Our Services</a></li>
+        </ul>
       `;
       break;
     
     case "consultation":
       emailContent = `
-        <h2 style="color: #143d59; margin-bottom: 20px;">Your Consultation Request Has Been Received</h2>
-        <p>Hello ${userName},</p>
-        <p>Thank you for your interest in our consultation services. We have received your request and are excited to discuss how we can help you achieve your business goals.</p>
-        <p>Here's what happens next:</p>
-        <ol style="padding-left: 20px; line-height: 1.6;">
-          <li>Our team will review your requirements within the next 24 hours</li>
-          <li>A consultant specializing in your area of interest will be assigned</li>
-          <li>You'll receive a call or email to schedule your consultation session</li>
-        </ol>
-        <p>If you have any immediate questions or wish to provide additional information, please reply to this email or call us at <strong>+91-22-2240-1925</strong>.</p>
-        <div style="text-align: center; margin: 25px 0;">
-          <a href="https://atlastechnosoft.com/resources" style="background-color: #143d59; color: white; padding: 10px 20px; text-decoration: none; border-radius: 4px; font-weight: bold;">Explore Our Resources</a>
-        </div>
-        <p>We look forward to our conversation.</p>
-        <p>Best regards,<br>The Atlas Technosoft Consulting Team</p>
+        <h2>Thank You for Your Consultation Request, ${userName}!</h2>
+        <p>We're excited about the opportunity to discuss how Atlas Technosoft can help your business succeed.</p>
+        <p>One of our consultants will contact you within 24 business hours to schedule your personalized consultation.</p>
+        <p>To make our discussion more productive, please consider:</p>
+        <ul>
+          <li>Your current business challenges</li>
+          <li>Specific goals you're hoping to achieve</li>
+          <li>Any timeline constraints you may have</li>
+        </ul>
       `;
       break;
       
     case "job-application":
       emailContent = `
-        <h2 style="color: #143d59; margin-bottom: 20px;">Your Application Has Been Received</h2>
-        <p>Hello ${userName},</p>
-        <p>Thank you for applying to Atlas Technosoft. We have received your application for the ${data.jobTitle || data.position || 'position'} and appreciate your interest in joining our team.</p>
-        <p>What to expect next:</p>
-        <ul style="padding-left: 20px; line-height: 1.6;">
-          <li>Our HR team will review your application within 5-7 business days</li>
-          <li>If your qualifications match our requirements, we'll contact you to schedule an interview</li>
-          <li>If we don't have a suitable position at this time, we'll keep your resume in our database for future opportunities</li>
-        </ul>
-        <div style="background-color: #f8f9fa; padding: 15px; margin: 20px 0; border-left: 4px solid #143d59;">
-          <p style="margin: 0; font-style: italic;">Due to the high volume of applications, we may not be able to respond to all candidates individually. If you don't hear from us within two weeks, please feel free to apply for other positions that match your skills.</p>
-        </div>
-        <p>We wish you the best in your job search.</p>
-        <p>Best regards,<br>HR Team, Atlas Technosoft</p>
+        <h2>Thank You for Your Application, ${userName}!</h2>
+        <p>We've received your application and appreciate your interest in joining Atlas Technosoft.</p>
+        <p>Our HR team will review your qualifications and will contact you if your profile matches our requirements.</p>
+        <p>The selection process typically includes:</p>
+        <ol>
+          <li>Initial resume screening</li>
+          <li>Technical assessment</li>
+          <li>Interview rounds</li>
+          <li>Final selection</li>
+        </ol>
+        <p>Please note that due to the high volume of applications, we may not be able to respond to all candidates individually. If you don't hear from us within two weeks, we encourage you to apply for other suitable positions in the future.</p>
       `;
       break;
       
     case "newsletter":
       emailContent = `
-        <h2 style="color: #143d59; margin-bottom: 20px;">Welcome to the Atlas Technosoft Newsletter!</h2>
-        <p>Hello ${userName},</p>
-        <p>Thank you for subscribing to our newsletter. We're excited to have you join our community!</p>
-        <p>You'll now receive regular updates on:</p>
-        <ul style="padding-left: 20px; line-height: 1.6;">
-          <li>Latest innovations in SAP and ERP solutions</li>
-          <li>Automation and digital transformation insights</li>
-          <li>Industry trends and best practices</li>
-          <li>Exclusive offers and events</li>
+        <h2>Welcome to Our Newsletter, ${userName}!</h2>
+        <p>Thank you for subscribing to the Atlas Technosoft newsletter.</p>
+        <p>You'll now receive updates on:</p>
+        <ul>
+          <li>Industry trends and insights</li>
+          <li>New product announcements</li>
+          <li>Company updates and events</li>
+          <li>Educational content and best practices</li>
         </ul>
-        <div style="text-align: center; margin: 25px 0;">
-          <a href="https://atlastechnosoft.com/blog" style="background-color: #143d59; color: white; padding: 10px 20px; text-decoration: none; border-radius: 4px; font-weight: bold;">Read Our Latest Articles</a>
-        </div>
-        <p>We're committed to providing valuable content and keeping your inbox clutter-free. You can expect to hear from us approximately once per month.</p>
-        <p>Best regards,<br>The Atlas Technosoft Team</p>
+        <p>We're committed to providing valuable content and won't spam your inbox. You can unsubscribe at any time using the link in our emails.</p>
       `;
       break;
     
     case "demo-request":
       emailContent = `
-        <h2 style="color: #143d59; margin-bottom: 20px;">Your Demo Request Has Been Received</h2>
-        <p>Hello ${userName},</p>
-        <p>Thank you for your interest in experiencing our solutions firsthand. We have received your demo request for ${data.product || 'our products'}.</p>
-        <p>Here's what happens next:</p>
-        <ol style="padding-left: 20px; line-height: 1.6;">
-          <li>Our team will prepare a personalized demonstration based on your specific requirements</li>
-          <li>A product specialist will contact you within 24-48 hours to schedule a convenient time</li>
-          <li>You'll receive a calendar invitation with connection details for the demo session</li>
-        </ol>
-        <p>In the meantime, you might find these resources helpful:</p>
-        <ul style="padding-left: 20px; line-height: 1.6;">
-          <li><a href="https://atlastechnosoft.com/resources/product-brochures">Product Brochures</a></li>
-          <li><a href="https://atlastechnosoft.com/blog">Solution Guides</a></li>
-          <li><a href="https://atlastechnosoft.com/case-studies">Customer Success Stories</a></li>
+        <h2>Your Demo Request Has Been Received, ${userName}!</h2>
+        <p>Thank you for your interest in experiencing our solutions firsthand.</p>
+        <p>Our team will contact you within 24 business hours to schedule your personalized demo at a convenient time.</p>
+        <p>To prepare for an effective demonstration:</p>
+        <ul>
+          <li>Consider which specific features you're most interested in seeing</li>
+          <li>Prepare any questions you might have about implementation or functionality</li>
+          <li>Invite any colleagues who might benefit from attending the demo</li>
         </ul>
-        <p>We look forward to showing you how our solutions can benefit your business.</p>
-        <p>Best regards,<br>The Atlas Technosoft Team</p>
-      `;
-      break;
-    
-    case "chat":
-      emailContent = `
-        <h2 style="color: #143d59; margin-bottom: 20px;">Thank You for Your Message</h2>
-        <p>Hello ${userName},</p>
-        <p>Thank you for reaching out through our chat system. We have received your message and a member of our team will respond promptly.</p>
-        <p>If your inquiry is urgent, please feel free to call us directly at <strong>+91-22-2240-1925</strong>.</p>
-        <div style="background-color: #f8f9fa; padding: 15px; margin: 20px 0; border-left: 4px solid #143d59;">
-          <p style="margin: 0; font-style: italic;">Our business hours are Monday to Friday, 9:00 AM to 6:00 PM IST.</p>
-        </div>
-        <p>Best regards,<br>The Atlas Technosoft Support Team</p>
       `;
       break;
       
     default:
       emailContent = `
-        <h2 style="color: #143d59; margin-bottom: 20px;">Thank You for Your Submission</h2>
-        <p>Hello ${userName},</p>
-        <p>We have received your submission and will process it promptly.</p>
-        <p>If we need any additional information, we'll reach out to you directly.</p>
-        <p>Thank you for your interest in Atlas Technosoft.</p>
-        <p>Best regards,<br>The Atlas Technosoft Team</p>
+        <h2>Thank You for Your Submission, ${userName}!</h2>
+        <p>We've received your message and appreciate your interest in Atlas Technosoft.</p>
+        <p>Our team will review your submission and get back to you as soon as possible.</p>
       `;
   }
   
-  return emailHeader + emailContent + emailFooter;
-}
-
-// Generate an appropriate response for chat messages
-function generateChatResponse(message: string): string {
-  const lowerMessage = message.toLowerCase()
-
-  if (lowerMessage.includes("price") || lowerMessage.includes("cost") || lowerMessage.includes("pricing")) {
-    return "Our pricing depends on your specific business needs. I&apos;d be happy to connect you with our sales team for a personalized quote. Would you like me to arrange a call?"
-  }
-
-  if (lowerMessage.includes("demo") || lowerMessage.includes("trial") || lowerMessage.includes("try")) {
-    return "We offer personalized demos of our solutions. Please provide your email address and our team will reach out to schedule one that fits your requirements."
-  }
-
-  if (lowerMessage.includes("contact") || lowerMessage.includes("support") || lowerMessage.includes("help")) {
-    return "You can reach our support team at info@atlastechnosoft.com or call us at +91-22-2240-1925. Would you like me to arrange a callback instead?"
-  }
-
-  if (lowerMessage.includes("sap") || lowerMessage.includes("business one") || lowerMessage.includes("erp")) {
-    return "SAP Business One is our comprehensive ERP solution designed for small and medium-sized businesses. It helps streamline operations, gain better business insights, and accelerate profitable growth. Would you like to learn more about specific features?"
-  }
-
-  if (lowerMessage.includes("automation") || lowerMessage.includes("ai") || lowerMessage.includes("rpa")) {
-    return "Our automation solutions leverage AI and RPA technologies to streamline workflows, reduce manual tasks, and boost productivity. We can help automate various business processes including finance, HR, customer service, and more. What specific processes are you looking to automate?"
-  }
-
-  return "Thank you for your message. Our team will review it and provide a detailed response soon. Is there anything specific you&apos;d like to know in the meantime?"
-}
-
-// Send a log of the chat conversation to the company email for follow-up
-async function sendChatLog(data: FormData) {
-  try {
-    await transporter.sendMail({
-      from: process.env.EMAIL_FROM || `"Chat Widget" <noreply@atlastechnosoft.com>`,
-      to: "info@atlastechnosoft.com",
-      subject: `New Chat Conversation`,
-      html: `
-        <h1>New Chat Message from Website</h1>
-        <p><strong>Message:</strong> ${data.message}</p>
-        <p><strong>Current Page:</strong> ${data.currentPage || 'Unknown'}</p>
-        <p><strong>Time:</strong> ${new Date().toLocaleString()}</p>
-        <p><strong>Contact Details:</strong> ${data.email || 'No email provided'}</p>
-        <p>This conversation may require follow-up from the sales or support team.</p>
-      `,
-    })
-    return true
-  } catch (error) {
-    console.error("Failed to send chat log:", error)
-    return false
-  }
+  return `${emailHeader}${emailContent}${emailFooter}`;
 } 

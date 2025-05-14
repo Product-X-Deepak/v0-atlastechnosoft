@@ -20,7 +20,7 @@
   },
   "overrides": [
     {
-      "files": ["lib/utils/**/*.ts", "lib/utils/**/*.js", "lib/chatbot/**/*.ts", "components/common/performance/**/*.tsx"],
+      "files": ["lib/utils/**/*.ts", "lib/utils/**/*.js", "components/common/performance/**/*.tsx"],
       "rules": {
         "@typescript-eslint/no-explicit-any": "off",
         "@typescript-eslint/no-unused-vars": ["warn", { 

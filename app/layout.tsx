@@ -23,7 +23,6 @@ import { CustomCursor } from "@/components/ui/cursor-effects"
 
 // Lazily load non-critical components
 const CommandMenu = lazy(() => import("@/components/client-wrappers").then(mod => ({ default: mod.CommandMenu })))
-const ChatWidget = lazy(() => import("@/components/client-wrappers").then(mod => ({ default: mod.ChatWidget })))
 
 // Font configuration compatible with Next.js 15.2.4
 const fontSans = Mona_Sans({
@@ -205,14 +204,12 @@ export default function RootLayout({ children }: RootLayoutProps) {
           as="font" 
           type="font/woff2" 
           crossOrigin="anonymous" 
-          fetchPriority="high"
         />
         <link
           rel="preload"
           href="/images/atlas-technosoft-logo.png"
           as="image"
           type="image/png"
-          fetchPriority="high"
         />
 
         {/* Preload critical chunks */}
@@ -289,9 +286,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
           </Suspense>
           <Suspense fallback={null}>
             <CustomCursor />
-          </Suspense>
-          <Suspense fallback={null}>
-            <ChatWidget />
           </Suspense>
           
           <Analytics />

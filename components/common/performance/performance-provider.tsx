@@ -102,7 +102,7 @@ export function PerformanceProvider({
   children,
 }: PerformanceProviderProps) {
   // Track route changes to implement route-based optimizations
-  const pathname = usePathname();
+  const pathname = usePathname() || '';
   const searchParams = useSearchParams();
   const prevPathRef = useRef<string | null>(null);
   

@@ -111,7 +111,7 @@ export function TopicClusters({
   maxClusters?: number;
   maxPagesPerCluster?: number;
 }) {
-  const pathname = usePathname();
+  const pathname = usePathname() || '';
   const relevantClusters = getRelevantClusters(pathname, maxClusters);
   
   if (relevantClusters.length === 0) return null;

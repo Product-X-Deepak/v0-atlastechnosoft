@@ -96,7 +96,7 @@ export default function ErrorPage({ error, reset }: ErrorProps): React.ReactNode
       }
       
       // Navigate to the fallback page if the error persists
-      router.push(`/fallback/chunk-error.html?errorType=chunk-error&path=${encodeURIComponent(pathname)}`);
+      router.push(`/fallback/chunk-error.html?errorType=chunk-error&path=${encodeURIComponent(pathname || '')}`);
     }
   }, [error, pathname, isChunkError, reset, attemptCount, router]);
   

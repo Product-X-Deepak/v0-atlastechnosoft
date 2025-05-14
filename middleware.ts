@@ -6,7 +6,6 @@ const RATE_LIMIT_WINDOW = 60 * 1000 // 1 minute in milliseconds
 const API_RATE_LIMITS = {
   '/api/contact': 10, // 10 requests per minute
   '/api/search': 20, // 20 requests per minute
-  '/api/chatbot': 30, // 30 requests per minute
   'default': 60 // Default for any other API routes
 }
 
@@ -62,6 +61,11 @@ function isStaticFile(path: string): boolean {
   return STATIC_FILE_EXTENSIONS.has(path.substring(path.lastIndexOf('.')).toLowerCase());
 }
 
+// Check if path is a JavaScript chunk
+function isJSChunk(path: string): boolean {
+  return path.includes('/_next/static/chunks/') && path.endsWith('.js');
+}
+
 // Clean up the store every 5 minutes to prevent memory leaks
 setInterval(() => {
   const now = Date.now()
@@ -100,10 +104,14 @@ export async function middleware(request: NextRequest) {
       'Cache-Control',
       'public, max-age=31536000, immutable'
     )
+    response.headers.set('X-Content-Type-Options', 'nosniff')
     response.headers.append('Vary', 'Accept-Encoding')
     
     // Early hints for browser optimization
-    response.headers.set('Link', '</styles.css>; rel=preload; as=style,</main.js>; rel=preload; as=script')
+    if (isJSChunk(pathname)) {
+      // Set proper MIME type for JS chunks
+      response.headers.set('Content-Type', 'application/javascript; charset=utf-8')
+    }
   } else if (
     pathname.includes('/_next/static/') ||
     pathname.includes('/images/') ||

@@ -108,10 +108,10 @@ export default function AutomationSupportPage() {
             
             <div className="flex flex-col items-center p-6 text-center bg-white rounded-lg shadow-sm">
               <MessageSquare className="h-10 w-10 text-primary mb-4" />
-              <h3 className="font-bold text-lg mb-2">Live Chat</h3>
-              <p className="text-muted-foreground mb-4">Chat with a support representative</p>
+              <h3 className="font-bold text-lg mb-2">Technical Documentation</h3>
+              <p className="text-muted-foreground mb-4">Access our comprehensive knowledge base and documentation</p>
               <Button asChild size="sm">
-                <Link href="https://atlastechnosoft.com/chat">Start Chat</Link>
+                <Link href="/resources/documentation">View Documentation</Link>
               </Button>
             </div>
           </div>
@@ -147,7 +147,7 @@ const supportPlans = [
     description: "Enhanced support for business-critical systems",
     icon: Clock,
     features: [
-      "24/7 email, phone, and chat support",
+      "24/7 email and phone support",
       "1-4 hour response time for critical issues",
       "Dedicated support engineer",
       "Monthly system health checks",

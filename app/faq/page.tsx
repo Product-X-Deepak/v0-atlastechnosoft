@@ -1,13 +1,10 @@
 import { Metadata } from "next"
-import { extractFAQs } from "@/lib/chatbot/faq-extractor"
 import { Accordion,AccordionContent,AccordionItem,AccordionTrigger } from "@/components/ui/accordion"
 import { Tabs,TabsContent,TabsList,TabsTrigger } from "@/components/ui/tabs"
 import Link from "next/link"
-import {  MessageCircle as _MessageCircle } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { StructuredData } from "@/components/seo/structured-data"
 import { generateFaqSchema,generateBreadcrumbSchema } from "@/lib/seo"
-import { ChatButtonClientWrapper } from "@/components/chatbot/chat-button-client-wrapper"
 
 export const metadata: Metadata = {
   title: "Frequently Asked Questions | Atlas Technosoft",
@@ -27,7 +24,7 @@ export const metadata: Metadata = {
 }
 
 export default function FAQPage() {
-  const faqs = extractFAQs()
+  const faqs = _faqData
   
   // Get unique categories for filtering
   const categories = [...new Set(faqs.map(faq => faq.category))].sort()
@@ -49,7 +46,7 @@ export default function FAQPage() {
         </h1>
         <p className="mx-auto max-w-[700px] text-muted-foreground md:text-lg">
           Find answers to commonly asked questions about our services, solutions, and company.
-          Can't find what you're looking for? <Link href="/contact" className="text-primary underline underline-offset-4">Contact us</Link> or try our live chat.
+          Can't find what you're looking for? <Link href="/contact" className="text-primary underline underline-offset-4">Contact us</Link>.
         </p>
       </div>
       
@@ -108,7 +105,6 @@ export default function FAQPage() {
                 Contact Us
               </Link>
             </Button>
-            <ChatButtonClientWrapper label="Live Chat" showLabel={true} />
           </div>
         </div>
       </div>
@@ -249,59 +245,27 @@ const _faqData = [
   },
   {
     category: "services",
-    question: "What support options do you offer after implementation?",
-    answer: "We offer tiered support packages to meet different business needs after implementation. These include standard support (business hours assistance, email/phone support), premium support (extended hours, faster response times, regular health checks), and managed services (proactive monitoring, system administration, ongoing optimization). All packages include access to our knowledge base and regular updates."
+    question: "Do you offer post-implementation support?",
+    answer: "Yes, we offer comprehensive post-implementation support through our dedicated support team. Our support packages include various service levels from basic technical support to premium services with dedicated support personnel and regular business reviews. Support is provided through multiple channels including our help desk system, phone support, email, and remote sessions. We also offer proactive maintenance services to optimize system performance and prevent issues before they impact your business."
   },
   {
     category: "services",
-    question: "Do you offer remote implementation services?",
-    answer: "Yes, we offer both on-site and remote implementation services. With our advanced collaboration tools and proven remote methodologies, we can successfully implement solutions without being physically present at your location. Many clients prefer this approach for its flexibility and cost-effectiveness while still achieving excellent results."
+    question: "How do you handle data migration from our existing systems?",
+    answer: "Our data migration approach includes: 1) Data Assessment - analyzing your current data structure and quality; 2) Mapping - creating detailed mappings between legacy and new system fields; 3) Migration Strategy - determining phased vs. one-time approaches; 4) Cleansing - improving data quality before migration; 5) Tool Selection - using appropriate tools for extraction and loading; 6) Testing - performing multiple test migrations; 7) Validation - ensuring data integrity after migration. We have experience migrating from various systems including QuickBooks, Excel, legacy ERP systems, and custom databases."
   },
   {
     category: "services",
-    question: "How do you handle data security during implementation projects?",
-    answer: "Data security is paramount in all our implementations. We follow strict security protocols including secure data transmission, access controls, and confidentiality agreements. Our team is trained in data protection best practices, and we comply with international standards like GDPR. Before starting any implementation, we discuss security requirements and establish appropriate safeguards tailored to your needs."
+    question: "How do you ensure user adoption of new systems?",
+    answer: "We focus on user adoption through: 1) Early Stakeholder Involvement - engaging users from the beginning; 2) Tailored Training Programs - developing role-specific training; 3) User-Friendly Documentation - creating accessible guides and videos; 4) Change Management - helping users understand benefits and navigate changes; 5) Champions Program - training power users who support peers; 6) Phased Implementation - allowing time for adaptation; 7) Post-Go-Live Support - providing readily available assistance during transition; 8) Feedback Loops - continuously improving based on user input."
   },
   {
     category: "services",
-    question: "How do you manage data migration during implementation?",
-    answer: "Our data migration approach follows a systematic methodology: 1) Data assessment - we evaluate your existing data sources and quality; 2) Mapping design - we create detailed mapping between legacy and new system structures; 3) Migration tool selection - we use appropriate tools based on data volume and complexity; 4) Testing iterations - we perform multiple test migrations to validate accuracy; 5) Data cleansing support - we help identify and correct data issues; 6) Final migration execution - we perform the production migration with verification steps. This approach minimizes business disruption while ensuring data integrity."
+    question: "Can you integrate our existing systems with new solutions?",
+    answer: "Yes, we specialize in system integration to create a cohesive enterprise architecture. Our integration capabilities include connecting SAP Business One with e-commerce platforms, CRM systems, manufacturing execution systems, warehouse management solutions, third-party logistics services, payment gateways, and custom applications. We use various integration methods including direct database connections, APIs, middleware platforms, and ETL tools depending on the specific requirements and systems involved."
   },
   {
     category: "services",
-    question: "How do you ensure user adoption after implementation?",
-    answer: "User adoption is critical to implementation success. Our approach includes: 1) Early stakeholder involvement to gather input and build ownership; 2) Role-specific training using your actual business data; 3) Comprehensive documentation including quick reference guides; 4) Super-user program to develop internal champions; 5) Post-go-live floor support to address immediate questions; 6) Follow-up training sessions after initial use; 7) Adoption monitoring with feedback mechanisms. We've found this multi-faceted approach significantly increases user acceptance and maximizes return on your technology investment."
-  },
-  {
-    category: "services",
-    question: "What is your approach to quality assurance during implementation?",
-    answer: "Quality assurance is integrated throughout our implementation process with several key practices: 1) Requirement validation to ensure clear understanding; 2) Solution prototyping for early feedback; 3) Staged testing including unit, integration, and user acceptance testing; 4) Automated testing for regression scenarios; 5) Performance testing under expected load conditions; 6) Structured issue tracking and resolution; 7) Independent quality reviews by team members not directly involved in development. This comprehensive approach helps deliver solutions that meet both functional requirements and performance expectations."
-  },
-  
-  // Digital Transformation
-  {
-    category: "digital",
-    question: "What is digital transformation and why is it important?",
-    answer: "Digital transformation is the strategic integration of digital technologies across all areas of business, fundamentally changing how you operate and deliver value to customers. It goes beyond simply implementing new software—it's about reimagining business models, processes, and customer experiences through digital capabilities. It's important because it enables businesses to stay competitive in rapidly changing markets, improve operational efficiency, enhance customer experiences, unlock new revenue streams, and build resilience against disruption. Organizations that successfully transform digitally typically outperform their competitors in profitability and market valuation."
-  },
-  {
-    category: "digital",
-    question: "How do you approach digital transformation projects?",
-    answer: "Our approach to digital transformation follows a comprehensive framework: 1) Digital Assessment - evaluating current capabilities and identifying opportunities; 2) Vision & Strategy - defining transformation goals aligned with business objectives; 3) Roadmap Development - creating a phased implementation plan; 4) Solution Architecture - designing integrated technology solutions; 5) Agile Implementation - deploying capabilities in iterative cycles; 6) Change Management - ensuring organizational adoption; 7) Performance Measurement - tracking outcomes against defined metrics. This methodology balances strategic vision with practical execution while managing organizational change effectively."
-  },
-  {
-    category: "digital",
-    question: "What technologies are typically involved in digital transformation?",
-    answer: "Digital transformation typically involves multiple interconnected technologies: 1) Cloud computing for scalable infrastructure and applications; 2) Data analytics and business intelligence for insight-driven decision making; 3) Artificial intelligence and machine learning for process automation and predictive capabilities; 4) Internet of Things (IoT) for physical-digital integration; 5) Mobile technologies for anywhere access; 6) Collaboration and communication platforms for improved workforce efficiency; 7) Customer experience technologies for personalized engagement; 8) Enterprise resource planning and other core business systems as the digital backbone. The specific technologies we recommend depend on your business goals, industry context, and existing capabilities."
-  },
-  {
-    category: "digital",
-    question: "How do you measure the success of digital transformation initiatives?",
-    answer: "We measure digital transformation success through multiple dimensions: 1) Business outcomes - revenue growth, cost reduction, market share gains; 2) Operational metrics - process efficiency, cycle time reductions, error rate decreases; 3) Customer metrics - satisfaction scores, retention rates, engagement levels; 4) Innovation indicators - new product development speed, idea generation rates; 5) Employee measures - productivity, satisfaction, digital skill development; 6) Technology metrics - system adoption, performance, and integration effectiveness. We establish baseline measurements before transformation begins and track progress through a balanced scorecard approach, adjusting strategies based on ongoing performance data."
-  },
-  {
-    category: "digital",
-    question: "How do you help organizations manage the cultural change required for digital transformation?",
-    answer: "Cultural change is often the most challenging aspect of digital transformation. Our approach includes: 1) Leadership alignment and visible sponsorship; 2) Clear communication of the vision and expected benefits; 3) Identifying and empowering digital champions throughout the organization; 4) Skills assessment and targeted training programs; 5) Restructuring incentives to reward desired behaviors; 6) Creating quick wins to build momentum; 7) Establishing feedback mechanisms to address concerns; 8) Recognizing and celebrating successes. We work closely with your leadership team to develop change management strategies specific to your organizational culture and transformation goals."
+    question: "What training options do you provide for new system implementations?",
+    answer: "We offer flexible training options including: 1) Classroom Training - instructor-led sessions for groups; 2) One-on-One Training - personalized coaching for key users; 3) Role-Based Training - focused on specific job functions; 4) Train-the-Trainer - preparing your internal trainers; 5) Video Tutorials - on-demand learning resources; 6) Documentation - comprehensive user guides and quick reference materials; 7) Refresher Sessions - ongoing training after go-live; 8) Advanced Training - specialized sessions for power users. We customize the training approach based on your team's learning preferences and scheduling needs."
   }
 ] 

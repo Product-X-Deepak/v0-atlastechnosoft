@@ -16,6 +16,50 @@ export function ErrorHandler() {
     // Initialize chunk error handling as early as possible
     initializeChunkHandling()
     
+    // Try to install chunk error handling on window if needed
+    if (typeof window !== 'undefined' && !window.__chunk_error_handler_installed) {
+      try {
+        // Add a fallback chunk error handler for webpack
+        if (window.__webpack_chunk_load__) {
+          const originalLoad = window.__webpack_chunk_load__;
+          window.__webpack_chunk_load__ = (id) => {
+            return originalLoad(id).catch((error) => {
+              console.warn(`[Chunk Error Handler] Error loading chunk ${id}, attempting retry...`);
+              
+              // Try to clear chunk from webpack cache
+              if (window.__webpack_require__ && window.__webpack_require__.c) {
+                try {
+                  const webpackRequire = window.__webpack_require__;
+                  if (webpackRequire && webpackRequire.c) {
+                    Object.keys(webpackRequire.c).forEach(moduleId => {
+                      if (moduleId.includes(id)) {
+                        delete webpackRequire.c[moduleId];
+                      }
+                    });
+                  }
+                } catch (err) {
+                  // Silently fail if we can't access the cache
+                  console.warn('[Error Handler] Failed to clear chunk from cache:', err);
+                }
+              }
+              
+              // Wait and retry once
+              return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                  originalLoad(id).then(resolve).catch(reject);
+                }, 1000);
+              });
+            });
+          };
+          
+          // Flag as initialized
+          window.__chunk_error_handler_installed = true;
+        }
+      } catch (error) {
+        console.warn('[Error Handler] Failed to install chunk handler:', error);
+      }
+    }
+    
     // Set up global error handling for unhandled errors
     const errorHandler = (event: ErrorEvent) => {
       // Prevent default browser error handling

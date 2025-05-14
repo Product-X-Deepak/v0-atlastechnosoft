@@ -320,7 +320,7 @@ export const API = {
 export const FEATURES = {
   DARK_MODE: true,
   ANIMATIONS: true,
-  CHAT_WIDGET: true,
+  CHAT_WIDGET: false,
   ANALYTICS: true,
   COOKIE_CONSENT: true,
   EXIT_INTENT: true,

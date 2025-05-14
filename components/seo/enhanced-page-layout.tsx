@@ -74,7 +74,7 @@ export function EnhancedPageLayout({
   maxTopicClusters = 3,
   maxRelatedItems = 6,
 }: EnhancedPageLayoutProps) {
-  const pathname = usePathname();
+  const pathname = usePathname() || '';
   
   // Get related content items for the current page
   const relatedItems = showRelatedContent 
@@ -137,7 +137,7 @@ export function ProductPageLayout({
   productCategory: string;
   relatedProductCategories?: string[];
 }) {
-  const pathname = usePathname();
+  const pathname = usePathname() || '';
   
   // Get related products with priority for the specified category (unused but kept for future implementation)
   const _relatedItems = getRelatedPages(pathname, { 
@@ -186,7 +186,7 @@ export function IndustryPageLayout({
   className?: string;
   industryName: string;
 }) {
-  const pathname = usePathname();
+  const pathname = usePathname() || '';
   
   // Get related industries and solutions (unused but kept for future implementation)
   const _relatedItems = getRelatedPages(pathname, { 

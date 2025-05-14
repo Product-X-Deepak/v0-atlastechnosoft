@@ -10,7 +10,6 @@
 // These should be paths relative to your app's root
 const CRITICAL_CHUNKS = [
   '/api/search',
-  '/api/chatbot',
   '/about',
   '/contact',
   '/blog',

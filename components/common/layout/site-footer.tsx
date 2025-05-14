@@ -32,9 +32,6 @@ function SiteFooter() {
                   width={240}
                   height={84}
                   className="h-10 xs:h-12 sm:h-14 md:h-16 lg:h-18 w-auto object-contain"
-                  fetchPriority="high"
-                  loading="eager"
-                  unoptimized
                   onError={() => setLogoError(true)}
                 />
               </div>

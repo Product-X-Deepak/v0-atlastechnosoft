@@ -21,18 +21,6 @@ export const CommandMenu = dynamic(
   }
 )
 
-export const ChatWidget = dynamic(
-  () => import("@/components/chatbot/chat-widget").then(mod => mod.ChatWidget),
-  { 
-    ssr: false,
-    loading: () => (
-      <div className="w-14 h-14 rounded-full bg-primary/80 flex items-center justify-center animate-pulse">
-        <span className="sr-only">Loading chat widget...</span>
-      </div>
-    )
-  }
-)
-
 export const VideoBackground = dynamic(
   () => import("@/components/ui/video-background").then(mod => mod.VideoBackground),
   { 

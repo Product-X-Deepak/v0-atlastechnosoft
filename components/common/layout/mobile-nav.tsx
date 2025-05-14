@@ -11,7 +11,7 @@ import { ChevronRight } from "lucide-react"
 // Inner component that uses usePathname
 function MobileNavInner() {
   const [openItems, setOpenItems] = useState<string[]>([])
-  const pathname = usePathname()
+  const pathname = usePathname() || ''
 
   // Auto-expand the section that contains the current page
   useEffect(() => {
