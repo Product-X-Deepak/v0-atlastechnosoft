@@ -14,14 +14,14 @@ function ManufacturingSolutionsComponent() {
     <section id="solutions" ref={ref} className="bg-slate-50 py-16">
       <div className="container px-4 md:px-6 lg:px-8">
         <div className="mx-auto mb-12 text-center">
-          <div className="inline-flex items-center rounded-full border border-blue-600/30 bg-blue-100/80 px-4 py-2 text-sm font-medium text-blue-800">
+          <div className="inline-flex items-center rounded-full border border-amber-600/30 bg-amber-100/80 px-4 py-2 text-sm font-medium text-amber-800">
             <span>Our Solutions</span>
           </div>
-          <h2 className="mt-4 text-3xl font-bold tracking-tight text-[#f0f4f8] md:text-4xl">
-            Your Factory. Your Goals. <span className="text-[#3B82F6]">Choose What Suits You Best.</span>
+          <h2 className="mt-4 text-3xl font-bold tracking-tight text-slate-800 md:text-4xl">
+            Your Factory. Your Goals. <span className="text-[#E84A0E]">Choose What Suits You Best.</span>
           </h2>
-          <p className="mt-4 text-lg text-[#d0d8e0] max-w-2xl mx-auto">
-            Our solutions help manufacturing businesses overcome complex challenges, streamline operations, and elevate their position in the competitive production landscape.
+          <p className="mt-4 text-lg text-slate-600 max-w-2xl mx-auto">
+            Our solutions help manufacturing companies overcome operational challenges, optimize production processes, and enhance quality control while reducing costs and streamlining supply chains.
           </p>
         </div>
         

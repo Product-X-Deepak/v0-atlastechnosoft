@@ -20,10 +20,10 @@ function RpaSolutionsCapabilities(_props: Record<string, unknown>) {
           <div className="inline-flex items-center rounded-full border border-amber-600/30 bg-amber-100/80 px-3 py-1 text-xs font-medium text-amber-800 mb-3">
             <span>Key Capabilities</span>
           </div>
-          <h2 className="text-xl font-bold tracking-tight text-[#f0f4f8] sm:text-2xl md:text-3xl">
-            UiPath <span className="text-[#E84A0E]">RPA Solutions</span>
+          <h2 className="text-xl font-extrabold tracking-tight sm:text-2xl md:text-3xl">
+            <span className="text-white">Comprehensive</span> <span className="text-white">RPA Solutions</span>
           </h2>
-          <p className="mt-1.5 text-sm text-[#d0d8e0] max-w-2xl mx-auto">
+          <p className="mt-1.5 text-sm font-medium text-white max-w-2xl mx-auto">
             Our UiPath RPA solutions offer an extensive set of capabilities to automate your business processes and drive digital transformation.
           </p>
         </div>
@@ -35,16 +35,16 @@ function RpaSolutionsCapabilities(_props: Record<string, unknown>) {
               initial={{ opacity: 0, y: 15 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.3, delay: 0.08 * index }}
-              className="bg-[#1E1E38] rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all h-full"
+              className="bg-white rounded-lg shadow-sm border border-slate-200 overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all h-full"
             >
               <div className="p-3 sm:p-4 flex flex-col h-full">
                 <div className="flex-none mb-2">
-                  <div className={`h-9 w-9 rounded-full ${capability.iconBg} flex items-center justify-center`}>
+                  <div className={`h-9 w-9 rounded-full ${capability.iconBg} flex items-center justify-center shadow-sm`}>
                     {capability.icon}
                   </div>
                 </div>
-                <h3 className="text-sm sm:text-base font-bold text-[#f0f4f8] mb-1.5">{capability.title}</h3>
-                <p className="text-[#d0d8e0] text-xs leading-relaxed mb-2">{capability.description}</p>
+                <h3 className="text-sm sm:text-base font-bold text-slate-900 mb-1.5">{capability.title}</h3>
+                <p className="text-slate-700 text-xs leading-relaxed mb-2">{capability.description}</p>
               </div>
             </motion.div>
           ))}
@@ -57,7 +57,7 @@ function RpaSolutionsCapabilities(_props: Record<string, unknown>) {
             asChild
           >
             <Link href="/contact" className="flex items-center">
-              Request a Demo
+              Request Detailed Capabilities Overview
               <ArrowRight className="ml-1 h-3 w-3 transition-transform group-hover:translate-x-1" />
             </Link>
           </Button>
@@ -70,53 +70,54 @@ function RpaSolutionsCapabilities(_props: Record<string, unknown>) {
 const capabilities = [
   {
     icon: <Bot className="h-4 w-4 text-white" />,
-    title: "Intelligent Automation",
-    description: "Combine RPA with AI capabilities like machine learning and natural language processing for intelligent decision-making.",
+    title: "Process Automation",
+    description: "Combine RPA with AI capabilities for intelligent decision-making and end-to-end process automation.",
     iconBg: "bg-[#E84A0E]"
   },
   {
     icon: <Clock className="h-4 w-4 text-white" />,
     title: "Process Recording",
-    description: "Record human actions and convert them into automated workflows, making it easy to create automation scripts.",
+    description: "Record human actions and convert them into automated workflows with built-in process configuration.",
     iconBg: "bg-[#A73370]"
   },
   {
     icon: <FileText className="h-4 w-4 text-white" />,
     title: "Data Extraction",
-    description: "Extract data from various sources including documents, emails, PDFs, and legacy systems with high accuracy.",
+    description: "Extract data from various sources including documents, emails, PDFs, APIs, and legacy systems.",
     iconBg: "bg-[#E84A0E]"
   },
   {
     icon: <BrainCircuit className="h-4 w-4 text-white" />,
     title: "Multi-platform Support",
-    description: "Automate processes across different applications, platforms, and systems without requiring API integration.",
+    description: "Automate processes across different applications and systems without requiring API integration.",
     iconBg: "bg-[#A73370]"
   },
   {
     icon: <Workflow className="h-4 w-4 text-white" />,
     title: "Scheduled Execution",
-    description: "Schedule bots to run at specific times or trigger them based on events, ensuring processes run when needed.",
+    description: "Schedule bots to run at specific times or trigger them based on events for optimal resource use.",
     iconBg: "bg-[#E84A0E]"
   },
   {
     icon: <Database className="h-4 w-4 text-white" />,
     title: "Detailed Analytics",
-    description: "Monitor bot performance, track automation metrics, and generate detailed reports for continuous improvement.",
+    description: "Monitor bot performance, track automation metrics, and generate detailed reports for improvement.",
     iconBg: "bg-[#A73370]"
   },
   {
     icon: <Zap className="h-4 w-4 text-white" />,
     title: "Low-Code Development",
-    description: "Create and modify automation workflows with minimal coding using intuitive drag-and-drop interfaces.",
+    description: "Create and modify automation workflows using intuitive drag-and-drop interfaces with minimal coding.",
     iconBg: "bg-[#E84A0E]"
   },
   {
     icon: <Shield className="h-4 w-4 text-white" />,
     title: "Exception Handling",
-    description: "Robust error handling and exception management to ensure business continuity even when unexpected issues arise.",
+    description: "Robust error handling and exception management to ensure business continuity when issues arise.",
     iconBg: "bg-[#A73370]"
   }
-] 
+]
+
 // Wrapper component to ensure proper Suspense boundaries for useSearchParams
 function RpaSolutionsCapabilitiesWrapper(props: Record<string, unknown>) {
   return (

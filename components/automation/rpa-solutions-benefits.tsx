@@ -10,18 +10,17 @@ function RpaSolutionsBenefits() {
   const isInView = useInView(ref as React.RefObject<Element>, { once: true, amount: 0.2 })
 
   return (
-    <section ref={ref} className="py-16">
+    <section ref={ref} className="py-16 bg-[#1E1E38] text-white">
       <div className="container px-4 md:px-6 lg:px-8">
-        <div className="mx-auto mb-10 text-center">
+        <div className="mx-auto mb-12 text-center">
           <div className="inline-flex items-center rounded-full border border-amber-600/30 bg-amber-100/80 px-4 py-2 text-sm font-medium text-amber-800">
-            <span>Business Benefits</span>
+            <span>RPA Benefits</span>
           </div>
-          <h2 className="mt-4 text-3xl font-bold tracking-tight text-[#f0f4f8] md:text-4xl">
-            Deliver <span className="text-[#E84A0E]">Measurable Results</span> with RPA
+          <h2 className="mt-4 text-3xl font-bold tracking-tight text-white md:text-4xl">
+            Transform Your Business with <span className="text-[#E84A0E]">Robotic Process Automation</span>
           </h2>
-          <p className="mt-4 text-lg text-[#d0d8e0] max-w-2xl mx-auto">
-            UiPath RPA delivers tangible benefits across departments, processes, and industries, 
-            helping your organization achieve more with less effort.
+          <p className="mt-4 text-lg text-white/80 max-w-2xl mx-auto">
+            Discover how RPA can help your organization reduce costs, improve accuracy, increase compliance, and free your employees to focus on higher-value tasks.
           </p>
         </div>
 

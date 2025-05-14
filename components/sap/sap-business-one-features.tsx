@@ -49,22 +49,22 @@ function SapBusinessOneFeatures() {
               transition={{ duration: 0.4, delay: 0.1 * index }}
               className="group"
             >
-              <Card className="h-full overflow-hidden border-slate-200 transition-all duration-300 hover:border-[#E84A0E]/50 hover:shadow-lg dark:border-slate-800 dark:hover:border-[#E84A0E]/50">
+              <Card className="h-full bg-white border border-slate-200 shadow-sm overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
                 <CardHeader className="pb-2 pt-4 px-4">
-                  <div className="mb-2 inline-flex h-8 w-8 items-center justify-center rounded-lg bg-[#E84A0E]/10 text-[#E84A0E]">
+                  <div className="mb-2 inline-flex h-8 w-8 items-center justify-center rounded-lg bg-[#E84A0E] text-white shadow-sm">
                     {feature.icon}
                   </div>
-                  <CardTitle className="flex items-center justify-between text-base">
+                  <CardTitle className="flex items-center justify-between text-base text-slate-900">
                     {feature.title}
                     <MoveRight className="h-3 w-0 transition-all duration-300 group-hover:w-3 group-hover:text-[#E84A0E]" />
                   </CardTitle>
-                  <CardDescription className="text-xs">{feature.subtitle}</CardDescription>
+                  <CardDescription className="text-xs text-slate-600">{feature.subtitle}</CardDescription>
                 </CardHeader>
-                <CardContent className="px-4 pb-4 pt-0">
-                  <ul className="space-y-1 text-xs text-slate-600">
+                <CardContent className="px-4 pb-5 pt-0">
+                  <ul className="space-y-1.5 text-xs text-slate-700">
                     {feature.capabilities.map((capability, idx) => (
                       <li key={idx} className="flex items-start">
-                        <div className="mr-1.5 mt-1 h-1 w-1 rounded-full bg-[#A73370]/70"></div>
+                        <div className="mr-1.5 mt-1 h-1.5 w-1.5 rounded-full bg-[#E84A0E]"></div>
                         <span>{capability}</span>
                       </li>
                     ))}

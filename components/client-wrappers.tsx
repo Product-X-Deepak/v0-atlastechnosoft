@@ -21,14 +21,6 @@ export const CommandMenu = dynamic(
   }
 )
 
-export const VideoBackground = dynamic(
-  () => import("@/components/ui/video-background").then(mod => mod.VideoBackground),
-  { 
-    ssr: false,
-    loading: () => null 
-  }
-)
-
 export const ScrollProgress = dynamic(
   () => import("@/components/scroll-progress").then(mod => mod.ScrollProgress),
   { 

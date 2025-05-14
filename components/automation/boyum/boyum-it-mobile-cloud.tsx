@@ -13,17 +13,17 @@ function BoyumItMobileCloud() {
   const isInView = useInView(ref as React.RefObject<Element>, { once: true, amount: 0.2 })
   
   return (
-    <section id="mobile-cloud" ref={ref} className="py-16 bg-gradient-to-b from-slate-50/50 to-transparent">
+    <section id="mobile-cloud" ref={ref} className="py-16 bg-[#1E1E38] text-white">
       <div className="container px-4 md:px-6 lg:px-8">
         <div className="mx-auto mb-12 text-center">
           <div className="inline-flex items-center rounded-full border border-amber-600/30 bg-amber-100/80 px-4 py-2 text-sm font-medium text-amber-800">
-            <span>Mobile & Cloud Technologies</span>
+            <span>Mobile & Cloud Solutions</span>
           </div>
-          <h2 className="mt-4 text-3xl font-bold tracking-tight text-[#f0f4f8] md:text-4xl">
-            Business <span className="text-[#E84A0E]">Technology</span> That Moves With You
+          <h2 className="mt-4 text-3xl font-bold tracking-tight text-white md:text-4xl">
+            Access Your Business <span className="text-[#E84A0E]">Anywhere, Anytime</span>
           </h2>
-          <p className="mt-4 text-lg text-[#d0d8e0] max-w-2xl mx-auto">
-            Leverage Boyum IT&apos;s cloud-based and mobile solutions to keep your business running smoothly from anywhere, anytime.
+          <p className="mt-4 text-lg text-white/80 max-w-2xl mx-auto">
+            Extend SAP Business One beyond the office with mobile applications and cloud solutions that keep your team connected and productive from anywhere.
           </p>
         </div>
         
@@ -43,8 +43,8 @@ function BoyumItMobileCloud() {
                     </div>
                   </div>
                   <div className="ml-4">
-                    <h3 className="text-lg font-semibold text-[#f0f4f8]">{tech.title}</h3>
-                    <p className="mt-1 text-sm text-[#d0d8e0]">{tech.description}</p>
+                    <h3 className="text-lg font-semibold text-white">{tech.title}</h3>
+                    <p className="mt-1 text-sm text-white/80">{tech.description}</p>
                   </div>
                 </div>
               ))}

@@ -19,10 +19,10 @@ function ConstructionIntegrationComponent() {
           <div className="inline-flex items-center rounded-full border border-amber-600/30 bg-amber-100/80 px-4 py-2 text-sm font-medium text-amber-800">
             <span>Integration Solutions</span>
           </div>
-          <h2 className="mt-4 text-3xl font-bold tracking-tight text-[#f0f4f8] md:text-4xl">
+          <h2 className="mt-4 text-3xl font-bold tracking-tight text-slate-800 md:text-4xl">
             Seamless <span className="text-[#E84A0E]">Connectivity</span> For Your Construction Systems
           </h2>
-          <p className="mt-4 text-lg text-[#d0d8e0] max-w-2xl mx-auto">
+          <p className="mt-4 text-lg text-slate-600 max-w-2xl mx-auto">
             Connect your project management, field operations, and accounting systems with Atlas Technosoft&apos;s powerful integration solutions for construction companies.
           </p>
         </div>

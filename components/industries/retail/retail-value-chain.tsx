@@ -10,17 +10,17 @@ function RetailValueChainComponent() {
   const isInView = useInView(ref as React.RefObject<Element>, { once: true, amount: 0.2 })
   
   return (
-    <section id="value-chain" ref={ref} className="py-16">
+    <section id="value-chain" ref={ref} className="py-16 bg-[#1E1E38] text-white">
       <div className="container px-4 md:px-6 lg:px-8">
         <div className="mx-auto mb-12 text-center">
           <div className="inline-flex items-center rounded-full border border-amber-600/30 bg-amber-100/80 px-4 py-2 text-sm font-medium text-amber-800">
-            <span>Customer Journey</span>
+            <span>Retail Lifecycle</span>
           </div>
-          <h2 className="mt-4 text-3xl font-bold tracking-tight text-[#f0f4f8] md:text-4xl">
-            Connect Your <span className="text-[#E84A0E]">Customer Experience</span>
+          <h2 className="mt-4 text-3xl font-bold tracking-tight text-white md:text-4xl">
+            Connect Your <span className="text-[#E84A0E]">Retail Operations</span>
           </h2>
-          <p className="mt-4 text-lg text-[#d0d8e0] max-w-2xl mx-auto">
-            Our retail solutions track and optimize the entire customer journey, from initial discovery to post-purchase engagement, creating meaningful connections at every touchpoint.
+          <p className="mt-4 text-lg text-white/80 max-w-2xl mx-auto">
+            Our solutions provide comprehensive support across the entire retail lifecycle, from merchandise planning and inventory management to customer engagement and analytics.
           </p>
         </div>
         
@@ -62,10 +62,10 @@ function RetailValueChainComponent() {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.4, delay: 0.1 * index }}
-              className="bg-slate-50 p-6 rounded-xl shadow-sm border border-slate-100"
+              className="bg-white/10 p-6 rounded-xl shadow-sm border border-white/20"
             >
-              <h3 className="text-lg font-semibold text-slate-900 mb-2">{benefit.title}</h3>
-              <p className="text-sm text-slate-600">{benefit.description}</p>
+              <h3 className="text-lg font-semibold text-white mb-2">{benefit.title}</h3>
+              <p className="text-sm text-white/80">{benefit.description}</p>
             </motion.div>
           ))}
         </div>

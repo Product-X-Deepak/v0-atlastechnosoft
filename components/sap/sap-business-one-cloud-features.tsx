@@ -167,34 +167,34 @@ function SapBusinessOneCloudFeatures() {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.4 }}
-              className="mx-auto mt-12 max-w-6xl rounded-xl bg-gradient-to-r from-slate-50 to-blue-50 p-6 dark:from-slate-900 dark:to-blue-950"
+              className="mx-auto mt-12 max-w-6xl rounded-xl bg-white p-6 shadow-sm border border-slate-200"
             >
           <div className="flex flex-col items-center gap-6 lg:flex-row">
             <div className="flex-1">
-              <h3 className="text-xl font-bold">Enhanced Web Interface</h3>
-              <p className="mt-1.5 text-sm text-muted-foreground">
+              <h3 className="text-xl font-bold text-slate-900">Enhanced Web Interface</h3>
+              <p className="mt-1.5 text-sm text-slate-700">
                 The 2025 web version delivers a completely reimagined user experience with responsive design, intuitive navigation, and personalized dashboards.
               </p>
               <ul className="mt-3 space-y-1.5">
                 <li className="flex items-center">
-                  <div className="mr-2 h-1 w-1 rounded-full bg-primary"></div>
-                  <span className="text-xs">Customizable role-based dashboards</span>
+                  <div className="mr-2 h-1.5 w-1.5 rounded-full bg-[#E84A0E]"></div>
+                  <span className="text-xs text-slate-800">Customizable role-based dashboards</span>
                 </li>
                 <li className="flex items-center">
-                  <div className="mr-2 h-1 w-1 rounded-full bg-primary"></div>
-                  <span className="text-xs">Seamless mobile-to-desktop experience</span>
+                  <div className="mr-2 h-1.5 w-1.5 rounded-full bg-[#E84A0E]"></div>
+                  <span className="text-xs text-slate-800">Seamless mobile-to-desktop experience</span>
                 </li>
                 <li className="flex items-center">
-                  <div className="mr-2 h-1 w-1 rounded-full bg-primary"></div>
-                  <span className="text-xs">Contextual AI-powered assistance</span>
+                  <div className="mr-2 h-1.5 w-1.5 rounded-full bg-[#E84A0E]"></div>
+                  <span className="text-xs text-slate-800">Contextual AI-powered assistance</span>
                 </li>
                 <li className="flex items-center">
-                  <div className="mr-2 h-1 w-1 rounded-full bg-primary"></div>
-                  <span className="text-xs">Real-time collaboration tools</span>
+                  <div className="mr-2 h-1.5 w-1.5 rounded-full bg-[#E84A0E]"></div>
+                  <span className="text-xs text-slate-800">Real-time collaboration tools</span>
                 </li>
               </ul>
             </div>
-            <div className="relative h-[240px] w-full max-w-[420px] overflow-hidden rounded-lg bg-white p-2 shadow-lg lg:flex-1">
+            <div className="relative h-[240px] w-full max-w-[420px] overflow-hidden rounded-lg bg-white p-2 shadow-md border border-slate-200 lg:flex-1">
               <Image
                 src="/images/solutions/B2_A.png" 
                 alt="SAP Business One Cloud 2025 Web Interface"
@@ -220,17 +220,17 @@ function FeatureCard({ feature, index, isInView }: FeatureCardProps) {
       itemType="https://schema.org/ListItem"
     >
       <meta itemProp="position" content={(index + 1).toString()} />
-      <Card className="group h-full overflow-hidden transition-all duration-300 hover:shadow-md">
+      <Card className="h-full bg-white border border-slate-200 shadow-sm overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
         <CardHeader className="relative p-4 pb-2">
           <div className="absolute right-3 top-3 opacity-0 transition-opacity group-hover:opacity-100">
-            <ArrowUpRight className="h-3 w-3 text-primary" />
+            <ArrowUpRight className="h-3 w-3 text-[#E84A0E]" />
           </div>
-          <div className="mb-1.5 w-fit rounded-md bg-primary/10 p-1.5 text-primary">{feature.icon}</div>
-          <CardTitle className="text-base" itemProp="name">{feature.title}</CardTitle>
-          <CardDescription className="text-xs">{feature.subtitle}</CardDescription>
+          <div className="mb-1.5 w-fit rounded-md bg-[#E84A0E] p-1.5 text-white shadow-sm">{feature.icon}</div>
+          <CardTitle className="text-base text-slate-900" itemProp="name">{feature.title}</CardTitle>
+          <CardDescription className="text-xs text-slate-600">{feature.subtitle}</CardDescription>
         </CardHeader>
         <CardContent className="p-4 pt-1">
-          <p className="text-xs text-muted-foreground" itemProp="description">{feature.description}</p>
+          <p className="text-xs text-slate-700" itemProp="description">{feature.description}</p>
         </CardContent>
       </Card>
     </motion.div>

@@ -13,17 +13,17 @@ function RetailIndustriesComponent() {
   const isInView = useInView(ref as React.RefObject<Element>, { once: true, amount: 0.2 })
   
   return (
-    <section ref={ref} className="py-16">
+    <section ref={ref} className="py-16 bg-[#1E1E38] text-white">
       <div className="container px-4 md:px-6 lg:px-8">
         <div className="mx-auto mb-12 text-center">
-          <div className="inline-flex items-center rounded-full border border-purple-600/30 bg-purple-100/80 px-4 py-2 text-sm font-medium text-purple-800">
-            <span>Retail Specialties</span>
+          <div className="inline-flex items-center rounded-full border border-amber-600/30 bg-amber-100/80 px-4 py-2 text-sm font-medium text-amber-800">
+            <span>Retail Segments</span>
           </div>
-          <h2 className="mt-4 text-3xl font-bold tracking-tight text-[#f0f4f8] md:text-4xl">
-            Solutions Tailored to Your <span className="text-[#8B5CF6]">Retail Segment</span>
+          <h2 className="mt-4 text-3xl font-bold tracking-tight text-white md:text-4xl">
+            Solutions Tailored to Your <span className="text-[#E84A0E]">Retail Business</span>
           </h2>
-          <p className="mt-4 text-lg text-[#d0d8e0] max-w-2xl mx-auto">
-            We understand the unique challenges faced by different retail sectors and offer specialized solutions to address your specific needs.
+          <p className="mt-4 text-lg text-white/80 max-w-2xl mx-auto">
+            We understand the unique challenges faced by different retail segments and offer specialized solutions to address your specific needs.
           </p>
         </div>
         

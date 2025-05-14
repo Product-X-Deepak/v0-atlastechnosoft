@@ -17,11 +17,11 @@ function RetailSolutionsComponent() {
           <div className="inline-flex items-center rounded-full border border-amber-600/30 bg-amber-100/80 px-4 py-2 text-sm font-medium text-amber-800">
             <span>Our Solutions</span>
           </div>
-          <h2 className="mt-4 text-3xl font-bold tracking-tight text-[#f0f4f8] md:text-4xl">
+          <h2 className="mt-4 text-3xl font-bold tracking-tight text-slate-800 md:text-4xl">
             Your Business. Your Goals. <span className="text-[#E84A0E]">Choose What Suits You Best.</span>
           </h2>
-          <p className="mt-4 text-lg text-[#d0d8e0] max-w-2xl mx-auto">
-            Our solutions help retail businesses overcome complex challenges, optimize inventory management, and deliver personalized customer experiences that drive loyalty and growth.
+          <p className="mt-4 text-lg text-slate-600 max-w-2xl mx-auto">
+            Our solutions help retail businesses overcome complex challenges, streamline operations, and elevate their position in the competitive market landscape.
           </p>
         </div>
         

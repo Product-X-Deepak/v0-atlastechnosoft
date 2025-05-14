@@ -145,7 +145,7 @@ const _faqData = [
   {
     category: "general",
     question: "What partnerships and certifications does Atlas Technosoft maintain?",
-    answer: "Atlas Technosoft maintains strategic partnerships with leading technology providers including SAP (Partner), UiPath (Gold Partner), Boyum IT (Gold Partner), and Microsoft (Silver Partner). Our team includes certified consultants in SAP Business One, HANA, UiPath RPA, and various other technologies. These partnerships and certifications ensure we deliver solutions using industry best practices and the latest technological advancements."
+    answer: "Atlas Technosoft maintains strategic partnerships with leading technology providers including SAP (Partner), UiPath (Partner), Boyum IT (Gold Partner), and Microsoft (Silver Partner). Our team includes certified consultants in SAP Business One, HANA, UiPath RPA, and various other technologies. These partnerships and certifications ensure we deliver solutions using industry best practices and the latest technological advancements."
   },
   {
     category: "general",

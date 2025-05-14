@@ -28,7 +28,7 @@ function SapBusinessOneCloudComparison() {
   const isInView = useInView(ref as React.RefObject<Element>, { once: true, amount: 0.3 })
 
   return (
-    <section ref={ref} className="bg-gradient-to-br from-slate-50 to-slate-100 py-12 dark:from-slate-900 dark:to-slate-800 md:py-16">
+    <section ref={ref} className="py-12 md:py-16">
       <div className="container px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -36,12 +36,14 @@ function SapBusinessOneCloudComparison() {
           transition={{ duration: 0.5 }}
           className="mx-auto max-w-3xl text-center"
         >
-          <div className="inline-flex items-center justify-center rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary">
+          <div className="inline-flex items-center justify-center rounded-full border border-amber-600/30 bg-amber-100/80 px-3 py-1 text-sm font-medium text-amber-800">
             <Cloud className="mr-1.5 h-3 w-3" />
             <span>Strategic Choice</span>
           </div>
-          <h2 className="mt-3 text-2xl font-bold tracking-tight sm:text-3xl">Cloud vs. On-Premise</h2>
-          <p className="mt-2 text-base text-muted-foreground">
+          <h2 className="mt-4 text-3xl font-bold tracking-tight text-premium-heading md:text-4xl">
+            Cloud vs. <span className="text-premium-orange">On-Premise</span>
+          </h2>
+          <p className="mt-4 text-lg text-premium-text max-w-2xl mx-auto">
             Make an informed decision based on your business needs with our in-depth 2025 comparison of deployment options.
           </p>
         </motion.div>
@@ -133,18 +135,18 @@ function SapBusinessOneCloudComparison() {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.4 }}
-          className="mx-auto mt-10 max-w-2xl rounded-xl bg-white p-4 shadow-sm dark:bg-slate-800"
+          className="mx-auto mt-10 max-w-2xl rounded-xl bg-white p-6 shadow-sm border border-slate-200"
         >
           <div className="flex flex-col items-center text-center">
-            <BadgeCheck className="h-8 w-8 text-primary" />
-            <h3 className="mt-2 text-lg font-bold">Need Help Deciding?</h3>
-            <p className="mt-1 text-sm text-muted-foreground">
+            <BadgeCheck className="h-8 w-8 text-[#E84A0E]" />
+            <h3 className="mt-2 text-lg font-bold text-slate-900">Need Help Deciding?</h3>
+            <p className="mt-2 text-sm text-slate-700">
               Our experts can analyze your specific business requirements and recommend the ideal deployment option for your organization.
             </p>
             <Link href="/contact">
               <motion.div
                 whileHover={{ x: 5 }}
-                className="mt-3 flex cursor-pointer items-center text-primary text-sm"
+                className="mt-3 flex cursor-pointer items-center text-[#E84A0E] text-sm"
               >
                 <span className="font-medium">Schedule a consultation</span>
                 <ArrowRight className="ml-1 h-3 w-3" />
@@ -159,13 +161,16 @@ function SapBusinessOneCloudComparison() {
 
 function ComparisonCard({ title, description, icon, features, isInView, highlighted }: ComparisonCardProps) {
   return (
-    <Card className={`overflow-hidden transition-all duration-300 hover:shadow-md ${highlighted ? 'border-primary/50 bg-primary/5 dark:bg-primary/10' : ''}`}>
-      <CardHeader className={`p-4 pb-2 ${highlighted ? 'border-b border-primary/20' : 'border-b'}`}>
+    <Card className={`h-full bg-white border ${highlighted ? 'border-[#E84A0E]/50' : 'border-slate-200'} shadow-sm overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1`}>
+      <CardHeader className={`p-4 pb-2 ${highlighted ? 'border-b border-[#E84A0E]/20' : 'border-b border-slate-200'}`}>
         <div className="mb-1">
-          {icon}
+          {highlighted ? 
+            <div className="inline-flex h-8 w-8 items-center justify-center text-[#E84A0E]">{icon}</div> : 
+            <div className="inline-flex h-8 w-8 items-center justify-center text-slate-700">{icon}</div>
+          }
         </div>
-        <CardTitle className="text-base">{title}</CardTitle>
-        <CardDescription className="mt-0.5 text-xs">{description}</CardDescription>
+        <CardTitle className="text-base text-slate-900">{title}</CardTitle>
+        <CardDescription className="mt-0.5 text-xs text-slate-600">{description}</CardDescription>
       </CardHeader>
       <CardContent className="p-4 pt-3">
         <ul className="space-y-2">
@@ -177,7 +182,7 @@ function ComparisonCard({ title, description, icon, features, isInView, highligh
               transition={{ duration: 0.3, delay: 0.05 * index }}
               className="flex items-start"
             >
-              <div className={`mr-2 mt-0.5 rounded-full p-0.5 ${highlighted ? 'bg-primary/20 text-primary' : 'bg-slate-100 dark:bg-slate-700'}`}>
+              <div className={`mr-2 mt-0.5 rounded-full p-0.5 ${highlighted ? 'bg-[#E84A0E]/20 text-[#E84A0E]' : 'bg-slate-100 text-slate-600'}`}>
                 {feature.available ? (
                   <BadgeCheck className="h-3 w-3" />
                 ) : (
@@ -185,8 +190,8 @@ function ComparisonCard({ title, description, icon, features, isInView, highligh
                 )}
               </div>
               <div>
-                <p className="text-xs font-medium">{feature.name}</p>
-                <p className="text-xs text-muted-foreground">{feature.description}</p>
+                <p className="text-xs font-medium text-slate-900">{feature.name}</p>
+                <p className="text-xs text-slate-700">{feature.description}</p>
               </div>
             </motion.li>
           ))}

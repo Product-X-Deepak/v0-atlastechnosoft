@@ -75,37 +75,37 @@ body {
   }
 
   .dark {
-    --background: 270 30% 15%; /* Adjusted to match neural background */
+    --background: 215 32% 13%; /* Slate-900 premium color */
     --foreground: 0 0% 98%;
-    --card: 270 30% 13%;
+    --card: 215 32% 11%;
     --card-foreground: 0 0% 98%;
-    --popover: 270 30% 15%;
+    --popover: 215 32% 13%;
     --popover-foreground: 0 0% 98%;
     --primary: 27 96% 61%; /* Premium Orange */
     --primary-foreground: 0 0% 100%;
     --secondary: 246 60% 60%; /* Vibrant Purple */
     --secondary-foreground: 0 0% 100%;
-    --muted: 270 25% 20%;
+    --muted: 215 28% 17%;
     --muted-foreground: 215 20% 75%;
     --accent: 27 96% 61%; /* Premium Orange - Changed from blue to orange */
     --accent-foreground: 0 0% 100%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
-    --border: 270 25% 20%;
-    --input: 270 25% 20%;
+    --border: 215 28% 17%;
+    --input: 215 28% 17%;
     --ring: 27 96% 61%; /* Premium Orange */
     --chart-1: 27 96% 61%; /* Premium Orange */
     --chart-2: 340 82% 52%; /* Vibrant Pink */
     --chart-3: 246 60% 60%; /* Vibrant Purple */
     --chart-4: 162 94% 30%; /* Rich Green */
     --chart-5: 199 89% 48%; /* Vibrant Blue */
-    --sidebar-background: 270 30% 15%;
+    --sidebar-background: 215 32% 13%;
     --sidebar-foreground: 0 0% 98%;
     --sidebar-primary: 27 96% 61%; /* Premium Orange */
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 270 25% 20%;
+    --sidebar-accent: 215 28% 17%;
     --sidebar-accent-foreground: 0 0% 98%;
-    --sidebar-border: 270 25% 20%;
+    --sidebar-border: 215 28% 17%;
     --sidebar-ring: 27 96% 61%; /* Premium Orange */
     --shadow-elevation-low: 0 2px 4px rgba(0, 0, 0, 0.3);
     --shadow-elevation-medium: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
@@ -174,7 +174,7 @@ a:hover .lucide-icon {
 .dark [class*="bg-blue"],
 .dark [class*="bg-primary"],
 .dark [class*="text-blue"] {
-  background-color: hsl(270, 30%, 15%) !important;
+  background-color: hsl(215, 32%, 13%) !important; /* Slate-900 */
 }
 
 /* Override badge/card accent colors */

@@ -16,7 +16,7 @@ function RpaSolutionsHero() {
       <div className="container relative z-10 px-4 md:px-6 lg:px-8">
         <div className="flex justify-center">
           <div className="inline-flex items-center rounded-full border border-amber-600/30 bg-amber-500/10 px-3 py-1 text-sm font-medium text-amber-800">
-            <span>UiPath Gold Partner</span>
+            <span>UiPath Partner</span>
           </div>
         </div>
 

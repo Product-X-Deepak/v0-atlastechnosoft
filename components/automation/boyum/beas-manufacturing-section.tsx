@@ -12,17 +12,17 @@ function BeasManufacturingSection() {
   const isInView = useInView(ref as React.RefObject<Element>, { once: true, amount: 0.1 })
   
   return (
-    <section id="beas-manufacturing" ref={ref} className="py-16">
+    <section id="beas-manufacturing" ref={ref} className="py-16 bg-[#1E1E38] text-white">
       <div className="container px-4 md:px-6 lg:px-8">
         <div className="mx-auto mb-12 text-center">
           <div className="inline-flex items-center rounded-full border border-amber-600/30 bg-amber-100/80 px-4 py-2 text-sm font-medium text-amber-800">
-            <span>Manufacturing Excellence</span>
+            <span>BEAS Manufacturing</span>
           </div>
-          <h2 className="mt-4 text-3xl font-bold tracking-tight text-[#f0f4f8] md:text-4xl">
-            Transform Manufacturing with <span className="text-[#A73370]">Beas Manufacturing</span>
+          <h2 className="mt-4 text-3xl font-bold tracking-tight text-white md:text-4xl">
+            Comprehensive <span className="text-[#E84A0E]">Manufacturing Solutions</span>
           </h2>
-          <p className="mt-4 text-lg text-[#d0d8e0] max-w-2xl mx-auto">
-            Our advanced manufacturing extension tailored for discrete and process manufacturing companies running on SAP Business One. Control your entire operation from a single platform.
+          <p className="mt-4 text-lg text-white/80 max-w-2xl mx-auto">
+            BEAS Manufacturing provides a complete solution for production planning, shop floor control, and quality management integrated with SAP Business One.
           </p>
         </div>
         
@@ -40,12 +40,12 @@ function BeasManufacturingSection() {
                   {feature.icon}
                 </div>
                 <h3 className="text-xl font-semibold text-slate-900 mb-2">{feature.title}</h3>
-                <p className="text-slate-600 text-sm mb-4 flex-grow">{feature.description}</p>
+                <p className="text-slate-600 text-sm mb-4">{feature.description}</p>
                 <ul className="space-y-2 mt-auto">
                   {feature.points.map((point, pointIndex) => (
                     <li key={pointIndex} className="flex items-start">
                       <CheckCircle className="h-4 w-4 text-[#E84A0E] mt-0.5 flex-shrink-0" />
-                      <span className="ml-2 text-sm text-[#d0d8e0]">{point}</span>
+                      <span className="ml-2 text-sm text-slate-600">{point}</span>
                     </li>
                   ))}
                 </ul>
@@ -101,13 +101,13 @@ function BeasManufacturingSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.4, delay: 0.4 }}
-            className="bg-gradient-to-r from-[#A73370]/10 to-[#E84A0E]/10 rounded-xl p-8"
+            className="bg-[#1E1E38] text-white rounded-xl p-8"
           >
             <div className="grid md:grid-cols-2 gap-8">
               <div>
-                <h3 className="text-xl font-semibold text-[#f0f4f8] mb-2">Comprehensive Manufacturing Components</h3>
-                <p className="text-[#d0d8e0] text-sm mb-4">
-                  Beas Manufacturing delivers a complete suite of components that cover every aspect of your manufacturing processes, all seamlessly integrated with SAP Business One.
+                <h3 className="text-xl font-semibold text-white mb-2">Comprehensive Manufacturing Components</h3>
+                <p className="text-white/80 text-sm mb-4">
+                  The BEAS Manufacturing suite consists of multiple integrated components that work together to optimize your production processes:
                 </p>
                 <ul className="space-y-3">
                   {manufacturingComponents.map((component, index) => (
@@ -116,8 +116,8 @@ function BeasManufacturingSection() {
                         <div className="rounded-full bg-[#A73370] h-4 w-4"></div>
                       </div>
                       <div>
-                        <h4 className="text-sm font-semibold text-[#f0f4f8]">{component.title}</h4>
-                        <p className="text-xs text-[#d0d8e0]">{component.description}</p>
+                        <h4 className="text-sm font-semibold text-white">{component.title}</h4>
+                        <p className="text-xs text-white/80">{component.description}</p>
                       </div>
                     </li>
                   ))}
@@ -126,15 +126,15 @@ function BeasManufacturingSection() {
               
               <div className="flex flex-col justify-between">
                 <div className="mb-6">
-                  <h3 className="text-xl font-semibold text-[#f0f4f8] mb-2">Industries Served</h3>
-                  <p className="text-[#d0d8e0] text-sm mb-4">
-                    Beas Manufacturing is tailored for various manufacturing segments with industry-specific functionality:
+                  <h3 className="text-xl font-semibold text-white mb-2">Industries Served</h3>
+                  <p className="text-white/80 text-sm mb-4">
+                    BEAS Manufacturing is adaptable to various manufacturing industries including:
                   </p>
                   <ul className="grid grid-cols-2 gap-2">
                     {industries.map((industry, index) => (
                       <li key={index} className="flex items-center">
                         <CheckCircle className="h-4 w-4 text-[#E84A0E] mr-2 flex-shrink-0" />
-                        <span className="text-sm text-[#d0d8e0]">{industry}</span>
+                        <span className="text-sm text-white/80">{industry}</span>
                       </li>
                     ))}
                   </ul>

@@ -12,16 +12,16 @@ function FinancialServicesIndustriesComponent() {
   const isInView = useInView(ref as React.RefObject<Element>, { once: true, amount: 0.2 })
   
   return (
-    <section ref={ref} className="py-16">
+    <section ref={ref} className="py-16 bg-[#1E1E38] text-white">
       <div className="container px-4 md:px-6 lg:px-8">
         <div className="mx-auto mb-12 text-center">
           <div className="inline-flex items-center rounded-full border border-amber-600/30 bg-amber-100/80 px-4 py-2 text-sm font-medium text-amber-800">
             <span>Financial Segments</span>
           </div>
-          <h2 className="mt-4 text-3xl font-bold tracking-tight text-slate-900 md:text-4xl">
+          <h2 className="mt-4 text-3xl font-bold tracking-tight text-white md:text-4xl">
             Solutions Tailored to Your <span className="text-[#E84A0E]">Financial Segment</span>
           </h2>
-          <p className="mt-4 text-lg text-slate-600 max-w-2xl mx-auto">
+          <p className="mt-4 text-lg text-white/80 max-w-2xl mx-auto">
             We understand the unique challenges faced by different financial institutions and offer specialized solutions to address your specific needs.
           </p>
         </div>

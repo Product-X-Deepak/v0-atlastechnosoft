@@ -11,17 +11,17 @@ function UiPathAgentic() {
   const isInView = useInView(ref as React.RefObject<Element>, { once: true, amount: 0.2 })
   
   return (
-    <section ref={ref} className="py-10">
+    <section ref={ref} className="py-16 bg-[#1E1E38] text-white">
       <div className="container px-4 md:px-6 lg:px-8">
-        <div className="mx-auto mb-8 text-center">
-          <div className="inline-flex items-center rounded-full border border-amber-600/30 bg-amber-100/80 px-3 py-1 text-xs font-medium text-amber-800">
-            <span>Next-Generation Platform</span>
+        <div className="text-center mx-auto max-w-3xl mb-12">
+          <div className="inline-flex items-center rounded-full border border-amber-600/30 bg-amber-100/80 px-4 py-2 text-sm font-medium text-amber-800">
+            <span>AI-Powered Automation</span>
           </div>
-          <h2 className="mt-3 text-2xl font-bold tracking-tight text-[#f0f4f8] md:text-3xl">
-            The <span className="text-[#E84A0E]">Agentic Automation</span> Revolution
+          <h2 className="mt-4 text-3xl font-bold tracking-tight text-white md:text-4xl">
+            Agentic <span className="text-[#E84A0E]">AI Automation</span>
           </h2>
-          <p className="mt-3 text-base text-[#d0d8e0] max-w-2xl mx-auto">
-            UiPath combines the power of AI agents with traditional RPA robots to create a new paradigm in enterprise automation.
+          <p className="mt-3 text-base text-white/80 max-w-2xl mx-auto">
+            Elevate your automation capabilities with UiPath's agentic AI that can autonomously make decisions, learn from experiences, and work collaboratively with your team.
           </p>
         </div>
         
@@ -43,8 +43,8 @@ function UiPathAgentic() {
           
           <div>
             <div className="mb-5">
-              <h3 className="text-lg font-bold text-[#f0f4f8] mb-2">What Makes Agentic Automation Different?</h3>
-              <p className="text-sm text-[#d0d8e0]">
+              <h3 className="text-lg font-bold text-white mb-2">What Makes Agentic Automation Different?</h3>
+              <p className="text-sm text-white/80">
                 Traditional RPA automates specific tasks, but Agentic Automation combines AI agents and robots to understand intent, 
                 adapt to new situations, and complete end-to-end processes with minimal human intervention.
               </p>
@@ -78,7 +78,7 @@ function UiPathAgentic() {
                   className="flex items-start"
                 >
                   <CheckCircle2 className="h-4 w-4 text-[#E84A0E] mt-0.5 mr-2 flex-shrink-0" />
-                  <p className="text-sm text-[#d0d8e0]">{benefit}</p>
+                  <p className="text-sm text-white/80">{benefit}</p>
                 </motion.div>
               ))}
             </div>

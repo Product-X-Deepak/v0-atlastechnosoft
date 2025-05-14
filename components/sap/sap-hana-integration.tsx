@@ -109,18 +109,18 @@ function SapHanaIntegration() {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.3, delay: 0.1 * index }}
-              className="relative overflow-hidden rounded-lg border border-slate-200 bg-white p-5 shadow-sm transition-all hover:shadow-md hover:scale-[1.01] dark:border-slate-800 dark:bg-slate-900"
+              className="relative overflow-hidden rounded-lg bg-white border border-slate-200 p-5 shadow-sm transition-all hover:shadow-lg hover:-translate-y-1"
             >
-              <div className="mb-3 rounded-lg bg-slate-50 p-3 dark:bg-slate-800">
+              <div className="mb-3 rounded-lg bg-slate-50 p-3 shadow-sm">
                 {integration.icon}
               </div>
-              <h3 className="mb-1 text-lg font-bold">{integration.title}</h3>
-              <p className="mb-3 text-xs text-slate-500 dark:text-slate-400">{integration.description}</p>
-              <div className="flex items-center text-green-600 dark:text-green-400 text-xs mb-3">
+              <h3 className="mb-1 text-lg font-bold text-slate-900">{integration.title}</h3>
+              <p className="mb-3 text-xs text-slate-700">{integration.description}</p>
+              <div className="flex items-center text-green-600 text-xs mb-3">
                 <Rocket className="mr-1.5 h-3 w-3" />
                 <span>{integration.benefit}</span>
               </div>
-              <Link href={integration.link} className="group inline-flex items-center text-xs font-medium text-[#E84A0E] hover:text-[#E84A0E]/80 dark:text-[#E84A0E] dark:hover:text-[#E84A0E]/80">
+              <Link href={integration.link} className="group inline-flex items-center text-xs font-medium text-[#E84A0E] hover:text-[#E84A0E]/80">
                 Learn more
                 <ArrowRight className="ml-1 h-3 w-3 transition-transform group-hover:translate-x-1" />
               </Link>
@@ -132,10 +132,10 @@ function SapHanaIntegration() {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.5 }}
-          className="mt-12 text-center"
+          className="mt-12 mx-auto max-w-2xl rounded-xl bg-white p-6 shadow-sm border border-slate-200 text-center"
         >
-          <h3 className="text-lg font-bold mb-3">Need a Custom Integration?</h3>
-          <p className="mx-auto max-w-2xl text-sm text-muted-foreground mb-4">
+          <h3 className="text-lg font-bold mb-3 text-slate-900">Need a Custom Integration?</h3>
+          <p className="mx-auto max-w-2xl text-sm text-slate-700 mb-4">
             Our expert consultants can help you design and implement custom integrations between SAP HANA and your existing systems
           </p>
           <Button 

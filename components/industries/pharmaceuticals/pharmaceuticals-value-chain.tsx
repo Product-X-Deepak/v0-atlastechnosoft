@@ -11,16 +11,16 @@ function PharmaceuticalsValueChainComponent() {
   const isInView = useInView(ref as React.RefObject<Element>, { once: true, amount: 0.2 })
   
   return (
-    <section id="value-chain" ref={ref} className="py-16">
+    <section id="value-chain" ref={ref} className="py-16 bg-[#1E1E38] text-white">
       <div className="container px-4 md:px-6 lg:px-8">
         <div className="mx-auto mb-12 text-center">
-          <div className="inline-flex items-center rounded-full border border-teal-600/30 bg-teal-100/80 px-4 py-2 text-sm font-medium text-teal-800">
+          <div className="inline-flex items-center rounded-full border border-amber-600/30 bg-amber-100/80 px-4 py-2 text-sm font-medium text-amber-800">
             <span>Pharmaceutical Value</span>
           </div>
-          <h2 className="mt-4 text-3xl font-bold tracking-tight text-slate-900 md:text-4xl">
-            Connect Your <span className="text-[#0D9488]">End-to-End Processes</span>
+          <h2 className="mt-4 text-3xl font-bold tracking-tight text-white md:text-4xl">
+            <span className="text-white">Connect Your</span> <span className="text-[#E84A0E]">End-to-End Processes</span>
           </h2>
-          <p className="mt-4 text-lg text-slate-600 max-w-2xl mx-auto">
+          <p className="mt-4 text-lg text-white/90 max-w-2xl mx-auto">
             Modern pharmaceutical success depends on connecting each stage of your value chain. Optimize your operations with our integrated solutions.
           </p>
         </div>
@@ -65,8 +65,8 @@ const valueChainSteps = [
     icon: <TestTube className="h-8 w-8 text-white" />,
     title: "Research & Development",
     description: "Accelerate innovation with digital tools for research data management and clinical trials.",
-    bgColor: "bg-[#0D9488]",
-    dotColor: "bg-[#0D9488]",
+    bgColor: "bg-[#E84A0E]",
+    dotColor: "bg-[#E84A0E]",
     features: [
       "Discovery informatics",
       "Clinical trial management",
@@ -77,8 +77,8 @@ const valueChainSteps = [
     icon: <FlaskConical className="h-8 w-8 text-white" />,
     title: "Manufacturing",
     description: "Optimize production with electronic batch records and real-time process monitoring.",
-    bgColor: "bg-[#5E17EB]",
-    dotColor: "bg-[#5E17EB]",
+    bgColor: "bg-[#A73370]",
+    dotColor: "bg-[#A73370]",
     features: [
       "Electronic batch records",
       "Process optimization",
@@ -89,8 +89,8 @@ const valueChainSteps = [
     icon: <Microscope className="h-8 w-8 text-white" />,
     title: "Quality Control",
     description: "Ensure product quality with robust testing and monitoring systems.",
-    bgColor: "bg-[#0D9488]",
-    dotColor: "bg-[#0D9488]",
+    bgColor: "bg-[#E84A0E]",
+    dotColor: "bg-[#E84A0E]",
     features: [
       "LIMS integration",
       "Quality event management",
@@ -101,8 +101,8 @@ const valueChainSteps = [
     icon: <Pill className="h-8 w-8 text-white" />,
     title: "Distribution",
     description: "Secure your supply chain with serialization and track-and-trace capabilities.",
-    bgColor: "bg-[#5E17EB]",
-    dotColor: "bg-[#5E17EB]",
+    bgColor: "bg-[#A73370]",
+    dotColor: "bg-[#A73370]",
     features: [
       "Serialization",
       "Track and trace",
@@ -113,8 +113,8 @@ const valueChainSteps = [
     icon: <ShieldCheck className="h-8 w-8 text-white" />,
     title: "Compliance",
     description: "Maintain regulatory compliance across all operations with automated documentation.",
-    bgColor: "bg-[#0D9488]",
-    dotColor: "bg-[#0D9488]",
+    bgColor: "bg-[#E84A0E]",
+    dotColor: "bg-[#E84A0E]",
     features: [
       "Automated audit trails",
       "Regulatory submissions",

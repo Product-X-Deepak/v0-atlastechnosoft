@@ -16,17 +16,17 @@ function BoyumItLearningContent(_: BoyumItLearningProps) {
   const isInView = useInView(ref as React.RefObject<Element>, { once: true, amount: 0.2 })
   
   return (
-    <section id="learning" ref={ref} className="py-16 bg-gradient-to-br from-slate-50 to-amber-50/30">
+    <section ref={ref} className="py-16 bg-[#1E1E38] text-white">
       <div className="container px-4 md:px-6 lg:px-8">
         <div className="mx-auto mb-12 text-center">
           <div className="inline-flex items-center rounded-full border border-amber-600/30 bg-amber-100/80 px-4 py-2 text-sm font-medium text-amber-800">
-            <span>Learning & Enablement</span>
+            <span>Learning Resources</span>
           </div>
-          <h2 className="mt-4 text-3xl font-bold tracking-tight text-[#f0f4f8] md:text-4xl">
-            Continuous <span className="text-[#E84A0E]">Learning</span> for Success
+          <h2 className="mt-4 text-3xl font-bold tracking-tight text-white md:text-4xl">
+            Maximize Your <span className="text-[#E84A0E]">Product Knowledge</span>
           </h2>
-          <p className="mt-4 text-lg text-[#d0d8e0] max-w-2xl mx-auto">
-            Access comprehensive training resources and enablement programs to maximize the value of your Boyum IT solutions.
+          <p className="mt-4 text-lg text-white/80 max-w-2xl mx-auto">
+            Access comprehensive training resources, documentation, and support to get the most from your Boyum IT solutions.
           </p>
         </div>
         

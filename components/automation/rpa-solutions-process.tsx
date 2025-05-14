@@ -10,17 +10,17 @@ function RpaSolutionsProcess() {
   const isInView = useInView(ref as React.RefObject<Element>, { once: true, amount: 0.2 })
 
   return (
-    <section ref={ref} className="py-16">
+    <section ref={ref} className="py-16 bg-[#1E1E38] text-white">
       <div className="container px-4 md:px-6 lg:px-8">
-        <div className="mx-auto mb-10 text-center">
+        <div className="mx-auto mb-12 text-center">
           <div className="inline-flex items-center rounded-full border border-amber-600/30 bg-amber-100/80 px-4 py-2 text-sm font-medium text-amber-800">
-            <span>Implementation Methodology</span>
+            <span>RPA Implementation Process</span>
           </div>
-          <h2 className="mt-4 text-3xl font-bold tracking-tight text-[#f0f4f8] md:text-4xl">
-            Our <span className="text-[#E84A0E]">RPA Implementation</span> Process
+          <h2 className="mt-4 text-3xl font-bold tracking-tight text-white md:text-4xl">
+            Our Proven <span className="text-[#E84A0E]">Automation Methodology</span>
           </h2>
-          <p className="mt-4 text-lg text-[#d0d8e0] max-w-2xl mx-auto">
-            We follow a structured approach to implement RPA solutions that deliver measurable results for your business.
+          <p className="mt-4 text-lg text-white/80 max-w-2xl mx-auto">
+            We follow a structured approach to ensure your RPA implementation delivers maximum business value with minimal disruption to your operations.
           </p>
         </div>
         

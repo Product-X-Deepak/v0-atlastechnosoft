@@ -16,7 +16,6 @@ import { ErrorHandler } from "@/components/error-handler"
 import Script from "next/script"
 import { PerformanceOptimizer } from "@/components/performance-optimizer"
 import { ScrollProgress } from "@/components/scroll-progress"
-import { VideoBackground } from "@/components/ui/video-background"
 import { ExitIntentPopup } from "@/components/common/feedback/exit-intent-popup"
 import { CookieConsent } from "@/components/common/feedback/cookie-consent"
 import { CustomCursor } from "@/components/ui/cursor-effects"
@@ -255,11 +254,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
           <ErrorHandler />
           <PerformanceOptimizer />
           <div className="relative flex min-h-screen flex-col">
-            {/* Load video background with higher delay */}
-            <Suspense fallback={null}>
-              <VideoBackground />
-            </Suspense>
-            
             {/* Use a smaller initial loading delay to prevent LCP issues */}
             <Suspense fallback={null}>
               <ScrollProgress />

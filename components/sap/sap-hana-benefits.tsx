@@ -78,18 +78,18 @@ function SapHanaBenefits() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={isInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.3, delay: 0.1 * index }}
-                  className="relative overflow-hidden rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition-all hover:shadow-md dark:border-slate-800 dark:bg-slate-900"
+                  className="relative overflow-hidden rounded-xl bg-white border border-slate-200 p-6 shadow-sm transition-all hover:shadow-lg hover:-translate-y-1"
                 >
                   <div className="flex items-start gap-4">
-                    <div className="rounded-lg bg-slate-100 p-2.5 dark:bg-slate-800">
+                    <div className="rounded-lg bg-slate-50 p-2.5 shadow-sm">
                       {benefit.icon}
                     </div>
                     <div>
-                      <h3 className="text-lg font-semibold">{benefit.title}</h3>
-                      <p className="mt-2 text-sm text-slate-600 dark:text-slate-400">{benefit.description}</p>
+                      <h3 className="text-lg font-semibold text-slate-900">{benefit.title}</h3>
+                      <p className="mt-2 text-sm text-slate-700">{benefit.description}</p>
                       <div className="mt-4 flex items-baseline">
                         <span className="text-2xl font-bold text-premium-orange">{benefit.stat}</span>
-                        <span className="ml-2 text-xs text-slate-500">{benefit.statDescription}</span>
+                        <span className="ml-2 text-xs text-slate-600">{benefit.statDescription}</span>
                       </div>
                     </div>
                   </div>

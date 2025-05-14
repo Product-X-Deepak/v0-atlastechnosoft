@@ -12,17 +12,17 @@ function B1UsabilitySection() {
   const isInView = useInView(ref as React.RefObject<Element>, { once: true, amount: 0.1 })
   
   return (
-    <section id="b1-usability" ref={ref} className="py-16">
+    <section id="b1-usability" ref={ref} className="py-16 bg-[#1E1E38] text-white">
       <div className="container px-4 md:px-6 lg:px-8">
         <div className="mx-auto mb-12 text-center">
           <div className="inline-flex items-center rounded-full border border-amber-600/30 bg-amber-100/80 px-4 py-2 text-sm font-medium text-amber-800">
-            <span>User Experience Reimagined</span>
+            <span>B1 Usability Package</span>
           </div>
-          <h2 className="mt-4 text-3xl font-bold tracking-tight text-[#f0f4f8] md:text-4xl">
-            Streamline SAP with <span className="text-[#E84A0E]">B1 Usability Package</span>
+          <h2 className="mt-4 text-3xl font-bold tracking-tight text-white md:text-4xl">
+            Enhanced <span className="text-[#E84A0E]">User Experience</span> for SAP Business One
           </h2>
-          <p className="mt-4 text-lg text-[#d0d8e0] max-w-2xl mx-auto">
-            Customize, automate, and enhance SAP Business One with zero coding and maximum impact. Transform your user experience and optimize workflows with the award-winning B1UP solution.
+          <p className="mt-4 text-lg text-white/80 max-w-2xl mx-auto">
+            Improve productivity and streamline workflows with intuitive interface enhancements and powerful productivity tools for SAP Business One.
           </p>
         </div>
         
@@ -141,13 +141,13 @@ function B1UsabilitySection() {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.4, delay: 0.8 }}
-          className="mt-12 bg-gradient-to-r from-[#E84A0E]/10 to-[#A73370]/10 rounded-xl p-8"
+          className="mt-12 bg-[#1E1E38] text-white rounded-xl p-8"
         >
           <div className="grid md:grid-cols-2 gap-8">
             <div>
-              <h3 className="text-xl font-semibold text-[#f0f4f8] mb-2">Business Benefits</h3>
-              <p className="text-[#d0d8e0] text-sm mb-6">
-                Organizations using B1 Usability Package experience significant operational improvements and cost savings:
+              <h3 className="text-xl font-semibold text-white mb-2">Business Benefits</h3>
+              <p className="text-white/80 text-sm mb-6">
+                Companies implementing the B1 Usability Package experience significant improvements in efficiency and user satisfaction:
               </p>
               <div className="grid grid-cols-2 gap-4 md:gap-6">
                 {benefits.map((benefit, index) => (
@@ -166,11 +166,11 @@ function B1UsabilitySection() {
                     <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" />
                   </svg>
                 </div>
-                <p className="text-[#f0f4f8] mb-4 font-medium italic">
-                  "B1 Usability Package has transformed how we use SAP Business One. The customization capabilities and automation features have increased our team's efficiency by 40% and significantly improved data quality."
+                <p className="text-slate-600 mb-4 font-medium italic">
+                  "The B1 Usability Package transformed our efficiency. What previously took 3-4 clicks now takes just one. Our team's productivity has increased by over 30%."
                 </p>
                 <footer className="mt-2">
-                  <p className="text-sm text-[#d0d8e0] font-medium">Manufacturing Client, 200+ Users</p>
+                  <p className="text-sm text-slate-600 font-medium">Manufacturing Client, 200+ Users</p>
                 </footer>
               </blockquote>
               
