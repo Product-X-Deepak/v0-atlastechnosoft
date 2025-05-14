@@ -7,10 +7,12 @@ import { Suspense, useState } from "react"
 
 interface LogoProps {
   className?: string;
+  height?: number;
+  width?: number;
 }
 
-function Logo({ className }: LogoProps) {
-  const [imageError, setImageError] = useState(false);
+function Logo({ className, height, width }: LogoProps) {
+  const [_imageError, setImageError] = useState(false);
 
   return (
     <Link 
@@ -19,7 +21,7 @@ function Logo({ className }: LogoProps) {
         "group flex items-center transition-all duration-300 hover:scale-105",
         className
       )}
-      aria-label="Atlas Technosoft Home"
+      aria-label="Atlas Technosoft homepage"
     >
       <div className="relative">
         {/* Premium glow effect behind logo */}
@@ -28,13 +30,14 @@ function Logo({ className }: LogoProps) {
         {/* Image logo with appropriate sizing */}
         <div className="relative flex items-center">
           <Image 
-            src={imageError ? "/images/atlas-technosoft-logo.png" : "/images/Main_Logo.png"}
-            alt="Atlas Technosoft Logo" 
-            width={300}
-            height={103}
-            className="h-12 xs:h-14 sm:h-16 md:h-18 lg:h-20 min-w-[150px] w-auto object-contain transition-all duration-300"
-            sizes="(max-width: 640px) 200px, (max-width: 768px) 250px, 300px"
-            onError={() => setImageError(true)}
+            src="/images/Main_Logo.png"
+            alt="Atlas Technosoft"
+            height={height || 40}
+            width={width || 160}
+            className={cn("object-contain", className)}
+            onError={() => setImageError(false)}
+            priority={true}
+            unoptimized={false}
           />
         </div>
       </div>

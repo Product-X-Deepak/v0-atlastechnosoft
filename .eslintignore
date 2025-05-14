@@ -1,5 +1,5 @@
 # Ignore backup component files
-bin/components/sections/hero-section-backup.tsx 
+# bin/components/sections/hero-section-backup.tsx 
 
 # Build output directories
 .next/
@@ -17,7 +17,6 @@ coverage/
 **/next-env.d.ts
 tsconfig.tsbuildinfo
 .eslintcache
-.stylelintcache
 
 # Packages
 **/.npm

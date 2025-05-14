@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
-  <!-- Dark blue background -->
-  <circle cx="8" cy="8" r="8" fill="#2a1a40"/>
-  <!-- Simplified Atlas logo - gold circle with orbit ring -->
-  <circle cx="8" cy="8" r="4.5" fill="none" stroke="#ffa500" stroke-width="1"/>
-  <!-- Saturn-like ring -->
-  <ellipse cx="8" cy="8" rx="7" ry="2" fill="none" stroke="#ffa500" stroke-width="1" transform="rotate(-20,8,8)" />
-</svg> 

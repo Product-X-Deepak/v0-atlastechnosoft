@@ -33,7 +33,7 @@ const fontSans = Mona_Sans({
 const fontHeading = localFont({
   src: [
     {
-      path: "../app/fonts/CalSans-SemiBold.woff2",
+      path: "../public/fonts/CalSans-SemiBold.woff2",
       weight: "600",
       style: "normal",
     },

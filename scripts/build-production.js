@@ -114,7 +114,7 @@ function runLint() {
   return execute('pnpm lint');
 }
 
-// Check for unmet peer dependencies
+// Function to check if unmet peer dependencies
 function checkPeerDependencies() {
   console.log('Checking peer dependencies...');
   try {
@@ -135,65 +135,6 @@ function checkPeerDependencies() {
   }
   
   return true; // Always continue the build process
-}
-
-// Create a file to ensure proper ESM/CJS compatibility
-function ensureModuleCompatibility() {
-  console.log('Ensuring module compatibility...');
-  
-  // Create a simple module resolver helper
-  const helperPath = path.join(process.cwd(), 'lib/utils/moduleResolver.js');
-  const helperDir = path.dirname(helperPath);
-  
-  // Create directory if it doesn't exist
-  if (!fs.existsSync(helperDir)) {
-    fs.mkdirSync(helperDir, { recursive: true });
-  }
-  
-  // Write the helper file
-  const helperContent = `/**
- * Module Resolver Helper
- * 
- * This utility helps handle ESM/CommonJS module compatibility issues.
- * It's used by build scripts to dynamically import modules in a way
- * that works across module systems.
- */
-
-'use strict';
-
-// Helper for dynamic imports in both ESM and CommonJS environments
-exports.requireModule = function requireModule(moduleName) {
-  try {
-    return require(moduleName);
-  } catch (err) {
-    console.warn(\`Failed to require module: \${moduleName}\`, err);
-    return null;
-  }
-};
-
-// Clean up module from cache
-exports.clearModuleCache = function clearModuleCache(moduleName) {
-  try {
-    const modulePath = require.resolve(moduleName);
-    if (require.cache[modulePath]) {
-      delete require.cache[modulePath];
-      return true;
-    }
-  } catch (e) {
-    // Module not found, nothing to clear
-  }
-  return false;
-};
-`;
-
-  try {
-    fs.writeFileSync(helperPath, helperContent);
-    console.log('Module resolver helper created successfully');
-    return true;
-  } catch (e) {
-    console.warn('Failed to create module resolver helper:', e);
-    return false;
-  }
 }
 
 // Validate the build output
@@ -282,12 +223,7 @@ async function main() {
   cleanDirectories();
   cleanFiles();
   
-  // Step 2: Ensure module compatibility
-  if (!ensureModuleCompatibility()) {
-    console.warn('Module compatibility setup had issues, but continuing...');
-  }
-  
-  // Step 3: Install dependencies if needed
+  // Step 2: Install dependencies if needed
   if (!directoryExists(path.resolve(process.cwd(), 'node_modules'))) {
     console.log('Node modules not found, installing dependencies...');
     if (!execute('pnpm install')) {
@@ -295,37 +231,36 @@ async function main() {
     }
   }
   
-  // Step 4: Check peer dependencies
+  // Step 3: Check peer dependencies
   checkPeerDependencies();
   
-  // Step 5: Type check
+  // Step 4: Type check
   if (!runTypeCheck()) {
     console.error('Type checking failed');
     process.exit(1);
   }
   
-  // Step 6: Lint
+  // Step 5: Lint
   if (!runLint()) {
     console.warn('Linting had issues, but continuing with build');
   }
   
-  // Step 7: Set environment variables for production
+  // Step 6: Set environment variables for production
   process.env.NODE_ENV = 'production';
   process.env.NEXT_TELEMETRY_DISABLED = '1';
-  process.env.NEXT_VIDEO_ENABLED = 'true';
   
-  // Step 8: Create necessary directories
+  // Step 7: Create necessary directories
   if (!directoryExists(path.resolve(process.cwd(), '.next'))) {
     execute(`${mkdirCommand} ".next"`);
   }
   
-  // Step 9: Run the build
+  // Step 8: Run the build
   console.log('Building production bundle...');
   if (!execute('pnpm run build')) {
     process.exit(1);
   }
   
-  // Step 10: Validate the build
+  // Step 9: Validate the build
   if (!validateBuild()) {
     console.error('Build validation failed');
     process.exit(1);
