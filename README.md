@@ -60,17 +60,39 @@ This project follows a modular and scalable architecture designed for maintainab
 ## Building for Production
 
 ```
-pnpm build
+pnpm build:clean
 ```
+
+For an optimized production build with asset optimization:
+
+```
+pnpm build:optimized
+```
+
+## Image Handling
+
+The project includes robust image optimization:
+
+- Use the `OptimizedImage` component from `components/ui/optimized-image.tsx` for best performance
+- All images are properly sized, compressed, and served with modern formats
+- Run `pnpm verify-images` to check for missing image references
 
 ## Technologies
 
-- Next.js 14
-- React 18
+- Next.js 15
+- React 19
 - TypeScript
 - Tailwind CSS
 - shadcn/ui
 - Framer Motion
+
+## Helpful Scripts
+
+- `pnpm typecheck`: Run TypeScript type checking
+- `pnpm lint`: Run ESLint
+- `pnpm build:clean`: Clean build
+- `pnpm verify-images`: Verify all image references exist
+- `pnpm analyze`: Analyze bundle size
 
 ## Code Standards
 
@@ -106,3 +128,15 @@ pnpm build
 - Custom hooks should follow the React hooks naming convention (`use*`)
 - Each hook should have a single responsibility
 - Include TypeScript types for parameters and return values 
+
+## Contributing
+
+1. Create a new branch for your feature or bugfix
+2. Make your changes
+3. Run tests: `pnpm typecheck` and `pnpm lint`
+4. Verify image references: `pnpm verify-images`
+5. Submit a pull request
+
+## License
+
+Copyright © 2024 Atlas Technosoft 
