@@ -1,0 +1,7 @@
+export { HealthcareHero } from "./healthcare-hero"
+export { HealthcareValueChain } from "./healthcare-value-chain"
+export { HealthcareSolutions } from "./healthcare-solutions"
+export { HealthcareIndustries } from "./healthcare-industries"
+export { HealthcareIntegration } from "./healthcare-integration"
+export { HealthcareDigitalTools } from "./healthcare-digital-tools"
+export { HealthcareCta } from "./healthcare-cta" 

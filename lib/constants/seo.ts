@@ -1,0 +1,56 @@
+/**
+ * SEO Constants
+ * 
+ * Constants related to SEO for the Atlas Technosoft website
+ */
+
+export const SEO = {
+  SITE_NAME: "Atlas Technosoft",
+  DEFAULT_TITLE: "Atlas Technosoft | Enterprise Solutions Provider",
+  DEFAULT_DESCRIPTION: "Leading provider of SAP Business One, ERP solutions, RPA, and AI automation services in India. Streamline your business processes with our digital transformation solutions.",
+  CANONICAL_URL: "https://www.atlastechnosoft.com",
+  DEFAULT_KEYWORDS: [
+    "SAP Business One",
+    "ERP solutions",
+    "RPA",
+    "AI automation",
+    "digital transformation",
+    "enterprise solutions",
+    "Boyum IT Solutions",
+    "B1 Usability Package",
+    "B1UP customization",
+    "B1UP data quality",
+    "B1UP workflow optimization",
+    "SAP Business One dashboards",
+    "zero coding SAP customization",
+    "Beas Manufacturing",
+    "manufacturing ERP",
+    "production planning",
+    "shop floor control",
+    "quality control manufacturing",
+    "manufacturing cost analysis",
+    "Produmex WMS",
+    "Produmex Scan",
+    "Perfion PIM",
+    "Product Information Management",
+    "Warehouse Management System",
+    "SAP manufacturing",
+    "UiPath automation",
+    "UiPath RPA",
+    "Agentic AI",
+    "Agentic automation",
+    "Agentic testing",
+    "UiPath Autopilot",
+    "Process mining",
+    "Intelligent Document Processing",
+    "business software",
+    "workflow automation",
+    "IT services",
+    "SAP HANA",
+    "Cloud ERP",
+    "Mumbai",
+    "India"
+  ],
+  OG_IMAGE: "/images/og-image.jpg",
+  TWITTER_HANDLE: "@atlastechnosoft",
+} 

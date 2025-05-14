@@ -1,0 +1,141 @@
+{
+  "summary": {
+    "total": 32,
+    "successful": 1,
+    "redirects": 0,
+    "broken": 31
+  },
+  "successful": [
+    {
+      "url": "https://www.atlastechnosoft.com/",
+      "status": 200
+    }
+  ],
+  "redirects": [],
+  "broken": [
+    {
+      "url": "https://www.atlastechnosoft.com/about",
+      "status": 404
+    },
+    {
+      "url": "https://www.atlastechnosoft.com/privacy",
+      "status": 404
+    },
+    {
+      "url": "https://www.atlastechnosoft.com/careers",
+      "status": 404
+    },
+    {
+      "url": "https://www.atlastechnosoft.com/sap-solutions/business-one-cloud/features",
+      "status": 404
+    },
+    {
+      "url": "https://www.atlastechnosoft.com/search",
+      "status": 404
+    },
+    {
+      "url": "https://www.atlastechnosoft.com/automation-solutions/rpa-solutions",
+      "status": 404
+    },
+    {
+      "url": "https://www.atlastechnosoft.com/faq",
+      "status": 404
+    },
+    {
+      "url": "https://www.atlastechnosoft.com/blog",
+      "status": 404
+    },
+    {
+      "url": "https://www.atlastechnosoft.com/terms",
+      "status": 404
+    },
+    {
+      "url": "https://www.atlastechnosoft.com/automation-solutions/boyum-it",
+      "status": 404
+    },
+    {
+      "url": "https://www.atlastechnosoft.com/sap-solutions/business-one",
+      "status": 404
+    },
+    {
+      "url": "https://www.atlastechnosoft.com/industries",
+      "status": 404
+    },
+    {
+      "url": "https://www.atlastechnosoft.com/automation-solutions/support",
+      "status": 404
+    },
+    {
+      "url": "https://www.atlastechnosoft.com/sap-solutions/hana",
+      "status": 404
+    },
+    {
+      "url": "https://www.atlastechnosoft.com/automation-solutions/workflow-automation",
+      "status": 404
+    },
+    {
+      "url": "https://www.atlastechnosoft.com/industries/construction",
+      "status": 404
+    },
+    {
+      "url": "https://www.atlastechnosoft.com/automation-solutions/ui-path",
+      "status": 404
+    },
+    {
+      "url": "https://www.atlastechnosoft.com/industries/distribution",
+      "status": 404
+    },
+    {
+      "url": "https://www.atlastechnosoft.com/services",
+      "status": 404
+    },
+    {
+      "url": "https://www.atlastechnosoft.com/sap-solutions/business-one-cloud",
+      "status": 404
+    },
+    {
+      "url": "https://www.atlastechnosoft.com/industries/healthcare",
+      "status": 404
+    },
+    {
+      "url": "https://www.atlastechnosoft.com/sap-solutions/erp-planning",
+      "status": 404
+    },
+    {
+      "url": "https://www.atlastechnosoft.com/automation-solutions/consultation",
+      "status": 404
+    },
+    {
+      "url": "https://www.atlastechnosoft.com/industries/financial-services",
+      "status": 404
+    },
+    {
+      "url": "https://www.atlastechnosoft.com/industries/pharmaceuticals",
+      "status": 404
+    },
+    {
+      "url": "https://www.atlastechnosoft.com/contact",
+      "status": 404
+    },
+    {
+      "url": "https://www.atlastechnosoft.com/industries/retail",
+      "status": 404
+    },
+    {
+      "url": "https://www.atlastechnosoft.com/industries/manufacturing",
+      "status": 404
+    },
+    {
+      "url": "https://www.atlastechnosoft.com/contact/request-form",
+      "status": 404
+    },
+    {
+      "url": "https://www.atlastechnosoft.com/industries/shipping",
+      "status": 404
+    },
+    {
+      "url": "https://www.atlastechnosoft.com/industries/professional-services",
+      "status": 404
+    }
+  ]
+}

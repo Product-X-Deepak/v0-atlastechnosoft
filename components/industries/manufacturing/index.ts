@@ -1,0 +1,7 @@
+export { ManufacturingHero } from "./manufacturing-hero"
+export { ManufacturingValueChain } from "./manufacturing-value-chain"
+export { ManufacturingSolutions } from "./manufacturing-solutions"
+export { ManufacturingIndustries } from "./manufacturing-industries"
+export { ManufacturingIntegration } from "./manufacturing-integration"
+export { ManufacturingDigitalTools } from "./manufacturing-digital-tools"
+export { ManufacturingCta } from "./manufacturing-cta" 

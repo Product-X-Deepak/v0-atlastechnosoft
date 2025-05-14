@@ -1,0 +1,7 @@
+export { PharmaceuticalsHero } from "./pharmaceuticals-hero"
+export { PharmaceuticalsValueChain } from "./pharmaceuticals-value-chain"
+export { PharmaceuticalsSolutions } from "./pharmaceuticals-solutions"
+export { PharmaceuticalsIndustries } from "./pharmaceuticals-industries"
+export { PharmaceuticalsIntegration } from "./pharmaceuticals-integration"
+export { PharmaceuticalsDigitalTools } from "./pharmaceuticals-digital-tools"
+export { PharmaceuticalsCta } from "./pharmaceuticals-cta" 

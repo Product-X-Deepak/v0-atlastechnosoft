@@ -1,0 +1,8 @@
+export { ValueChainSection } from "./value-chain-section"
+export { SolutionsShowcase } from "./solutions-showcase"
+export { IndustriesFocus } from "./industries-focus"
+export { IntegrationSection } from "./integration-section"
+export { TechnologyAdvantages } from "./technology-advantages"
+export { CallToAction } from "./call-to-action"
+export { BoyumSolutions } from "./boyum-solutions"
+export { UiPathSection } from "./uipath-section" 

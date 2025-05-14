@@ -1,0 +1,7 @@
+export { ConsultationHero } from './consultation-hero'
+export { ConsultationApproach } from './consultation-approach'
+export { ConsultationServices } from './consultation-services'
+export { ConsultationIndustries } from './consultation-industries'
+export { ConsultationBenefits } from './consultation-benefits'
+export { ConsultationProcess } from './consultation-process'
+export { ConsultationCta } from './consultation-cta' 

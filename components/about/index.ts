@@ -1,0 +1,5 @@
+export { AboutHero } from './about-hero'
+export { MissionVision } from './mission-vision'
+export { CoreValues } from './core-values'
+export { Journey } from './journey'
+export { AboutCta } from './about-cta' 

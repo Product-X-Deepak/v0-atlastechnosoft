@@ -1,0 +1,7 @@
+export { UiPathHero } from './ui-path-hero'
+export { UiPathAgentic } from './ui-path-agentic'
+export { UiPathCapabilities } from './ui-path-capabilities'
+export { UiPathSapAutomation } from './ui-path-sap-automation'
+export { UiPathBusinessValue } from './ui-path-business-value'
+export { UiPathTrends } from './ui-path-trends'
+export { UiPathCta } from './ui-path-cta' 

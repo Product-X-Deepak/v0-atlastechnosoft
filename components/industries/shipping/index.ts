@@ -1,0 +1,7 @@
+export { ShippingHero } from "./shipping-hero"
+export { ShippingValueChain } from "./shipping-value-chain"
+export { ShippingSolutions } from "./shipping-solutions"
+export { ShippingIndustries } from "./shipping-industries"
+export { ShippingIntegration } from "./shipping-integration"
+export { ShippingDigitalTools } from "./shipping-digital-tools"
+export { ShippingCta } from "./shipping-cta" 

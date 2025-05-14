@@ -1,0 +1,74 @@
+import type { Metadata } from "next"
+import { Suspense } from "react"
+import { StructuredData } from "@/components/seo/structured-data"
+import { generateServiceSchema, generateBreadcrumbSchema } from "@/lib/seo"
+import { 
+  RetailHero, 
+  RetailValueChain,
+  RetailSolutions,
+  RetailIndustries,
+  RetailIntegration,
+  RetailDigitalTools,
+  RetailCta
+} from "@/components/industries/retail"
+
+// Loading fallback for Suspense
+const SectionLoading = () => <div className="w-full animate-pulse bg-muted/20 h-[300px] rounded-lg"></div>
+
+export const metadata: Metadata = {
+  title: "Retail Solutions | Atlas Technosoft",
+  description: "Advanced SAP and automation solutions for retail businesses to unify online and offline channels, optimize inventory with ML algorithms, and deliver personalized customer experiences.",
+  keywords: [
+    "Retail Solutions",
+    "Omnichannel Commerce",
+    "Inventory Management",
+    "Personalized Marketing",
+    "Customer Journey Mapping",
+    "Retail Analytics",
+    "SAP for Retail",
+    "Supply Chain Visibility",
+    "Mobile Commerce",
+    "Customer Engagement",
+    "Retail Digital Transformation"
+  ],
+}
+
+export default function RetailPage() {
+  return (
+    <main className="flex flex-col min-h-screen">
+      <StructuredData data={generateServiceSchema(
+        "Retail Solutions",
+        "Advanced SAP and automation solutions for retail businesses to unify online and offline channels, optimize inventory with ML algorithms, and deliver personalized customer experiences.",
+        "/industries/retail",
+        "/images/industries/retail.jpg"
+      )} />
+      <StructuredData data={generateBreadcrumbSchema([
+        { name: "Home", url: "/" },
+        { name: "Industries", url: "/industries" },
+        { name: "Retail", url: "/industries/retail" },
+      ])} />
+      {/* Wrap all client components in Suspense boundaries */}
+      <Suspense fallback={<SectionLoading />}>
+        <RetailHero />
+      </Suspense>
+      <Suspense fallback={<SectionLoading />}>
+        <RetailValueChain />
+      </Suspense>
+      <Suspense fallback={<SectionLoading />}>
+        <RetailSolutions />
+      </Suspense>
+      <Suspense fallback={<SectionLoading />}>
+        <RetailIndustries />
+      </Suspense>
+      <Suspense fallback={<SectionLoading />}>
+        <RetailIntegration />
+      </Suspense>
+      <Suspense fallback={<SectionLoading />}>
+        <RetailDigitalTools />
+      </Suspense>
+      <Suspense fallback={<SectionLoading />}>
+        <RetailCta />
+      </Suspense>
+    </main>
+  )
+} 
