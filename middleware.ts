@@ -233,7 +233,7 @@ export async function middleware(request: NextRequest) {
 // Configure middleware to run for all routes
 export const config = {
   matcher: [
-    '/((?!_next/static|_next/image|favicon.ico|images/|public/).*)',
+    '/((?!_next/static|_next/image|_next/media|favicon.ico|images/|public/).*)',
     '/api/:path*',
     '/_next/static/chunks/:path*',
     '/_next/data/:path*',
