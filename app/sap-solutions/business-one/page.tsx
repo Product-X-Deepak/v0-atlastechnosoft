@@ -8,7 +8,6 @@ import {  SapBusinessOneBenefits as _SapBusinessOneBenefits } from "@/components
 import {  SapBusinessOneFaq as _SapBusinessOneFaq } from "@/components/sap/sap-business-one-faq"
 import {  SapBusinessOneCta as _SapBusinessOneCta } from "@/components/sap/sap-business-one-cta"
 import {  CriticalImagePreloader as _CriticalImagePreloader } from "@/components/common/performance/critical-image-preloader"
-import { SEODebuggerWrapper } from './components/seo-debugger-wrapper'
 import { BusinessOneContent } from './components/business-one-content'
 
 // Primary and secondary keywords for better optimization
@@ -116,9 +115,6 @@ export default function SAPBusinessOnePage() {
         faqs={BUSINESS_ONE_FAQS}
         criticalImages={CRITICAL_IMAGES}
       />
-      
-      {/* SEO Debugger - only visible in development */}
-      <SEODebuggerWrapper />
     </>
   );
 }
