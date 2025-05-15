@@ -5,15 +5,28 @@ import * as nodemailer from "nodemailer"
 const companyEmail = process.env.EMAIL_USER || 'info@atlastechnosoft.com'
 
 // Create reusable transporter object using SMTP transport
-const transporter = nodemailer.createTransport({
-  host: process.env.EMAIL_SERVER || 'mail.atlastechnosoft.com',
-  port: parseInt(process.env.EMAIL_PORT || '465'),
-  secure: process.env.EMAIL_SECURE === 'true',
-  auth: {
-    user: process.env.EMAIL_USER || 'info@atlastechnosoft.com',
-    pass: process.env.EMAIL_PASSWORD || '',
-  },
-})
+const createTransporter = () => {
+  console.log('Creating email transporter with:', {
+    host: process.env.EMAIL_SERVER,
+    port: process.env.EMAIL_PORT,
+    secure: process.env.EMAIL_SECURE === 'true',
+    auth: {
+      user: process.env.EMAIL_USER,
+      // Password masked for logging
+      passLength: process.env.EMAIL_PASSWORD ? process.env.EMAIL_PASSWORD.length : 0
+    }
+  });
+  
+  return nodemailer.createTransport({
+    host: process.env.EMAIL_SERVER || 'mail.atlastechnosoft.com',
+    port: parseInt(process.env.EMAIL_PORT || '465'),
+    secure: process.env.EMAIL_SECURE === 'true',
+    auth: {
+      user: process.env.EMAIL_USER || 'info@atlastechnosoft.com',
+      pass: process.env.EMAIL_PASSWORD || '',
+    },
+  });
+}
 
 interface FormData {
   name?: string;
@@ -40,6 +53,7 @@ interface FormData {
 
 export async function POST(request: Request) {
   try {
+    console.log('Contact form submission received');
     let data: FormData;
     const contentType = request.headers.get('content-type') || ''
 
@@ -65,12 +79,20 @@ export async function POST(request: Request) {
       data = await request.json();
     }
     
+    console.log('Form data received:', {
+      name: data.name,
+      email: data.email,
+      formType: data.formType,
+      hasMessage: Boolean(data.message)
+    });
+    
     // Validate required fields for regular form submissions
-      if (!data.email || !data.name) {
-        return NextResponse.json(
-          { error: "Required fields are missing" },
-          { status: 400 }
-        )
+    if (!data.email || !data.name) {
+      console.error('Validation error: Required fields are missing');
+      return NextResponse.json(
+        { error: "Required fields are missing" },
+        { status: 400 }
+      )
     }
     
     // Build email content based on form type
@@ -102,24 +124,45 @@ export async function POST(request: Request) {
       ];
     }
     
-    // Send email to company
-    await transporter.sendMail(mailOptions);
-    
-    // Send confirmation email to user if requested
-    if (data.email) {
-      await transporter.sendMail({
-        from: process.env.EMAIL_FROM || `"Atlas Technosoft" <${companyEmail}>`,
-        to: data.email,
-        subject: getConfirmationSubject(formType),
-        html: getConfirmationEmail(data, formType),
-      })
+    try {
+      console.log('Sending email to company');
+      const transporter = createTransporter();
+      // Send email to company
+      await transporter.sendMail(mailOptions);
+      console.log('Email sent to company successfully');
+      
+      // Send confirmation email to user if requested
+      if (data.email) {
+        console.log('Sending confirmation email to user');
+        await transporter.sendMail({
+          from: process.env.EMAIL_FROM || `"Atlas Technosoft" <${companyEmail}>`,
+          to: data.email,
+          subject: getConfirmationSubject(formType),
+          html: getConfirmationEmail(data, formType),
+        });
+        console.log('Confirmation email sent successfully');
+      }
+      
+      return NextResponse.json({ success: true });
+    } catch (emailError) {
+      console.error("Email sending error details:", emailError);
+      return NextResponse.json(
+        { 
+          error: "Failed to send email", 
+          message: emailError instanceof Error ? emailError.message : String(emailError),
+          config: {
+            hasServer: Boolean(process.env.EMAIL_SERVER),
+            hasUser: Boolean(process.env.EMAIL_USER),
+            hasPassword: Boolean(process.env.EMAIL_PASSWORD)
+          }
+        },
+        { status: 500 }
+      );
     }
-    
-    return NextResponse.json({ success: true })
   } catch (error) {
-    console.error("Email sending error:", error)
+    console.error("Request processing error:", error)
     return NextResponse.json(
-      { error: "Failed to process the request" },
+      { error: "Failed to process the request", message: error instanceof Error ? error.message : String(error) },
       { status: 500 }
     )
   }
