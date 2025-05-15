@@ -88,7 +88,7 @@ function BeasManufacturingSection() {
                   </div>
                   <div>
                     <h4 className="text-sm font-semibold text-slate-900">{feature.title}</h4>
-                    <p className="text-xs text-slate-600">{feature.description}</p>
+                    <p className="text-xs text-slate-700">{feature.description}</p>
                   </div>
                 </div>
               ))}

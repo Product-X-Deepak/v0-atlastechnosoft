@@ -7,6 +7,19 @@
  * - Performance tracking
  */
 
+// Logging utilities that only run in development
+const logDev = (message: string, ...args: any[]): void => {
+  if (process.env.NODE_ENV === 'development') {
+    console.log(message, ...args);
+  }
+};
+
+const warnDev = (message: string, ...args: any[]): void => {
+  if (process.env.NODE_ENV === 'development') {
+    console.warn(message, ...args);
+  }
+};
+
 /**
  * Options for the importWithRetry function
  */
@@ -49,7 +62,7 @@ export async function importWithRetry<T>(
       if (attempt > 0) {
         const delay = retryDelayMs * Math.pow(2, attempt - 1)
         if (verbose) {
-          console.log(`[Dynamic Import] Retrying import of ${moduleName} (attempt ${attempt}/${maxRetries})`)
+          logDev(`[Dynamic Import] Retrying import of ${moduleName} (attempt ${attempt}/${maxRetries})`)
         }
         await new Promise(resolve => setTimeout(resolve, delay))
       }
@@ -61,7 +74,7 @@ export async function importWithRetry<T>(
       // Log successful import time in development
       if (verbose && attempt > 0) {
         const loadTime = performance.now() - startTime
-        console.log(`[Dynamic Import] Successfully imported ${moduleName} after ${attempt} retries (${loadTime.toFixed(2)}ms)`)
+        logDev(`[Dynamic Import] Successfully imported ${moduleName} after ${attempt} retries (${loadTime.toFixed(2)}ms)`)
       }
       
       return result
@@ -83,7 +96,7 @@ export async function importWithRetry<T>(
       }
       
       if (verbose) {
-        console.warn(`[Dynamic Import] Error loading ${moduleName} (attempt ${attempt + 1}/${maxRetries}):`, error)
+        warnDev(`[Dynamic Import] Error loading ${moduleName} (attempt ${attempt + 1}/${maxRetries}):`, error)
       }
     }
   }

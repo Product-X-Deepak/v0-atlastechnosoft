@@ -227,7 +227,7 @@ function FaqSection() {
                     itemProp="acceptedAnswer"
                   >
                     <div 
-                      className="bg-slate-50/80 dark:bg-slate-800/30 p-3 rounded-lg border-l-2 border-[#E84A0E]/70"
+                      className="bg-slate-50/80 dark:bg-slate-800/80 p-3 rounded-lg border-l-2 border-[#E84A0E]/70"
                       itemProp="text"
                     >
                       {faq.answer}

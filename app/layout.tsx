@@ -206,7 +206,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         />
         <link
           rel="preload"
-          href="/images/atlas-technosoft-logo.png"
+          href="/images/Main_Logo.png"
           as="image"
           type="image/png"
         />
@@ -228,7 +228,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         {/* Security headers */}
         <meta
           httpEquiv="Content-Security-Policy"
-          content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https://www.google-analytics.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://www.google-analytics.com; frame-src 'self';"
+          content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https://www.google-analytics.com https://* http://localhost:* blob:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://www.google-analytics.com; frame-src 'self';"
         />
         <meta httpEquiv="X-Content-Type-Options" content="nosniff" />
         <meta httpEquiv="X-Frame-Options" content="SAMEORIGIN" />

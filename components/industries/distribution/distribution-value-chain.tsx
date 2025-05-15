@@ -2,7 +2,7 @@
 
 import { useRef } from "react"
 import { motion, useInView } from "framer-motion"
-import { PackageSearch, Truck, Store, FileSpreadsheet } from "lucide-react"
+import { PackageSearch, Truck, Store, FileSpreadsheet, ShoppingCart } from "lucide-react"
 import { Suspense } from "react"
 
 // Remove export from component definition
@@ -83,11 +83,23 @@ const valueChainSteps = [
     ]
   },
   {
+    icon: <ShoppingCart className="h-8 w-8 text-white" />,
+    title: "Order Processing",
+    description: "Streamline order management with automated workflows from capture to fulfillment.",
+    bgColor: "bg-[#A73370]",
+    dotColor: "bg-[#A73370]",
+    features: [
+      "Automated order capture",
+      "Real-time order status",
+      "Returns management"
+    ]
+  },
+  {
     icon: <Truck className="h-8 w-8 text-white" />,
     title: "Transportation",
     description: "Streamline transportation planning, execution, and analytics to reduce costs and improve service.",
-    bgColor: "bg-[#A73370]",
-    dotColor: "bg-[#A73370]",
+    bgColor: "bg-[#E84A0E]",
+    dotColor: "bg-[#E84A0E]",
     features: [
       "Route optimization",
       "Carrier management",

@@ -93,9 +93,9 @@ export function SiteHeader() {
           <motion.div
             whileHover={{ scale: 1.02 }}
             transition={{ type: "spring", stiffness: 400, damping: 10 }}
-            className="flex-shrink-0 -ml-3 xs:-ml-3 sm:-ml-3 md:-ml-4 lg:-ml-5"
+            className="flex-shrink-0 -ml-2 xs:-ml-2 sm:-ml-2 md:-ml-3 lg:-ml-4"
           >
-            <Logo className="scale-95 xs:scale-100 sm:scale-100 md:scale-100 lg:scale-105" />
+            <Logo className="scale-85 xs:scale-90 sm:scale-90 md:scale-95 lg:scale-100" />
           </motion.div>
 
           {/* Using the MainNavigationMenu component with updated text color */}

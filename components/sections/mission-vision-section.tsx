@@ -106,7 +106,7 @@ function MissionVisionSection() {
             <h3 className="mb-2 text-sm font-semibold uppercase tracking-widest text-[#A73370]">Our Vision</h3>
             <h4 className="mb-6 text-3xl font-bold text-slate-900">Pioneering the Future</h4>
             
-            <p className="mb-6 text-lg leading-relaxed text-slate-600">
+            <p className="mb-6 text-lg leading-relaxed text-slate-800">
               To be the global leader in enterprise transformation, pioneering quantum-powered solutions that redefine what&apos;s possible for businesses in a rapidly evolving digital landscape.
             </p>
             

@@ -6,6 +6,19 @@
  * issues by ensuring chunks are already in the browser cache.
  */
 
+// Logging utilities that only run in development
+const logDev = (message: string, ...args: any[]): void => {
+  if (process.env.NODE_ENV === 'development') {
+    console.log(message, ...args);
+  }
+};
+
+const warnDev = (message: string, ...args: any[]): void => {
+  if (process.env.NODE_ENV === 'development') {
+    console.warn(message, ...args);
+  }
+};
+
 // List of critical chunk paths to prefetch
 // These should be paths relative to your app's root
 const CRITICAL_CHUNKS = [
@@ -30,9 +43,7 @@ export const prefetchCriticalChunks = async (): Promise<void> => {
     
     scheduleWork(() => {
       // Log prefetching start in development
-      if (process.env.NODE_ENV === 'development') {
-        console.log('[Chunk Prefetcher] Initializing critical chunk prefetching')
-      }
+      logDev('[Chunk Prefetcher] Initializing critical chunk prefetching')
       
       // Prefetch each critical path using Next.js router prefetch
       CRITICAL_CHUNKS.forEach(path => {
@@ -43,16 +54,12 @@ export const prefetchCriticalChunks = async (): Promise<void> => {
         link.crossOrigin = 'anonymous'
         document.head.appendChild(link)
         
-        if (process.env.NODE_ENV === 'development') {
-          console.log(`[Chunk Prefetcher] Prefetching: ${path}`)
-        }
+        logDev(`[Chunk Prefetcher] Prefetching: ${path}`)
       })
     })
   } catch (error) {
     // Silently handle prefetching errors, logging only in development
-    if (process.env.NODE_ENV === 'development') {
-      console.warn('Failed to prefetch chunks:', error)
-    }
+    warnDev('Failed to prefetch chunks:', error)
   }
 }
 
@@ -84,7 +91,7 @@ export const configureChunkLoadingRetries = (): void => {
     const originalLoad = window.__webpack_chunk_load__
     window.__webpack_chunk_load__ = (id: string) => {
       return originalLoad(id).catch((loadError: Error) => {
-        console.warn(`[Chunk Loader] Error loading chunk ${id}, attempting retry...`, loadError)
+        warnDev(`[Chunk Loader] Error loading chunk ${id}, attempting retry...`, loadError)
         
         // Clear chunk from cache if possible
         try {
@@ -112,12 +119,8 @@ export const configureChunkLoadingRetries = (): void => {
     // Mark as configured
     (window as any).__chunk_retry_configured = true
     
-    if (process.env.NODE_ENV === 'development') {
-      console.log('[Chunk Loader] Configured chunk loading retries')
-    }
+    logDev('[Chunk Loader] Configured chunk loading retries')
   } catch (error) {
-    if (process.env.NODE_ENV === 'development') {
-      console.warn('Failed to configure chunk loading retries:', error)
-    }
+    warnDev('Failed to configure chunk loading retries:', error)
   }
 } 

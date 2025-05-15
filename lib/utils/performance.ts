@@ -12,6 +12,24 @@ const DEFAULT_DEFER_MS = 20;
 const IMAGE_LOAD_TIMEOUT = 10000; // 10 seconds timeout for images
 
 /**
+ * Utility function for logging only in development
+ */
+const logDev = (message: string, ...args: any[]) => {
+  if (process.env.NODE_ENV === 'development') {
+    console.log(message, ...args);
+  }
+};
+
+/**
+ * Utility function for warnings only in development
+ */
+const warnDev = (message: string, ...args: any[]) => {
+  if (process.env.NODE_ENV === 'development') {
+    console.warn(message, ...args);
+  }
+};
+
+/**
  * Initializes performance monitoring for the application
  */
 export function initPerformanceMonitoring(): void {
@@ -28,7 +46,7 @@ export function initPerformanceMonitoring(): void {
       
       // Log in development for debugging
       if (process.env.NODE_ENV === 'development') {
-        console.log(`📊 App loaded in ${Math.round(loadTime)}ms`);
+        logDev(`📊 App loaded in ${Math.round(loadTime)}ms`);
       }
       
       // Report to analytics in production
@@ -88,8 +106,8 @@ function setupLayoutShiftDetection(): void {
         
         // Log significant individual shifts in development only
         if (process.env.NODE_ENV === 'development' && score > 0.05) {
-          console.warn(`💥 Layout shift detected: ${score.toFixed(4)}`);
-          console.log('Total CLS:', cumulativeLayoutShift.toFixed(4));
+          warnDev(`💥 Layout shift detected: ${score.toFixed(4)}`);
+          logDev('Total CLS:', cumulativeLayoutShift.toFixed(4));
         }
       }
     });
@@ -167,10 +185,15 @@ export function setupOptimizedImageLoading(): void {
   
   try {
     // Setup image failure detection
-    window.addEventListener('error', function(_unused) {
-      const target = _unused.target as HTMLElement;
+    window.addEventListener('error', function(event) {
+      const target = event.target as HTMLElement;
       if (target instanceof HTMLImageElement) {
         handleImageError(target);
+        
+        // Prevent default error handling for images only
+        if (event.target instanceof HTMLImageElement) {
+          event.preventDefault();
+        }
       }
     }, true);
     
@@ -179,6 +202,23 @@ export function setupOptimizedImageLoading(): void {
     
     // Prioritize above-the-fold images
     prioritizeVisibleImages();
+    
+    // Prefetch critical images that are referenced in data-prefetch attributes
+    const prefetchSelectors = document.querySelectorAll('[data-prefetch-images]');
+    prefetchSelectors.forEach(el => {
+      try {
+        const imagesToPrefetch = el.getAttribute('data-prefetch-images')?.split(',') || [];
+        if (imagesToPrefetch.length > 0) {
+          import('@/lib/utils/helpers/image-utils').then(({ prefetchImages }) => {
+            prefetchImages(imagesToPrefetch);
+          }).catch(() => {
+            // Silently fail if module cannot be loaded
+          });
+        }
+      } catch {
+        // Ignore errors in prefetching
+      }
+    });
   } catch {
     // Silently catch errors to prevent app crashes
   }
@@ -230,7 +270,7 @@ function setupImageLoadingTimeout(): void {
           
           // Log image loading issues in development
           if (process.env.NODE_ENV === 'development') {
-            console.warn(`🐢 Slow loading image detected: ${imgElement.src}`);
+            warnDev(`🐢 Slow loading image detected: ${imgElement.src}`);
           }
         }
       }, IMAGE_LOAD_TIMEOUT);
@@ -297,14 +337,14 @@ export function useRenderPerformance(componentName: string): void {
     const duration = performance.now() - startTimeRef.current;
     
     // Log performance info - only in development
-    console.log(`⏱️ ${componentName} rendered in ${Math.round(duration)}ms`);
+    logDev(`⏱️ ${componentName} rendered in ${Math.round(duration)}ms`);
     
     // Reset timer for next render
     startTimeRef.current = performance.now();
     
     // Report if this is a particularly slow render
     if (duration > 50) {
-      console.warn(`⚠️ Slow render detected in ${componentName}: ${Math.round(duration)}ms`);
+      warnDev(`⚠️ Slow render detected in ${componentName}: ${Math.round(duration)}ms`);
     }
   }, [componentName]); // Add componentName as dependency
 }
@@ -510,22 +550,23 @@ export function usePrefetch(
  * @param componentName Name of the component to track renders for
  */
 export function useTrackRenders(componentName: string): void {
-  // Always create refs, regardless of environment
+  // Track number of renders
   const renders = useRef(0);
   
   useEffect(() => {
-    // Only execute the tracking logic in development and browser environment
-    if (typeof window === 'undefined' || process.env.NODE_ENV === 'production') {
-      return;
-    }
-    
+    // Increment render count
     renders.current += 1;
-    console.log(`🔄 ${componentName} rendered: ${renders.current} time(s)`);
     
-    if (renders.current > 5) {
-      console.warn(`⚠️ Excessive re-renders detected in ${componentName}: ${renders.current} renders`);
+    // Only log in development
+    if (process.env.NODE_ENV === 'development') {
+      logDev(`🔄 ${componentName} rendered: ${renders.current} time(s)`);
+      
+      // Warn if excessive renders are detected
+      if (renders.current > 5) {
+        warnDev(`⚠️ Excessive re-renders detected in ${componentName}: ${renders.current} renders`);
+      }
     }
-  }, [componentName]); // Add componentName as dependency
+  });
 }
 
 /**

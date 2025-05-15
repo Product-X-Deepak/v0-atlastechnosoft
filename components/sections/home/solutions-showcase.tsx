@@ -109,7 +109,7 @@ const solutions = [
     title: "SAP Business One",
     description: "Comprehensive ERP solution designed for small and medium-sized businesses to streamline operations and drive growth.",
     image: "/images/solutions/SAP_B1.png",
-    href: "/sap-solutions/business-one",
+    href: "/sap-solutions/hana",
     features: [
       "Financial management",
       "Sales and customer management",
@@ -156,8 +156,8 @@ const solutions = [
     iconBg: "bg-[#A73370]",
     title: "UiPath Solutions",
     description: "Enterprise automation platform combining RPA, AI, and process mining to eliminate manual work and reduce costs.",
-    image: "/images/solutions/ERP.png",
-    href: "/automation-solutions/uipath",
+    image: "/images/solutions/Uipath_RPA.jpg",
+    href: "/automation-solutions/ui-path",
     features: [
       "Process automation",
       "AI-powered workflows",

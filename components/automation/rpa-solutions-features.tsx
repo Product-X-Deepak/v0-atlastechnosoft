@@ -12,16 +12,16 @@ function RpaSolutionsFeatures() {
   const isInView = useInView(ref as React.RefObject<Element>, { once: true, amount: 0.2 })
 
   return (
-    <section id="capabilities" ref={ref} className="py-16">
+    <section id="capabilities" ref={ref} className="py-16 bg-[#1E1E38]">
       <div className="container px-4 md:px-6 lg:px-8">
         <div className="mx-auto mb-10 text-center">
           <div className="inline-flex items-center rounded-full border border-amber-600/30 bg-amber-100/80 px-4 py-2 text-sm font-medium text-amber-800">
             <span>Key Capabilities</span>
           </div>
-          <h2 className="mt-4 text-3xl font-bold tracking-tight text-slate-900 md:text-4xl">
-            Comprehensive <span className="text-[#A73370]">RPA Solutions</span>
+          <h2 className="mt-4 text-3xl font-bold tracking-tight md:text-4xl">
+            <span className="text-white text-shadow-sm">Comprehensive</span> <span className="text-[#A73370] drop-shadow-md">RPA Solutions</span>
           </h2>
-          <p className="mt-4 text-lg text-slate-600 max-w-2xl mx-auto">
+          <p className="mt-4 text-lg text-white/90 max-w-2xl mx-auto">
             Our UiPath RPA solutions offer an extensive set of capabilities to automate your business processes and drive digital transformation.
           </p>
         </div>
@@ -60,7 +60,7 @@ function RpaSolutionsFeatures() {
         
         <div className="mt-12 flex justify-center">
           <Button 
-            className="bg-[#1E1E38] text-white hover:bg-[#1E1E38]/90 group" 
+            className="bg-[#A73370] text-white hover:bg-[#A73370]/90 group" 
             asChild
           >
             <Link href="/contact" className="flex items-center">

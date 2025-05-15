@@ -160,7 +160,7 @@ function BoyumSolutions(_props: Record<string, unknown>) {
                 <p className="text-xs text-slate-600 mb-4">
                   <span className="font-semibold">2025 Roadmap:</span> Enhanced integrations with Warehouse Management, AI for predictive manufacturing, performance optimizations across core modules.
                 </p>
-                <Link href="/sap-solutions/business-one">
+                <Link href="/automation-solutions/boyum-it">
                   <Button variant="outline" className="w-full border-slate-300 bg-white hover:bg-slate-50 text-slate-800 font-medium hover:text-[#A73370] transition-colors">
                     Explore Beas Manufacturing
                   </Button>
@@ -214,7 +214,7 @@ function BoyumSolutions(_props: Record<string, unknown>) {
                 <p className="text-xs text-slate-600 mb-4">
                   <span className="font-semibold">2025 Features:</span> AI-driven warehouse optimization, predictive inventory management, and enhanced mobile scanning capabilities.
                 </p>
-                <Link href="/sap-solutions/business-one">
+                <Link href="/automation-solutions/boyum-it">
                   <Button variant="outline" className="w-full border-slate-300 bg-white hover:bg-slate-50 text-slate-800 font-medium hover:text-[#E84A0E] transition-colors">
                     Discover Produmex WMS
                   </Button>

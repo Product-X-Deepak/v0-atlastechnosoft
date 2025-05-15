@@ -29,6 +29,13 @@ const logMessage = (message: string) => {
   }
 };
 
+// Also ensure debug console.warn is properly conditioned
+const logWarning = (message: string, shouldShow = true) => {
+  if (process.env.NODE_ENV === 'development' && shouldShow) {
+    console.warn(message);
+  }
+};
+
 /**
  * Component that preloads critical images for better LCP performance
  * This is particularly useful for hero images and above-the-fold content
@@ -121,9 +128,7 @@ export const CriticalImagePreloader = memo(function CriticalImagePreloader({
         
         // Handle load failure
         img.onerror = () => {
-          if (debug && process.env.NODE_ENV === 'development') {
-            console.warn(`❌ Failed to preload: ${src}`);
-          }
+          logWarning(`❌ Failed to preload: ${src}`, debug);
           reject();
         };
         

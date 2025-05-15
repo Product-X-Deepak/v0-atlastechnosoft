@@ -18,7 +18,7 @@ export default function UiPathAgentic() {
           <h2 className="text-2xl font-bold tracking-tight sm:text-3xl md:text-4xl text-slate-900">
             A Strategic Approach to ERP Planning
           </h2>
-          <p className="text-slate-800 font-medium text-sm sm:text-base max-w-[85%] mt-2">
+          <p className="text-slate-900 font-medium text-sm sm:text-base max-w-[85%] mt-2">
             Our modern agentic approach ensures your UiPath automation investments align perfectly with your business strategy, achieving maximum ROI through proven strategic planning.
           </p>
         </div>

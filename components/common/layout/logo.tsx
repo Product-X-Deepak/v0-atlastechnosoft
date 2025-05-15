@@ -27,13 +27,13 @@ function Logo({ className, height, width }: LogoProps) {
         {/* Premium glow effect behind logo */}
         <span className="absolute -inset-2 -z-10 rounded-lg bg-gradient-to-r from-primary/20 via-primary/5 to-secondary/20 opacity-0 blur-lg transition-all duration-300 group-hover:opacity-100"></span>
         
-        {/* Image logo with appropriate sizing */}
+        {/* Image logo with appropriate sizing - reduced size */}
         <div className="relative flex items-center">
           <Image 
             src="/images/Main_Logo.png"
             alt="Atlas Technosoft"
-            height={height || 40}
-            width={width || 160}
+            height={height || 32}
+            width={width || 120}
             className={cn("object-contain", className)}
             onError={() => setImageError(false)}
             priority={true}

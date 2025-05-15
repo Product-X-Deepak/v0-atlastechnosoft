@@ -6,6 +6,7 @@ import { initWebVitalsReporting } from '@/lib/utils/web-vitals'
 import { initLinkOptimizer } from '@/lib/utils/link-validator'
 import { Suspense } from 'react'
 import { initializeChunkHandling, addChunkLoadingDebugListeners } from '@/lib/utils/chunk-initialization'
+import { ImagePerformanceMonitor } from '@/components/common/performance/image-performance-monitor'
 
 // Define an extended interface for CSSStyleDeclaration to include fontDisplay
 interface ExtendedCSSStyleDeclaration extends CSSStyleDeclaration {
@@ -270,6 +271,7 @@ function PerformanceOptimizerWrapper(props: Record<string, unknown>) {
   return (
     <Suspense fallback={null}>
       <PerformanceOptimizer {...props} />
+      <ImagePerformanceMonitor />
     </Suspense>
   );
 }

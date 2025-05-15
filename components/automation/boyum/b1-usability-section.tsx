@@ -117,7 +117,7 @@ function B1UsabilitySection() {
                 <Code className="h-5 w-5 text-[#E84A0E] mr-2" />
                 Integration Capabilities
               </h3>
-              <p className="text-slate-600 text-sm mb-4">
+              <p className="text-slate-800 text-sm mb-4">
                 B1 Usability Package seamlessly integrates with your existing SAP Business One ecosystem and other Boyum IT solutions.
               </p>
               <ul className="grid grid-cols-1 gap-3">
@@ -128,7 +128,7 @@ function B1UsabilitySection() {
                     </div>
                     <div>
                       <h4 className="text-sm font-semibold text-slate-900">{integration.title}</h4>
-                      <p className="text-xs text-slate-600">{integration.description}</p>
+                      <p className="text-xs text-slate-700">{integration.description}</p>
                     </div>
                   </li>
                 ))}
@@ -166,11 +166,11 @@ function B1UsabilitySection() {
                     <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" />
                   </svg>
                 </div>
-                <p className="text-slate-600 mb-4 font-medium italic">
+                <p className="text-slate-800 mb-4 font-medium italic">
                   "The B1 Usability Package transformed our efficiency. What previously took 3-4 clicks now takes just one. Our team's productivity has increased by over 30%."
                 </p>
                 <footer className="mt-2">
-                  <p className="text-sm text-slate-600 font-medium">Manufacturing Client, 200+ Users</p>
+                  <p className="text-sm text-slate-700 font-medium">Manufacturing Client, 200+ Users</p>
                 </footer>
               </blockquote>
               

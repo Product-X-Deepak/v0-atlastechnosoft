@@ -129,7 +129,7 @@ function SapBusinessOneDeployment() {
                       <div className="flex flex-col items-center">
                         <Server className="h-16 w-16 text-slate-700 dark:text-slate-300" />
                         <CardTitle className="mt-4 text-center text-2xl">SAP Business One On-Premise</CardTitle>
-                        <div className="mt-2 flex items-center rounded-full bg-slate-200 px-3 py-1 text-sm text-slate-700 dark:bg-slate-600 dark:text-slate-200">
+                        <div className="mt-2 flex items-center rounded-full bg-slate-200 px-3 py-1 text-sm text-slate-700 dark:bg-slate-600 dark:text-white">
                           <span>Perpetual licensing model</span>
                         </div>
                       </div>

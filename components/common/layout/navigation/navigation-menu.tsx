@@ -61,7 +61,7 @@ function MainNavigationMenu() {
             <div className="bg-gradient-to-b from-muted/30 to-muted/70 p-6 relative">
               <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <div className="mb-2 text-lg font-medium relative z-10">SAP Business One</div>
-              <p className="text-sm leading-tight text-muted-foreground relative z-10">
+              <p className="text-sm leading-tight text-muted-foreground dark:text-white/80">
                 Comprehensive ERP solution designed for small and medium-sized businesses
               </p>
             </div>
@@ -78,7 +78,7 @@ function MainNavigationMenu() {
           role="menuitem"
         >
           <div className="text-sm font-medium leading-none">SAP Business One Cloud</div>
-          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground dark:text-white/80">
             Cloud-based ERP solution with flexible deployment options
           </p>
         </Link>
@@ -93,7 +93,7 @@ function MainNavigationMenu() {
           role="menuitem"
         >
           <div className="text-sm font-medium leading-none">SAP HANA</div>
-          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground dark:text-white/80">
             In-memory database technology for real-time analytics
           </p>
         </Link>
@@ -108,7 +108,7 @@ function MainNavigationMenu() {
           role="menuitem"
         >
           <div className="text-sm font-medium leading-none">ERP Planning</div>
-          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground dark:text-white/80">
             Expert implementation and customization services
           </p>
         </Link>
@@ -147,7 +147,7 @@ function MainNavigationMenu() {
             <div className="bg-gradient-to-b from-muted/30 to-muted/70 p-6 relative">
               <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <div className="mb-2 text-lg font-medium relative z-10">UiPath Solutions</div>
-              <p className="text-sm leading-tight text-muted-foreground relative z-10">
+              <p className="text-sm leading-tight text-muted-foreground dark:text-white/80">
                 Enterprise automation platform for end-to-end process automation
               </p>
             </div>
@@ -164,7 +164,7 @@ function MainNavigationMenu() {
           role="menuitem"
         >
           <div className="text-sm font-medium leading-none">Boyum IT Solutions</div>
-          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground dark:text-white/80">
             Specialized add-ons and extensions for SAP Business One
           </p>
         </Link>
@@ -179,7 +179,7 @@ function MainNavigationMenu() {
           role="menuitem"
         >
           <div className="text-sm font-medium leading-none">RPA Solutions</div>
-          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground dark:text-white/80">
             Robotic Process Automation for streamlining business processes
           </p>
         </Link>
@@ -194,7 +194,7 @@ function MainNavigationMenu() {
           role="menuitem"
         >
           <div className="text-sm font-medium leading-none">Consultation Services</div>
-          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground dark:text-white/80">
             Expert guidance and strategic planning for your business technology needs
           </p>
         </Link>
@@ -215,7 +215,7 @@ function MainNavigationMenu() {
             role="menuitem"
           >
           <div className="text-sm font-medium leading-none">Shipping & Import/Export</div>
-          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground dark:text-white/80">
                 Digitize customs documentation, optimize container logistics, and achieve real-time global supply chain visibility
               </p>
           </Link>
@@ -230,7 +230,7 @@ function MainNavigationMenu() {
           role="menuitem"
         >
           <div className="text-sm font-medium leading-none">Distribution & Logistics</div>
-          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground dark:text-white/80">
             Optimize inventory management and streamline supply chains
           </p>
         </Link>
@@ -245,7 +245,7 @@ function MainNavigationMenu() {
           role="menuitem"
         >
           <div className="text-sm font-medium leading-none">Manufacturing</div>
-          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground dark:text-white/80">
             Integrate production planning, quality control, and supply chain management
           </p>
         </Link>
@@ -260,7 +260,7 @@ function MainNavigationMenu() {
           role="menuitem"
         >
           <div className="text-sm font-medium leading-none">Retail</div>
-          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground dark:text-white/80">
             Unify online and offline channels with advanced inventory management
           </p>
         </Link>
@@ -275,7 +275,7 @@ function MainNavigationMenu() {
           role="menuitem"
         >
           <div className="text-sm font-medium leading-none">Professional Services</div>
-          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground dark:text-white/80">
             Streamline project management and automate client engagement
           </p>
         </Link>
@@ -290,7 +290,7 @@ function MainNavigationMenu() {
           role="menuitem"
         >
           <div className="text-sm font-medium leading-none">Pharmaceuticals</div>
-          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground dark:text-white/80">
             Ensure regulatory compliance and optimize production
           </p>
         </Link>
@@ -305,7 +305,7 @@ function MainNavigationMenu() {
           role="menuitem"
         >
           <div className="text-sm font-medium leading-none">Financial Services</div>
-          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground dark:text-white/80">
             Automate compliance processes and enhance security
           </p>
         </Link>
@@ -320,7 +320,7 @@ function MainNavigationMenu() {
           role="menuitem"
         >
           <div className="text-sm font-medium leading-none">Healthcare</div>
-          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground dark:text-white/80">
             Streamline patient management and ensure compliance
           </p>
         </Link>
@@ -335,7 +335,7 @@ function MainNavigationMenu() {
           role="menuitem"
         >
           <div className="text-sm font-medium leading-none">Construction</div>
-          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground dark:text-white/80">
             Manage projects, track resources, and control costs
           </p>
         </Link>
