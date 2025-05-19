@@ -87,15 +87,15 @@ export function SiteHeader() {
       >
         Skip to content
       </a>
-      <div className="container relative flex h-[65px] xs:h-[70px] sm:h-[75px] md:h-[80px] lg:h-[85px] items-center justify-between pl-0 xs:pl-0 sm:pl-0 pr-2 xs:pr-3 sm:pr-4 md:pr-6 py-1 xs:py-2 sm:py-2 md:py-3">
-        <div className="flex items-center gap-2 xs:gap-4 sm:gap-6 md:gap-8 lg:gap-10">
+      <div className="container relative flex h-[55px] xs:h-[60px] sm:h-[65px] md:h-[75px] lg:h-[80px] items-center justify-between pl-2 xs:pl-1 sm:pl-0 pr-2 xs:pr-3 sm:pr-4 md:pr-6 py-0 xs:py-1 sm:py-2 md:py-3">
+        <div className="flex items-center gap-1 xs:gap-2 sm:gap-6 md:gap-8 lg:gap-10">
           {/* Logo with hover effect */}
           <motion.div
             whileHover={{ scale: 1.02 }}
             transition={{ type: "spring", stiffness: 400, damping: 10 }}
-            className="flex-shrink-0 -ml-2 xs:-ml-2 sm:-ml-2 md:-ml-3 lg:-ml-4"
+            className="flex-shrink-0 ml-0 xs:ml-0 sm:ml-0 md:ml-0 lg:ml-0"
           >
-            <Logo className="scale-85 xs:scale-90 sm:scale-90 md:scale-95 lg:scale-100" />
+            <Logo />
           </motion.div>
 
           {/* Using the MainNavigationMenu component with updated text color */}

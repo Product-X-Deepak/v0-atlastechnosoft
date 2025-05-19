@@ -1,6 +1,6 @@
 "use client"
 
-import { useRef } from "react"
+import { useRef, useState, useEffect } from "react"
 import Link from "next/link"
 import { motion, useInView } from "framer-motion"
 import { Button } from "@/components/ui/button"
@@ -10,6 +10,37 @@ import { Suspense } from "react"
 function FuturisticCTA() {
   const ref = useRef<HTMLElement>(null)
   const isInView = useInView(ref as React.RefObject<Element>, { once: true, amount: 0.3 })
+  const [particles, setParticles] = useState<Array<{
+    id: number;
+    x: string;
+    y: string;
+    opacity: number;
+    xAnimated: [string, string, string];
+    yAnimated: [string, string, string];
+    duration: number;
+  }>>([]);
+
+  // Generate random particles after component mounts to avoid hydration mismatches
+  useEffect(() => {
+    const newParticles = [...Array(15)].map((_, index) => ({
+      id: index,
+      x: `${Math.random() * 100}%`,
+      y: `${Math.random() * 100}%`,
+      opacity: Math.random() * 0.3 + 0.2,
+      xAnimated: [
+        `${Math.random() * 100}%`,
+        `${Math.random() * 100}%`,
+        `${Math.random() * 100}%`
+      ] as [string, string, string],
+      yAnimated: [
+        `${Math.random() * 100}%`,
+        `${Math.random() * 100}%`,
+        `${Math.random() * 100}%`
+      ] as [string, string, string],
+      duration: Math.random() * 20 + 10
+    }));
+    setParticles(newParticles);
+  }, []);
 
   return (
     <section 
@@ -43,30 +74,22 @@ function FuturisticCTA() {
         
         {/* Animated particles */}
         <div className="absolute inset-0">
-          {[...Array(15)].map((_, index) => (
+          {particles.map((particle) => (
             <motion.div
-              key={index}
+              key={particle.id}
               className="absolute h-1 w-1 rounded-full bg-[#E84A0E]"
               initial={{ 
-                x: Math.random() * 100 + "%", 
-                y: Math.random() * 100 + "%", 
-                opacity: Math.random() * 0.3 + 0.2
+                x: particle.x, 
+                y: particle.y, 
+                opacity: particle.opacity
               }}
               animate={{ 
-                x: [
-                  `${Math.random() * 100}%`, 
-                  `${Math.random() * 100}%`, 
-                  `${Math.random() * 100}%`
-                ],
-                y: [
-                  `${Math.random() * 100}%`, 
-                  `${Math.random() * 100}%`, 
-                  `${Math.random() * 100}%`
-                ],
+                x: particle.xAnimated,
+                y: particle.yAnimated,
                 opacity: [0.1, 0.3, 0.1]
               }}
               transition={{ 
-                duration: Math.random() * 20 + 10, 
+                duration: particle.duration, 
                 repeat: Infinity,
                 ease: "linear" 
               }}

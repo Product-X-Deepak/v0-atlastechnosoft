@@ -91,7 +91,7 @@ function SolutionsShowcase() {
             className="bg-[#E84A0E] text-white hover:bg-[#E84A0E]/90 group"
             asChild
           >
-            <Link href="/sap-solutions" className="flex items-center">
+            <Link href="/sap-solutions/business-one" className="flex items-center">
               View All Solutions
               <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
             </Link>

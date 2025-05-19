@@ -3,11 +3,17 @@
 import Link from "next/link"
 import Image from "next/image"
 import { Facebook, Instagram, Linkedin, Mail, Phone, Twitter, MapPin, Clock } from "lucide-react"
-import { Suspense, useState } from "react"
+import { Suspense, useState, useEffect } from "react"
 
 function SiteFooter() {
-  const currentYear = new Date().getFullYear()
+  // Initialize with an empty string to avoid hydration mismatch
+  const [currentYear, setCurrentYear] = useState("");
   const [_logoError, setLogoError] = useState(false)
+
+  // Set the year after hydration is complete
+  useEffect(() => {
+    setCurrentYear(new Date().getFullYear().toString());
+  }, []);
 
   return (
     <footer className="relative w-full border-t border-white/10 overflow-hidden bg-gradient-to-b from-background via-background/95 to-black/40" role="contentinfo" aria-label="Site Footer">

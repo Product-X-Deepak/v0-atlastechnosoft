@@ -305,7 +305,7 @@ export default function PrivacyPage() {
                   <p>India</p>
                 </div>
                 <div className="mt-3 sm:mt-0 sm:flex-1">
-                  <p className="mt-1 sm:mt-2">Email: <Link href="mailto:privacy@atlastechnosoft.com" className="text-[#E84A0E] hover:underline break-words">privacy@atlastechnosoft.com</Link></p>
+                  <p className="mt-1 sm:mt-2">Email: <Link href="mailto:info@atlastechnosoft.com" className="text-[#E84A0E] hover:underline break-words">info@atlastechnosoft.com</Link></p>
                   <p>Phone: <Link href="tel:+912222401925" className="text-[#E84A0E] hover:underline">+91-22-2240 1925</Link></p>
                 </div>
               </div>
@@ -328,7 +328,7 @@ export default function PrivacyPage() {
               If you have any questions about this Privacy Policy, please contact us:
             </p>
             <ul className="text-xs sm:text-sm md:text-base">
-              <li>By email: <Link href="mailto:privacy@atlastechnosoft.com" className="text-[#E84A0E] hover:underline">privacy@atlastechnosoft.com</Link></li>
+              <li>By email: <Link href="mailto:info@atlastechnosoft.com" className="text-[#E84A0E] hover:underline">info@atlastechnosoft.com</Link></li>
               <li>By phone: <Link href="tel:+912222401925" className="text-[#E84A0E] hover:underline">+91-22-2240 1925</Link></li>
               <li>By mail: Atlas Technosoft, Office No.29, Building No.108/116, Vitthalwadi, Kalabadevi Road, Marine Lines, Mumbai, Maharashtra 400002, India</li>
             </ul>

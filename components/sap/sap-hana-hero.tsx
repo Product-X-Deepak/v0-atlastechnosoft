@@ -1,6 +1,6 @@
 "use client"
 
-import { useRef } from "react"
+import { useRef, useState, useEffect } from "react"
 import { motion, useInView } from "framer-motion"
 import { ArrowRight, Database, Zap, BarChart3, Brain, Globe, Server } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -10,6 +10,33 @@ import { Suspense } from "react"
 function SapHanaHero() {
   const ref = useRef<HTMLElement>(null)
   const isInView = useInView(ref as React.RefObject<Element>, { once: true, amount: 0.3 })
+  const [dataPoints, setDataPoints] = useState<Array<{
+    id: number;
+    x: string;
+    y: string;
+    opacity: number;
+    scale: number;
+    xAnimated: [string, string];
+    yAnimated: [string, string];
+    opacityAnimated: [number, number];
+    duration: number;
+  }>>([]);
+
+  // Generate random positions after component mounts to avoid hydration mismatches
+  useEffect(() => {
+    const newDataPoints = [...Array(20)].map((_, i) => ({
+      id: i,
+      x: `${Math.random() * 100}%`,
+      y: `${Math.random() * 100}%`,
+      opacity: Math.random() * 0.3 + 0.2,
+      scale: Math.random() * 1 + 0.5,
+      xAnimated: [`${Math.random() * 100}%`, `${Math.random() * 100}%`] as [string, string],
+      yAnimated: [`${Math.random() * 100}%`, `${Math.random() * 100}%`] as [string, string],
+      opacityAnimated: [Math.random() * 0.3 + 0.2, Math.random() * 0.3 + 0.2] as [number, number],
+      duration: 8 + Math.random() * 7
+    }));
+    setDataPoints(newDataPoints);
+  }, []);
   
   return (
     <section 
@@ -19,23 +46,23 @@ function SapHanaHero() {
       {/* Abstract data pattern background - subtle pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute h-full w-full">
-          {[...Array(20)].map((_, i) => (
+          {dataPoints.map((point) => (
             <motion.div
-              key={i}
+              key={point.id}
               className="absolute h-px w-px rounded-full bg-slate-700"
               initial={{
-                x: Math.random() * 100 + "%",
-                y: Math.random() * 100 + "%",
-                opacity: Math.random() * 0.3 + 0.2,
-                scale: Math.random() * 1 + 0.5,
+                x: point.x,
+                y: point.y,
+                opacity: point.opacity,
+                scale: point.scale,
               }}
               animate={{
-                x: [null, `${Math.random() * 100}%`, `${Math.random() * 100}%`],
-                y: [null, `${Math.random() * 100}%`, `${Math.random() * 100}%`],
-                opacity: [null, Math.random() * 0.3 + 0.2, Math.random() * 0.3 + 0.2],
+                x: [null, point.xAnimated[0], point.xAnimated[1]],
+                y: [null, point.yAnimated[0], point.yAnimated[1]],
+                opacity: [null, point.opacityAnimated[0], point.opacityAnimated[1]],
               }}
               transition={{
-                duration: 8 + Math.random() * 7,
+                duration: point.duration,
                 repeat: Number.POSITIVE_INFINITY,
                 ease: "linear",
               }}

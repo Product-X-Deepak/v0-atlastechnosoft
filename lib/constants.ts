@@ -312,8 +312,8 @@ export const SEO = {
 // API endpoints
 export const API = {
   CONTACT_FORM: "/api/contact",
-  NEWSLETTER: "/api/newsletter",
-  CAREERS: "/api/careers",
+  NEWSLETTER: "/api/contact",
+  CAREERS: "/api/contact",
 }
 
 // Feature flags for progressive enhancement

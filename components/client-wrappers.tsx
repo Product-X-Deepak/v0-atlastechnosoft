@@ -13,13 +13,7 @@
 import dynamic from "next/dynamic"
 
 // Dynamically import client components with appropriate loading strategies
-export const CommandMenu = dynamic(
-  () => import("@/components/command-menu").then(mod => mod.CommandMenu),
-  { 
-    ssr: false,
-    loading: () => null 
-  }
-)
+// CommandMenu removed as it's no longer needed
 
 export const ScrollProgress = dynamic(
   () => import("@/components/scroll-progress").then(mod => mod.ScrollProgress),

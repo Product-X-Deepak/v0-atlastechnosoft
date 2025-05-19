@@ -351,7 +351,7 @@ export default function TermsAndConditionsPage() {
                   <p>India</p>
                 </div>
                 <div className="mt-3 sm:mt-0 sm:flex-1">
-                  <p className="mt-1 sm:mt-2">Email: <Link href="mailto:legal@atlastechnosoft.com" className="text-[#E84A0E] hover:underline break-words">legal@atlastechnosoft.com</Link></p>
+                  <p className="mt-1 sm:mt-2">Email: <Link href="mailto:info@atlastechnosoft.com" className="text-[#E84A0E] hover:underline break-words">info@atlastechnosoft.com</Link></p>
                   <p>Phone: <Link href="tel:+912222401925" className="text-[#E84A0E] hover:underline">+91-22-2240 1925</Link></p>
                 </div>
               </div>

@@ -2,28 +2,35 @@ import { NextResponse } from "next/server"
 import * as Mail from "nodemailer/lib/mailer"
 import * as nodemailer from "nodemailer"
 
-const companyEmail = process.env.EMAIL_USER || 'info@atlastechnosoft.com'
+// Ensure this email is always used for receiving form submissions
+const companyEmail = 'info@atlastechnosoft.com'
 
 // Create reusable transporter object using SMTP transport
 const createTransporter = () => {
+  const host = process.env.EMAIL_SERVER || 'mail.atlastechnosoft.com';
+  const port = parseInt(process.env.EMAIL_PORT || '465');
+  const secure = process.env.EMAIL_SECURE === 'true' || true;
+  const user = process.env.EMAIL_USER || 'info@atlastechnosoft.com';
+  const pass = process.env.EMAIL_PASSWORD || 'Shree_Atpl@@**6789';
+
   console.log('Creating email transporter with:', {
-    host: process.env.EMAIL_SERVER,
-    port: process.env.EMAIL_PORT,
-    secure: process.env.EMAIL_SECURE === 'true',
+    host,
+    port,
+    secure,
     auth: {
-      user: process.env.EMAIL_USER,
+      user,
       // Password masked for logging
-      passLength: process.env.EMAIL_PASSWORD ? process.env.EMAIL_PASSWORD.length : 0
+      passLength: pass ? pass.length : 0
     }
   });
   
   return nodemailer.createTransport({
-    host: process.env.EMAIL_SERVER || 'mail.atlastechnosoft.com',
-    port: parseInt(process.env.EMAIL_PORT || '465'),
-    secure: process.env.EMAIL_SECURE === 'true',
+    host,
+    port,
+    secure,
     auth: {
-      user: process.env.EMAIL_USER || 'info@atlastechnosoft.com',
-      pass: process.env.EMAIL_PASSWORD || '',
+      user,
+      pass,
     },
   });
 }
@@ -99,7 +106,7 @@ export async function POST(request: Request) {
     const formType = data.formType || "contact"
     const formData = formatFormData(data, formType)
     
-    // Prepare email options
+    // Prepare email options - always send to info@atlastechnosoft.com
     const mailOptions: Mail.Options = {
       from: process.env.EMAIL_FROM || `"Website Form" <${data.email}>`,
       to: companyEmail,

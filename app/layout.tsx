@@ -3,7 +3,7 @@ import { Mona_Sans } from "next/font/google"
 import localFont from "next/font/local"
 import { Montserrat } from "next/font/google"
 import type { ReactNode } from "react"
-import { Suspense, lazy } from "react"
+import { Suspense } from "react"
 
 import "@/app/globals.css"
 import { cn } from "@/lib/utils"
@@ -19,9 +19,6 @@ import { ScrollProgress } from "@/components/scroll-progress"
 import { ExitIntentPopup } from "@/components/common/feedback/exit-intent-popup"
 import { CookieConsent } from "@/components/common/feedback/cookie-consent"
 import { CustomCursor } from "@/components/ui/cursor-effects"
-
-// Lazily load non-critical components
-const CommandMenu = lazy(() => import("@/components/client-wrappers").then(mod => ({ default: mod.CommandMenu })))
 
 // Font configuration compatible with Next.js 15.2.4
 const fontSans = Mona_Sans({
@@ -275,9 +272,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
             <ExitIntentPopup />
           </Suspense>
           
-          <Suspense fallback={null}>
-            <CommandMenu />
-          </Suspense>
           <Suspense fallback={null}>
             <CustomCursor />
           </Suspense>
