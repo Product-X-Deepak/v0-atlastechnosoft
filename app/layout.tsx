@@ -184,14 +184,15 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
         <link rel="preconnect" href="https://atlastechnosoft.com" crossOrigin="anonymous" />
         
-        {/* Optimized favicon configuration */}
-        <link rel="icon" type="image/png" href="/images/Main_Logo.png" />
-        <link rel="icon" href="/images/Main_Logo.png" sizes="any" />
+        {/* Simple favicon configuration with direct references to the main logo */}
+        <link rel="shortcut icon" href="/images/Main_Logo.png" />
+        <link rel="icon" href="/images/Main_Logo.png" />
         <link rel="icon" type="image/png" sizes="32x32" href="/images/Main_Logo.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/images/Main_Logo.png" />
         <link rel="apple-touch-icon" sizes="180x180" href="/images/Main_Logo.png" />
-        <link rel="manifest" href="/site.webmanifest" />
+        <meta name="msapplication-TileImage" content="/images/Main_Logo.png" />
         <meta name="msapplication-TileColor" content="#2a1a40" />
+        <link rel="manifest" href="/site.webmanifest" />
         
         {/* Preload critical assets */}
         <link 
