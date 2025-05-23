@@ -75,11 +75,11 @@ body {
   }
 
   .dark {
-    --background: 215 32% 13%; /* Slate-900 premium color */
+    --background: 215 25% 27%; /* Slate-700 premium color */
     --foreground: 0 0% 98%;
     --card: 215 32% 11%;
     --card-foreground: 0 0% 98%;
-    --popover: 215 32% 13%;
+    --popover: 215 25% 27%;
     --popover-foreground: 0 0% 98%;
     --primary: 27 96% 61%; /* Premium Orange */
     --primary-foreground: 0 0% 100%;
@@ -99,7 +99,7 @@ body {
     --chart-3: 246 60% 60%; /* Vibrant Purple */
     --chart-4: 162 94% 30%; /* Rich Green */
     --chart-5: 199 89% 48%; /* Vibrant Blue */
-    --sidebar-background: 215 32% 13%;
+    --sidebar-background: 215 25% 27%;
     --sidebar-foreground: 0 0% 98%;
     --sidebar-primary: 27 96% 61%; /* Premium Orange */
     --sidebar-primary-foreground: 0 0% 100%;
@@ -174,7 +174,7 @@ a:hover .lucide-icon {
 .dark [class*="bg-blue"],
 .dark [class*="bg-primary"],
 .dark [class*="text-blue"] {
-  background-color: hsl(215, 32%, 13%) !important; /* Slate-900 */
+  background-color: hsl(215, 25%, 27%) !important; /* Slate-700 */
 }
 
 /* Override badge/card accent colors */
@@ -401,7 +401,7 @@ a:hover .lucide-icon {
 }
 
 .premium-card {
-  @apply bg-gradient-to-br from-purple-900/80 to-slate-900/90 border border-white/10 backdrop-blur-md;
+  @apply bg-gradient-to-br from-purple-900/80 to-slate-700/90 border border-white/10 backdrop-blur-md;
   transition: all 0.3s ease;
 }
 
